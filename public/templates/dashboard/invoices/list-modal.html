@@ -1,0 +1,47 @@
+<div class="modal fade" id="invoicesModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i></button>
+                <div class="container-xs-height full-height">
+                    <div class="row-xs-height">
+                        <div class="modal-body col-xs-height col-middle">
+                            <h3 class="m-b-10">Invoices</h3>
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Invoice Date</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="invoice in invoices">
+                                    <td>{{ invoice.date }}</td>
+                                    <td>{{ invoice.total }}</td>
+                                    <td>
+
+                                        <a ui-sref="dashboard.invoice({invoiceId:invoice.id})" target="_blank">View</a>
+                                    </td>
+                                </tr>
+                                <tr ng-if="$root.loading">
+                                    <td colspan="3">
+                                        <em>Loading...</em>
+                                    </td>
+                                </tr>
+                                <tr ng-if="!$root.loading && !invoices.length" class="danger">
+                                    <td colspan="3">No Invoices</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" ng-click="close()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

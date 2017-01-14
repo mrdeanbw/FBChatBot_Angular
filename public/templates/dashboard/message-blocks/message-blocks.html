@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+        <button ng-repeat="block in $ctrl.allowedBlocks" ng-disabled="$ctrl.context.message_blocks.length >= $ctrl.maxBlocks" class="btn btn-primary bg-primary-dark m-r-10 m-b-10" ng-click="$ctrl.addBlock(block)">+ Add {{ $ctrl.blockText[block] }}</button>
+        <button ng-if="$ctrl.context.message_blocks.length && $ctrl.userStatus !== undefined && $ctrl.allowPreview" class="pull-right btn btn-primary" ng-click="$ctrl.preview()">
+            <i class="fa fa-comment"></i> Preview
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div ng-repeat="block in $ctrl.context.message_blocks">
+            <div ng-switch on="block.type">
+                <text-wrapper ng-switch-when="text" message-block="block"></text-wrapper>
+                <image-wrapper ng-switch-when="image" message-block="block"></image-wrapper>
+                <card-container-wrapper ng-switch-when="card_container" message-block="block"></card-container-wrapper>
+                <button-block ng-switch-when="button" message-block="block" allow-send-trees="true" context="$ctrl.context"></button-block>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button-modal class="text-left" manager="$ctrl"></button-modal>

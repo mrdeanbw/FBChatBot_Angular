@@ -1,0 +1,250 @@
+<page-header></page-header>
+
+<div class="container-fluid container-fixed-lg">
+    <div class="row">
+
+        <div class="col-xs-4 m-b-10">
+            <div class="panel panel-default">
+                <div class="panel-heading separator">
+                    <div class="panel-title text-danger">Disconnect bot</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>
+                                Bot is <span class="text-success semi-bold">enabled</span> for the page "<strong>{{ $root.page.name }}</strong>"
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center" ng-if="$root.page.is_active" ng-click="$ctrl.openDisableBotModal()">
+                            <button class="btn btn-cons btn-danger">Disable</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4 m-b-10">
+            <div class="panel panel-default">
+
+                <div class="panel-heading separator">
+                    <div class="panel-title">Bot's Time Zone</div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-md-12 m-b-10 m-t-20">
+                            <p>Scheduled messages are sent based on the time zone you've set:</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 m-b-20 text-center">
+                            <ui-select ng-model="$ctrl.timezone" theme="bootstrap" title="Select timezone">
+                                <ui-select-match placeholder="Select Bot Timezone">{{ $ctrl.timezone }}</ui-select-match>
+                                <ui-select-choices repeat="timezone in $ctrl.timezones| filter:$select.search">
+                                    {{timezone}}
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="col-xs-12 m-b-10">
+                            <p class="bold">Current time</p>
+                            <p>Current Timezone: <strong>{{ '' | timezoned: $root.page.bot_timezone }}</strong></p>
+                            <div ng-if="$ctrl.timezone != $root.page.bot_timezone_string">
+                                <p>New Timezone: <strong>{{ '' | timezoned:$ctrl.timezone }}</strong></p>
+                                <div class="alert alert-warning">If you have any active broadcasts, don't forget to update their date & time (If necessary).</div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-cons btn-primary" ng-click="$ctrl.setBotTimezone($ctrl.timezone)">Save</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--<div class="panel panel-default">-->
+
+            <!--<div class="panel-heading separator">-->
+            <!--<div class="panel-title">Bot Admins</div>-->
+            <!--</div>-->
+
+            <!--<div class="panel-body">-->
+
+            <!--<div class="row">-->
+            <!--<div class="col-md-12 m-t-15">-->
+            <!--<h5>You can invite admins to manage your bot together or even transfer a bot to a new owner.</h5>-->
+            <!--</div>-->
+            <!--</div>-->
+
+
+            <!--&lt;!&ndash; Current Admins &ndash;&gt;-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-12 text-center">-->
+
+            <!--<div class="m-t-10">-->
+
+            <!--<div class="dropdown pull-left">-->
+            <!--<span class="thumbnail-wrapper d39 circular inline m-t-5">-->
+            <!--<img src="/img/profiles/avatar.jpg" alt="" data-src="/img/profiles/avatar.jpg" ui-jq="unveil" data-src-retina="//img/profiles/avatar_small2x.jpg" width="32" height="32">-->
+            <!--</span>-->
+            <!--</div>-->
+
+            <!--<div class="pull-left p-r-10 p-l-20 p-t-15 fs-16 font-heading">-->
+            <!--<span class="semi-bold">FB User Name</span>-->
+            <!--</div>-->
+
+            <!--<button class="btn btn-danger pull-right m-t-5" data-toggle="modal" data-target="#revokeaccessModal">Revoke Access</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Current Admins &ndash;&gt;-->
+
+            <!--&lt;!&ndash; Add Admins &ndash;&gt;-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-12 text-center">-->
+
+            <!--<div class="m-t-10">-->
+            <!--<button class="btn btn-primary pull-right m-t-5" data-toggle="modal" data-target="#addadminModal">Add admin</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Add Admins &ndash;&gt;-->
+            <!--</div>-->
+
+            <!--</div>-->
+        </div>
+        <div class="col-xs-4 m-b-10">
+            <div class="panel panel-default">
+
+                <div class="panel-heading separator">
+                    <div class="panel-title">Billing Information</div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 m-b-10 m-t-20">
+                            <p>Account Status:
+                                <span class="label" ng-if="!$root.page.payment_plan">Free</span>
+                                <span class="label label-success" ng-if="$root.page.payment_plan">{{$root.page.payment_plan.name +  ' ' + $root.page.payment_plan.subscribers | capitalize }}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-12 m-b-5 m-t-5 text-right">
+                            <button class="btn btn-primary m-r-5" data-toggle="modal" data-target="#upgradeToProModal" ng-if="!$root.page.payment_plan">
+                                Upgrade To Pro
+                            </button>
+                            <button class="btn btn-default" ng-click="$ctrl.openInvoicesModal()">Invoices</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="upgradeToProModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+
+                <div class="modal-header clearfix text-left m-b-20">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i></button>
+                    <h4>Upgrade to Pro</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-xs-height full-height">
+                        <div class="row-xs-height">
+                            <div class="col-xs-12 col-xs-height col-middle">
+                                <p class="m-b-10"><strong>MrReply Pro</strong> gives you all the tools for engaging your audience through Messenger.</p>
+                                <ul class="m-b-10" style="list-style: disc;">
+                                    <li>No "Powered by MrReply” labels</li>
+                                    <li>Unlimited Automated Sequences</li>
+                                    <li>Unlimited Customizable Growth Widgets</li>
+                                    <li>Unlimited Tags, Filters and Segments</li>
+                                    <li>... and much more!</li>
+                                </ul>
+                                <p class="m-b-10"><strong>Example use cases:</strong></p>
+                                <ul class="m-b-10" style="list-style: disc;">
+                                    <li>Content broadcasting: daily/weekly digests, blog posts, videos, articles</li>
+                                    <li>Automated interactive courses: education, user onboarding, entertainment</li>
+                                    <li>Notifications and alerts requested by the user</li>
+                                    <li>Automated keyword replies</li>
+                                </ul>
+                                <p class="m-b-10">You can always stay on the Free plan if you only need the basic functionality.
+                                    <a ui-sref="frontend.pricing" target="_blank" class="text-primary">Learn more about Free and Pro plans.</a>
+                                </p>
+                                <div class="p-a-3 p-t p-b text-center" ng-if="!$root.page.payment_plan">
+                                    <button id="paymentButton" data-dismiss="modal" ng-click="$ctrl.showPaymentForm()" class="btn btn-lg btn-block btn-primary">Upgrade to Pro (0 - {{ $ctrl.newSubscriptionPlan.variation }} subscribers)<br>for just <strong>{{ $ctrl.newSubscriptionPlan.price / 100 | currency:"$" }}</strong>/month</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Revoke Access Modal -->
+<div class="modal fade slide-right disable-scroll" id="revokeaccessModal" tabindex="-1" role="dialog" aria-labelledby="revokeaccessModal" aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i>
+                </button>
+                <div class="container-xs-height full-height">
+                    <div class="row-xs-height">
+                        <div class="modal-body col-xs-height col-middle text-center   ">
+                            <h5 class="">Do you want to <span class="semi-bold text-danger">remove</span> [[user name]] from your Mr. reply bot admins?</h5>
+                            <br>
+                            <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Yes, Revoke Access</button>
+                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- /.modal-dialog -->
+
+
+<!-- Add Admin Modal -->
+<div class="modal fade slide-up  disable-scroll" id="addadminModal" tabindex="-1" role="dialog" aria-labelledby="addadminModal" aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i>
+                    </button>
+                    <h5>Add new <span class="semi-bold">admin</span></h5>
+                    <p class="p-b-10 fs-16">Copy and send this code to invite an admin. This link is active for <span class="semi-bold">24 hours only</span>.</p>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group-attached">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div pg-form-group="" class="form-group form-group-default">
+                                        <label>Copy and send this URL</label>
+                                        <span class="input selectInput">https://mrreply.com/invite/rNbNsRAyeOk6eWukhCwN2XYWussh3BRC</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

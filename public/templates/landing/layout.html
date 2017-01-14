@@ -1,0 +1,88 @@
+<body id="landing-page">
+
+<header id="main-nav">
+    <div class="container">
+
+        <div class="hidden-lg hidden-md">
+            <a id="navigation" href="#"><i class="fa fa-bars"></i></a>
+            <div id="slide_out_menu">
+                <a href="#" class="menu-close"><i class="fa fa-times"></i></a>
+                <div class="logo"><img ng-src="/img/logo_white.png" alt="Mr. Reply"></div>
+                <ul>
+                    <li><a ui-sref="landing.homepage" ui-sref-active="active">Homepage</a></li>
+                    <li><a ui-sref="landing.features" ui-sref-active="active">Features</a></li>
+                    <li><a ui-sref="landing.pricing" ui-sref-active="active">Pricing</a></li>
+                    <li><a ui-sref="login" ui-sref-active="active">Login</a></li>
+                    <li><a ui-sref="dashboard.overview" class="btn btn-blue"><i class="fa fa-th-large"></i>Dashboard</a></li>
+                </ul>
+
+                <div class="slide_out_menu_footer">
+                    <ul class="socials">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <ul class="left">
+                    <li><a ui-sref="landing.features" ui-sref-active="active" class="semi-bold font-montserrat">Features</a></li>
+                    <li><a ui-sref="landing.pricing" ui-sref-active="active" class="semi-bold font-montserrat">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 text-center">
+                <a ui-sref="landing.homepage" class="logo"><img ng-src="/img/logo_2x.png" alt="Mr.Reply"></a>
+            </div>
+            <div class="col-md-5">
+                <ul class="right">
+                    <li style="margin-right: 20px;"><a ui-sref="dashboard.overview({facebookId: null})" class="semi-bold font-montserrat">Dashboard</a></li>
+                    <li><a ui-sref="login" class="btn btn-rounded semi-bold font-montserrat"><i class="fa fa-facebook m-r-10"></i>Create Bot Now</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header><!-- //Main Nav -->
+
+
+<ui-view></ui-view>
+
+<section id="subscribe" class="bg-master-lightest">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p class="subtitle">Ready to engage your audience through Messenger? </p>
+                <h3>Build your Facebook bot without coding</h3>
+                <a href="#" class="btn btn-success bold m-t-20 btn-rounded btn-lg">Register now for free</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section><!-- //Subscribe -->
+
+<footer id="footer">
+    <div class="container copyright-container">
+        <div class="row">
+
+            <div class="col-md-6 text-left">
+                <div class="more-info">
+                    Copyrights 2016 <strong>Mr. Reply</strong>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-right">
+                <div class="made-by"><img ng-src="/img/logo.png" alt=""></div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+</body>
+
+
+</body>

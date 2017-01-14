@@ -1,0 +1,82 @@
+<div class="panel">
+    <div class="panel-body">
+        <div class="row m-b-10">
+            <div class="col-xs-6">
+                <h3>Total: {{ $ctrl.audienceTableParams.total() | number }}</h3>
+            </div>
+            <div class="col-xs-6">
+                <div class="pull-right text-right">
+                    <p> ({{ $ctrl.selected.length | number }} Selected)</p>
+                    <button class="btn btn-primary" ng-class="{'disabled' : !$ctrl.selected.length}" ng-click="$ctrl.openBulkEditModal()">Bulk Edit</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="alert alert-info">You can click on any subscriber's row for more information.</div>
+
+            <table ng-table-dynamic="$ctrl.audienceTableParams with $ctrl.colsList" class="table table-hover table-bordered">
+
+                <tr ng-repeat="subscriber in $data" ng-class="{'danger': !subscriber[$ctrl.cols.is_active.field]}">
+
+                    <!--<td>-->
+                    <!--</td>-->
+
+                    <td ng-if="true">
+                        <a ui-sref="dashboard.subscriber.show({subscriberId:subscriber.id})"><span class="fa fa-info fa-fw" bs-tooltip data-original-title="View"></span></a>&nbsp;
+                        <input type="checkbox" ng-checked="$ctrl.isSelected(subscriber)" ng-click="$ctrl.toggleSelection(subscriber)" />
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.avatar_url.show">
+                        <a ng-href="{{ subscriber[$ctrl.cols.avatar_url.field] }}" target="_blank">
+                            <img ng-src="{{ subscriber[$ctrl.cols.avatar_url.field] }}" style="width: 32px" />
+                        </a>
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.first_name.show">
+                        {{ subscriber[$ctrl.cols.first_name.field] }}
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.last_name.show">
+                        {{ subscriber[$ctrl.cols.last_name.field] }}
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.gender.show">
+                        {{ subscriber[$ctrl.cols.gender.field] | capitalize }}
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.is_active.show">
+                        <span ng-if="subscriber[$ctrl.cols.is_active.field]" class="text-success">Active</span>
+                        <span ng-if="!subscriber[$ctrl.cols.is_active.field]" class="text-danger">Inactive</span>
+                    </td>
+
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.first_subscribed_at.show">
+                        <abbr ng-if="subscriber[$ctrl.cols.first_subscribed_at.field]" data-toggle="tooltip" data-original-title="{{ subscriber[$ctrl.cols.first_subscribed_at.field] | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                            {{ subscriber[$ctrl.cols.first_subscribed_at.field] | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate }}
+                        </abbr>
+                        <span ng-if="!subscriber[$ctrl.cols.first_subscribed_at.field]">Never</span>
+
+                    </td>
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.last_contacted_at.show">
+                        <abbr ng-if="subscriber[$ctrl.cols.last_contacted_at.field]" data-toggle="tooltip" data-original-title="{{ subscriber[$ctrl.cols.last_contacted_at.field] | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                            {{ subscriber[$ctrl.cols.last_contacted_at.field] | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate }}
+                        </abbr>
+                        <span ng-if="!subscriber[$ctrl.cols.last_contacted_at.field]">Never</span>
+                    </td>
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.tags.show">
+                        <span ng-repeat="tag in subscriber[$ctrl.cols.tags.field]">
+                            <span class="label label-info">{{ tag }}</span>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    td[ng-click] {
+        cursor: pointer;
+    }
+</style>

@@ -1,0 +1,45 @@
+<div class="row-fluid">
+    <div class="col-xs-12">
+        <ul class="breadcrumb">
+            <li>
+                <a>Sequence <strong>"{{ $ctrl.sequence.name}}"</strong></a>
+            </li>
+            <li>
+                <a>New Sequence Message</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group form-group-default ">
+            <label>Message Name</label>
+            <input ng-model="$ctrl.message.name" type="text" class="form-control m-t-15 input-lg" placeholder="Enter message name" style="margin-top: 5px;">
+        </div>
+        <div class="form-group form-group-default p-t-15 p-b-15">
+            <p class="inline p-r-5 fs-14">This message will be sent after</p>
+            <input ng-model="$ctrl.message.days" type="number" min="0" class="inline form-control" placeholder="1" style="max-width: 50px;padding-left: 5px" required />
+            <p class="inline p-l-0 fs-14 m-b-0 m-t-5">days from
+                <span class="bold">
+                    <span ng-if="$ctrl.isFirstMessage()">Subscription</span>
+                    <span ng-if="!$ctrl.isFirstMessage()">Previous Message</span>
+                </span>
+            </p>
+        </div>
+        <div class="form-group form-group-default p-t-15 p-b-15">
+            <label class="inline p-r-20 fs-14">Status: </label>
+            <input type="checkbox" class="js-switch" ui-switch="{color: '#10cfbd', size: 'small'}" ng-model="$ctrl.message.is_live" />
+            <p class="inline p-l-20 fs-14 m-b-0 m-t-5">
+                Sequence is
+                <span class="semi-bold label" ng-if="!$ctrl.message.is_live">Draft</span>
+                <span class="semi-bold label label-success" ng-if="$ctrl.message.is_live">Live</span>
+            </p>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-success" ng-click="$ctrl.save()">Save</button>
+            <a ui-sref="dashboard.sequence.edit({sequenceId: $ctrl.sequence.id})" class="btn btn-success" ng-click="$ctrl.save()">Cancel</a>
+        </div>
+    </div>
+
+    <div class="col-xs-9">
+        <message-blocks context="$ctrl.message"></message-blocks>
+    </div>
+</div>

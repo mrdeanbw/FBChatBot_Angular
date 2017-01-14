@@ -1,0 +1,229 @@
+<div class="row-fluid">
+
+    <!-- Metrics Blocks -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-transparent">
+
+            <div class="panel-heading">
+                <div class="panel-title">Sent broadcast Metrics</div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row m-b-20">
+                    <!-- Messages Sent Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Sent</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h3 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.sent | number }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Messages Delivered Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Delivered</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">
+                                            {{ $ctrl.broadcast.stats.delivered | number }}
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Read Rate Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Read</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ ($ctrl.broadcast.stats.read / $ctrl.broadcast.stats.delivered) | percentage }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Unique Clicks Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Clicks</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.clicks.unique | number }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- CTR Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">
+                                        CTR
+                                        <a href="" bs-tooltip data-original-title="Click-through rate"><i class="fa fa-question-circle fa-lg text-primary"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">
+                                            {{ ($ctrl.broadcast.stats.clicks.unique/ $ctrl.broadcast.stats.read) | percentage }}
+                                        </h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Total Clicks Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Total Clicks</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.clicks.total | number }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sent Message Preview -->
+    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+
+        <div class="panel panel-transparent">
+
+            <div class="panel-heading">
+                <div class="panel-title">Sent Message</div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="view chat-view bg-white clearfix">
+                    <div class="chat-inner">
+
+
+                        <!-- Text Preview Block -->
+                        <div class="message clearfix" ng-repeat="block in $ctrl.broadcast.message_blocks">
+                            <div class="profile-img-wrapper m-t-5 inline">
+                                <img class="col-top" width="30" height="30" ng-src="{{$root.page.avatar_url}}" alt="{{$root.page.name}}">
+                            </div>
+
+                            <div ng-if="block.type == 'text'">
+                                <div style="max-width: 80%;margin: 5px 0 5px 15px;padding: 5px 5px;" class="chat-bubble from-them">
+                                    <p>{{ block.text }}</p>
+                                </div>
+                                <div class="m-t-5" ng-repeat="button in block.message_blocks">
+                                    <div style="max-width: 80%;" class="m-t-5 m-l-40">
+                                        <button class="btn btn-sm text-primary semi-bold btn-rounded btn-block" data-html="true" data-title="Button Info" data-content="<p>Total Clicks: <strong>{{ button.stats.clicks.total }}</strong></p><p>User Clicks: <strong>{{ button.stats.clicks.unique }}</strong></p>" bs-popover>
+                                            {{ button.title }} <span class="pull-right">CTR: {{ (button.stats.clicks.unique / button.stats.read.unique) | percentage}}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="block.type == 'image'" style="max-width: 80%;margin: 5px 0 5px 15px;padding: 5px 5px;" class="chat-bubble from-them">
+                                <img ng-src="{{ block.image_url }}" class="img-responsive" alt="">
+                            </div>
+
+                            <div ng-if="block.type == 'card_container'" id="carousel_{{ block.id }}" class="carousel slide m-l-30" data-ride="carousel" data-wrap="false" data-interval="false" data-keyboard="false">
+                                <div class="carousel-inner m-l-45 sm-m-l-25" style="width: 90%">
+                                    <div class="item" ng-class="{'active': $first}" ng-repeat="card in block.message_blocks">
+                                        <div style="max-width: 80%;border-radius: 0px;background: #fff;margin: 5px 0 5px 15px;padding: 10px 10px;" class="chat-bubble from-them">
+                                            <img ng-src="{{ card.image_url }}" class="img-responsive" alt="">
+                                            <p class="fs-14 bold p-t-10 text-black">{{ card.title }}</p>
+                                            <p class="fs-12 light hint-text">{{ card.subtitle }}</p>
+                                            <p class="fs-12 light hint-text">
+                                                {{ card.url }}
+                                                <a href="" class="pull-right" data-html="true" data-title="Card URL Info" data-content="<p>Total Clicks: <strong>{{ card.stats.clicks.total }}</strong></p><p>User Clicks: <strong>{{ card.stats.clicks.unique }}</strong></p>" bs-popover>
+                                                    CTR: {{ (card.stats.clicks.unique / card.stats.read.unique) | percentage}}
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="m-t-5" ng-repeat="button in card.message_blocks">
+                                            <div style="max-width: 80%;" class="m-t-5 m-l-15">
+                                                <button class="btn btn-sm text-primary semi-bold btn-rounded btn-block" data-html="true" data-title="Button Info" data-content="<p>Total Clicks: <strong>{{ button.stats.clicks.total }}</strong></p><p>User Clicks: <strong>{{ button.stats.clicks.unique }}</strong></p>" bs-popover>
+                                                    {{ button.title }} <span class="pull-right">CTR: {{ (button.stats.clicks.unique / button.stats.read.unique) | percentage}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <a href="" class="left carousel-control" data-target="#carousel_{{ block.id }}" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                                <a href="" class="right carousel-control" data-target="#carousel_{{ block.id }}" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="panel panel-default" pg-portlet>
+    <div class="panel-body">
+        <form role="form">
+
+            <!-- Text Block -->
+            <div ng-if="$ctrl.messageBlock.is_disabled" class="alert alert-warning">
+                <p>You can remove this copyright by <a ui-sref="dashboard.settings({upgrade:true})" target="_blank">upgrading your account to PRO Plan.</a></p>
+            </div>
+
+            <div class="form-group form-group-default" pg-form-group>
+                <label>Message Text</label>
+                <textarea ng-disabled="$ctrl.messageBlock.is_disabled" class="form-control" id="name" style="max-width: 100%;min-height: 80px;" ng-model="$ctrl.messageBlock.text" maxlength="{{ $ctrl.MAX_LENGTH }}" wrap="hard"></textarea>
+                <h6 class="pull-right">{{ $ctrl.MAX_LENGTH - $ctrl.messageBlock.text.length }} characters remaining</h6>
+            </div>
+            <!-- Text Block -->
+
+        </form>
+
+        <div ng-repeat="button in $ctrl.messageBlock.message_blocks">
+            <button-block context="$ctrl.messageBlock" message-block="button" allow-send-trees="$ctrl.allowSendTrees" ></button-block>
+        </div>
+
+        <div class="row m-t-10">
+            <div class="col-xs-12">
+                <button ng-disabled="$ctrl.messageBlock.is_disabled || $ctrl.messageBlock.message_blocks.length >= $ctrl.MAX_BUTTON_COUNT" class="btn btn-default btn-block" ng-click="$ctrl.addButton()">+ Add Button</button>
+            </div>
+        </div>
+    </div>
+</div>

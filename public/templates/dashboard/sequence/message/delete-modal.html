@@ -1,0 +1,30 @@
+<div class="modal fade slide-right">
+    <div class="modal-dialog" style="width: 400px">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i></button>
+                <div class="container-xs-height full-height">
+                    <div class="row-xs-height">
+                        <div class="modal-body col-xs-height col-middle text-center">
+                            <h5>
+                                <span ng-if="message.queued">
+                                    This message has <span class="semi-bold">{{ message.queued | number }}</span> queued subscribers.<br />
+                                    Once you delete it, those subscribers won't receive this message.<br /><br />
+                                </span>
+                                <span ng-if="!message.queued">
+                                    Once you delete a message all of its associated data will be lost.<br /><br />
+                                </span>
+                                If you want to temporarily disable it, you can mark it as a draft.<br /><br />
+                                <span class="semi-bold">Are you sure you still want to delete this message?</span><br /><br />
+                            </h5>
+                            <br>
+                            <button type="button" class="btn btn-danger btn-block" ng-click="delete()">Delete</button>
+                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,178 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h5 class="semi-bold text-black font-montserrat m-t-0 text-center">
+            This sequence has <span class="text-primary bold">{{ $ctrl.sequence.subscribers_count | number }}</span> subscribers.
+        </h5>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="panel panel-transparent ">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-tabs-fillup" pg-tab-dropdownfx>
+            <li class="active">
+                <a data-toggle="tab" pg-tab href="#Messages"><span>Messages & Timeline</span></a>
+            </li>
+            <li>
+                <a data-toggle="tab" pg-tab href="#AutoStart"><span>Automatic Subscription</span></a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane slide-left active" id="Messages">
+                <div class="row column-seperation">
+                    <div class="col-xs-12">
+                        <div class="timeline-container">
+                            <section class="timeline">
+
+                                <div ng-repeat="message in $ctrl.sequence.messages">
+                                    <div class="timeline-block" ng-if="!message.is_deleted || message.queued">
+                                        <div class="timeline-point warning">
+                                            <i class="fa fa-clock-o fa-3x"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <div class="card share full-width">
+                                                <div class="card-description text-center p-t-5 p-b-5">
+                                                    <h5 class="fs-16">
+                                                        <del ng-if="message.is_deleted">Wait For {{ message.days | number }} day(s)</del>
+                                                        <span ng-if="!message.is_deleted">Wait For {{ message.days | number }} day(s)</span>
+                                                        <span ng-if="message.queued"><em>({{ message.queued | number }} Queued)</em>    </span>
+                                                        <small ng-if="message.is_deleted"><br />The related message has been deleted.</small>
+                                                    </h5>
+                                                    <a ng-if="!message.is_deleted" href="" ng-click="$ctrl.openWaitForModal($ctrl.sequence, message)">Edit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-block">
+                                        <div class="timeline-point info">
+                                            <i class="fa fa-flag"></i>
+                                        </div>
+
+                                        <!-- timeline-point -->
+                                        <div class="timeline-content" ng-if="!message.is_deleted">
+                                            <!-- START CARD ELEMENT -->
+                                            <div class="card share full-width">
+
+                                                <div class="card-description text-center p-t-5 p-b-5">
+                                                    <!--<div class="text-right">-->
+                                                    <!--<a ng-if="!$ctrl.isLast(message)" href="" ng-click="$ctrl.moveDown(message)" bs-tooltip data-original-title="Move Down">-->
+                                                    <!--<i class="fa fa-arrow-down"></i>-->
+                                                    <!--</a>-->
+                                                    <!--<a ng-if="!$ctrl.isFirst(message)" href="" ng-click="$ctrl.moveUp(message)" bs-tooltip data-original-title="Move Up">-->
+                                                    <!--<i class="fa fa-arrow-up"></i>-->
+                                                    <!--</a>-->
+                                                    <!--</div>-->
+                                                    <h5 class="fs-16">
+                                                        <span class="semi-bold" ng-if="!message.is_deleted">{{ message.name }}</span>
+                                                        <span ng-if="message.is_deleted">
+                                                            <del class="semi-bold hint-text">{{ message.name }}</del><br />
+                                                        </span>
+                                                    </h5>
+                                                </div>
+
+                                                <div class="card-header padding-5 p-t-10 p-b-10 clearfix" ng-if="!message.is_deleted">
+                                                    <div class="text-center small hint-text">
+                                                        <a ui-sref="dashboard.sequence.message.edit({sequenceId: $ctrl.sequence.id, messageId: message.id})" class="btn inline btn-sm btn-rounded btn-primary">Edit</a>
+                                                        <button class="btn inline btn-sm m-r-5 btn-rounded btn-danger" ng-click="$ctrl.deleteMessage($ctrl.sequence, message)">Delete</button>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- END CARD ELEMENT -->
+                                            <div class="event-date">
+                                                <h6 class="font-montserrat all-caps m-b-5 m-t-5">Day {{ message.total_days }}</h6>
+                                                <span class="label" ng-if="!message.is_live">Draft</span>
+                                                <span class="label label-success" ng-if="message.is_live">Live</span>
+                                            </div>
+
+                                        </div>
+                                        <!-- timeline-content -->
+                                    </div>
+                                </div>
+
+                                <!-- Add new block -->
+                                <div class="timeline-block">
+
+                                    <div class="timeline-point success">
+                                        <i class="pg-plus_circle"></i>
+                                    </div>
+                                    <!-- timeline-point -->
+
+                                    <div class="timeline-content">
+
+                                        <!-- END CARD ELEMENT -->
+                                        <div class="card share full-width">
+                                            <div class="card-header clearfix">
+                                                <a ui-sref="dashboard.sequence.message.create({sequenceId: $ctrl.sequence.id})" class="btn inline btn-sm btn-block btn-primary">Create New Message</a>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-date">
+                                            <h6 class="font-montserrat all-caps fs-14 text-black m-t-15">Add New Block</h6>
+                                        </div>
+
+                                    </div>
+                                    <!-- timeline-content -->
+                                </div>
+                                <!-- Add new block -->
+
+                            </section>
+                            <!-- timeline -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane slide-left" id="AutoStart">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<div class="alert alert-info">-->
+                            <!--You can subscribe users to this sequence either:-->
+                            <!--<ol>-->
+                                <!--<li><span class="bold">Manually</span> - by single or bulk editing subscribers from the <a ui-sref="dashboard.subscriber.list">audience table</a>.</li>-->
+                                <!--<li><span class="bold">Automatically</span> - upon clicking a button, from the button actions section (Subscribe to sequence option).</li>-->
+                                <!--<li><span class="bold">Automatically</span> - using the below options, you can automatically subscribe users to sequences upon meeting your filter criteria.</li>-->
+                            <!--</ol>-->
+                        <!--</div>-->
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <filter-audience context="$ctrl.sequence" allowed-rule-types="['gender', 'tag']"></filter-audience>
+                            <div class="text-center">
+                                <button class="btn btn-success" ng-click="$ctrl.save()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Delete Message Modal -->
+<div class="modal fade stick-up disable-scroll" id="modalDelSequenceMsg" tabindex="-1" role="dialog" aria-labelledby="modalDelSequenceMsg" aria-hidden="false">
+    <div class="modal-dialog  modal-sm">
+        <div class="modal-content-wrapper">
+
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i>
+                    </button>
+                    <h5>Delete Message</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="no-margin">Are you sure to <span class="bold text-danger">delete</span> [[Title]] Message?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-cons  pull-left inline" data-dismiss="modal">Delete</button>
+                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- Delete Message Modal /.modal-dialog -->

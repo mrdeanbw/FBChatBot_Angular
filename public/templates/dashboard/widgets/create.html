@@ -1,0 +1,58 @@
+<div ng-switch on="$ctrl.widget.type">
+    <div class="row-fluid" ng-switch-default>
+        <div class="col-xs-12">
+            <div class="alert alert-danger">
+                Unknown Widget Type
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" ng-switch-when="button">
+        <div class="col-xs-6">
+            <div class="form-group form-group-default">
+                <label>Widget Name</label>
+                <input ng-model="$ctrl.widget.name" type="text" class="form-control m-t-15 input-lg" placeholder="Enter widget title" style="margin-top: 5px;">
+            </div>
+            <div class="form-group" style="background-color: #fff; border: 1px solid rgba(0, 0, 0, .07);border-radius: 2px; -webkit-transition: background-color .2s ease;transition: background-color .2s ease;padding: 7px 12px 4px;">
+                <label class="inline p-r-20 fs-14">Color:</label>
+                <div class="radio radio-primary">
+                    <input type="radio" value="blue" ng-model="$ctrl.widget.widget_options.color" id="color_blue">
+                    <label for="color_blue">Blue</label>
+                    <input type="radio" value="white" ng-model="$ctrl.widget.widget_options.color" id="color_white">
+                    <label for="color_white">White</label>
+                </div>
+            </div>
+            <div class="form-group" style="background-color: #fff; border: 1px solid rgba(0, 0, 0, .07);border-radius: 2px; -webkit-transition: background-color .2s ease;transition: background-color .2s ease;padding: 7px 12px 4px;">
+                <label class="inline p-r-20 fs-14">Size:</label>
+                <div class="radio radio-primary">
+                    <input type="radio" value="standard" ng-model="$ctrl.widget.widget_options.size" id="size_standard">
+                    <label for="size_standard">Standard</label>
+                    <input type="radio" value="large" ng-model="$ctrl.widget.widget_options.size" id="size_large">
+                    <label for="size_large">Large</label>
+                    <input type="radio" value="xlarge" ng-model="$ctrl.widget.widget_options.size" id="size_xlarge">
+                    <label for="size_xlarge">X-Large</label>
+                </div>
+            </div>
+            <div class="form-group form-group-default ">
+                <label>Add Subscribers To Sequence:</label>
+                <ui-select ng-model="$ctrl.widget.sequence" theme="bootstrap" title="Select a Sequence">
+                    <ui-select-match placeholder="Select a Sequence">{{ $ctrl.widget.sequence.name }}</ui-select-match>
+                    <ui-select-choices repeat="sequence in $ctrl.sequences | filter:$select.search">
+                        {{ sequence.name }}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-success" ng-click="$ctrl.save()">Save</button>
+                <a ui-sref="dashboard.widgets.list" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <h3>Widget Preview</h3>
+            <p>The widget preview will show up here. When the facebook app is verified.</p>
+        </div>
+        <div class="col-xs-12">
+            <message-blocks context="$ctrl.widget"></message-blocks>
+        </div>
+    </div>
+</div>

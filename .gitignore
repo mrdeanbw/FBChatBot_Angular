@@ -1,0 +1,10 @@
+/node_modules
+/.idea
+/public/img/uploads/
+/public/js/
+/plugins/unused/
+/public/css/
+/pages/
+/npm-debug.log
+/.env.js
+/app/dashboard/build/templates/

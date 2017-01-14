@@ -1,0 +1,75 @@
+<div class="row m-b-10">
+    <div class="col-xs-3">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="search.keyword" placeholder="Filter Keywords">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
+    </div>
+    <button class="btn pull-right btn-primary" ng-click="$ctrl.addEmptyRule()">+ Add rule</button>
+</div>
+
+
+<div class="container-sm-height">
+    <div class="row-fluid row-sm-height" ng-repeat="rule in $ctrl.rules | filter:search" ng-form="ruleForm" id="{{ rule.$$hashKey | normalizedHashKey }}">
+        <div class="col-md-2 p-b-10 p-t-10 col-sm-height col-middle">
+            <div class="form-group  m-b-0" pg-form-group ng-if="!rule.is_disabled">
+                <label>If</label>&nbsp;&nbsp;
+                <select class="cs-select cs-skin-slide" cs-select ng-model="rule.mode" style="width: 100%">
+                    <option value="is">Message is</option>
+                    <option value="contains">Message contains</option>
+                    <option value="begins_with">Message begins with</option>
+                </select>
+            </div>
+            <div class="form-group  m-b-0 form-group-default" pg-form-group ng-if="rule.is_disabled">
+                <p class="form-control-static">
+                    <strong>If</strong> Message {{ {is: "is", contains: "contains", begins_with: "begins with"}[rule.mode] }}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
+            <div class="form-group  m-b-0 form-group-default" pg-form-group ng-if="!rule.is_disabled">
+                <label>This keyword/sentence</label>
+                <input ng-model="rule.keyword" ng-disabled="rule.is_disabled" placeholder="Keyword" class="form-control custom-tag-input" type="text" />
+            </div>
+            <div class="form-group  m-b-0 form-group-default" pg-form-group ng-if="rule.is_disabled">
+                <p class="form-control-static">
+                    {{ rule.keyword }}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 p-b-10 p-t-10 col-sm-height col-middle" ng-if="!rule.is_disabled">
+            <div pg-form-group class="form-group  m-b-0 form-group-default form-group-default-select" ng-if="rule.action == 'send'">
+                <label>Then send tree</label>
+                <ui-select ng-model="rule.template" ng-disabled="rule.is_disabled" theme="select2" title="Select a tree" style="width:100%">
+                    <ui-select-match placeholder="Select Tree">{{ $select.selected.name }}</ui-select-match>
+                    <ui-select-choices repeat="template in $ctrl.trees | filter:$select.search">
+                        <div ng-bind-html="template.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group  m-b-0 form-group-default" pg-form-group ng-if="rule.action != 'send'">
+                <label>Take Action</label>
+                <input ng-model="rule.action" ng-disabled="rule.is_disabled" class="form-control custom-tag-input" type="text" />
+            </div>
+        </div>
+        <div class="col-md-4 p-b-10 p-t-10 col-sm-height col-middle" ng-if="rule.is_disabled">
+            <div class="form-group  m-b-0 form-group-default" pg-form-group>
+                <p class="form-control-static">
+                    <strong>Then: </strong>
+                                                <span ng-if="rule.action == 'send'">
+                                                    send &rightarrow; <strong>{{ rule.template.name }}</strong>
+                                                </span>
+                                                <span>
+                                                    take action &rightarrow; {{ rule.action | capitalize }}
+                                                </span>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
+            <div class="form-group  m-b-0" ng-if="!rule.is_disabled">
+                <button ng-click="$ctrl.saveRule(rule)" class="btn btn-primary" ng-disabled="rule.is_disabled || ruleForm.$pristine">Save</button>
+                <button ng-click="$ctrl.removeRule(rule)" class="btn btn-danger" ng-disabled="rule.is_disabled">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

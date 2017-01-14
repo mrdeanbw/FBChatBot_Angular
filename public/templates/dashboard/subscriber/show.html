@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-xs-7">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3" align="center">
+                        <img ng-src="{{$ctrl.subscriber.avatar_url}}" class="img-circle img-responsive">
+                    </div>
+                    <div class="col-md-9 col-lg-9">
+                        <table class="table table-condensed">
+                            <tbody>
+                            <tr>
+                                <td class="bold">First Name</td>
+                                <td>{{ $ctrl.subscriber.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Last Name</td>
+                                <td>{{ $ctrl.subscriber.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Gender</td>
+                                <td>{{ $ctrl.subscriber.gender | capitalize }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Status</td>
+                                <td>
+                                    <span ng-if="$ctrl.subscriber.is_active" class="text-success">Active</span>
+                                    <span ng-if="!$ctrl.subscriber.is_active">Inactive</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold">Latest Contact</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_contacted_at" data-toggle="tooltip" data-original-title="{{ $ctrl.subscriber.last_contacted_at | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                                        {{ $ctrl.subscriber.last_contacted_at | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_contacted_at">Never</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold">First Subscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.first_subscribed_at" data-toggle="tooltip" data-original-title="{{ $ctrl.subscriber.first_subscribed_at | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                                        {{ $ctrl.subscriber.first_subscribed_at | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate  }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.first_subscribed_at">Never</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Last Subscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_subscribed_at" data-toggle="tooltip" data-original-title="{{ $ctrl.subscriber.last_subscribed_at | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                                        {{ $ctrl.subscriber.last_subscribed_at | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_subscribed_at">Never</em>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold">Last Unsubscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_unsubscribed_at" data-toggle="tooltip" data-original-title="{{ $ctrl.subscriber.last_unsubscribed_at | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}" bs-tooltip>
+                                        {{ $ctrl.subscriber.last_unsubscribed_at | timezoned:$root.page.bot_timezone:'YYYY-MM-DD HH:mm:ss' | relativeDate  }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_unsubscribed_at">Never</em>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold">Subscribed Sequences</td>
+                                <td>
+                                    <a ng-repeat="sequence in $ctrl.subscriber.sequences" ui-sref="dashboard.sequence.edit({sequenceId: sequence.id})" >
+                                        {{ sequence.name }}
+                                        <span ng-if="!$first"><br /></span>
+                                    </a>
+                                    <span ng-if="!$ctrl.subscriber.sequences.length">-</span>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <!--<div pg-form-group class="form-group form-group-default form-group-default-select">-->
+                        <!--<label class="bold">Subscribed Sequences</label>-->
+                        <!--<ui-select multiple ng-model="$ctrl.subscriber.sequences" theme="select2" style="width:100%">-->
+                        <!--<ui-select-match placeholder="Select/Deselect Sequences">{{$item.name}}</ui-select-match>-->
+                        <!--<ui-select-choices repeat="sequence in $ctrl.sequences | propsFilter: {name: $select.search }">-->
+                        <!--<div ng-bind-html="sequence.name | highlight: $select.search"></div>-->
+                        <!--</ui-select-choices>-->
+                        <!--</ui-select>-->
+                        <!--</div>-->
+
+                        <div pg-form-group class="form-group form-group-default form-group-default-select">
+                            <label class="bold">Tags</label>
+                            <ui-select multiple tagging tagging-label="(new)" ng-model="$ctrl.subscriber.tags" theme="select2" style="width:100%">
+                                <ui-select-match placeholder="Select/Deselect Tags">{{ $item }}</ui-select-match>
+                                <ui-select-choices repeat="tag in $ctrl.tags | filter:$select.search">
+                                    <div ng-bind-html="tag | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <button class="btn btn-success pull-right" ng-click="$ctrl.save()">Save</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-xs-5">
+        <h5 class="text-center">Subscription History</h5>
+        <div class="timeline-container top-circle">
+            <section class="timeline">
+                <div class="timeline-block" ng-repeat="record in $ctrl.subscriber.subscription_history">
+                    <div class="timeline-point small" ng-class="{'success' : record.action == 'subscribed', 'danger' : record.action == 'unsubscribed'}"></div>
+                    <!-- timeline-point -->
+                    <div class="timeline-content">
+                        <div class="card share full-width">
+                            <div class="card-description">
+                                <p ng-class="{'text-success' : record.action == 'subscribed', 'text-danger' : record.action == 'unsubscribed'}">
+                                    {{ record.action | capitalize }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="event-date">
+                            <small class="fs-12 hint-text">{{ record.action_at | timezoned:$root.page.bot_timezone:'Do MMMM YYYY, h:mm a' }}</small>
+                        </div>
+                    </div>
+                    <!-- timeline-content -->
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

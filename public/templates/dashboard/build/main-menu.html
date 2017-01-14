@@ -1,0 +1,35 @@
+<div class="panel panel-transparent">
+
+    <div class="panel-heading">
+        <div class="panel-title">Build Menu</div>
+    </div>
+
+    <div class="panel-body">
+        <div class="row m-b-10">
+            <div class="col-xs-12">
+                <button class="btn btn-success" ng-click="$ctrl.update()">
+                    Save
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <message-blocks allow-preview="false" context="$ctrl.mainMenu" allowed-blocks="['button']" max-blocks="$ctrl.MAX_BUTTON_COUNT"></message-blocks>
+            </div>
+            <div class="col-xs-4 col-xs-offset-4">
+                <div id="mm_preview_outer">
+                    <ul id="mm_preview_list">
+                        <li>Menu</li>
+                        <li ng-repeat="button in $ctrl.mainMenu.message_blocks">
+                            <a href="#">
+                                {{ button.title }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="mm_preview_arrow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

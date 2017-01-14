@@ -1,0 +1,79 @@
+<div class="panel panel-transparent">
+
+    <div class="panel-heading">
+        <button type="button" class="btn btn-success" ng-click="$ctrl.update()" ng-disabled="!$ctrl.isValid">Save</button>
+    </div>
+
+    <div class="panel-body">
+        <div class="row" ng-if="!$ctrl.isValid">
+            <div class="col-xs-9">
+                <div class="alert alert-danger">
+                    Since you are on a free plan, your greeting text has to end with the following: <strong>"- Powered By: MrReply.com"</strong>.<br />
+                    If you want to remove this part, you should upgarde to a pro plan.<br />
+                    For now, you can either add that text manually, click that "Fix Automatically" button.<br />
+                    <a href="" ng-click="$ctrl.fix()" class="btn btn-success">Fix Automatically</a>
+                    <a ui-sref="dashboard.settings({upgrade:true})" class="btn btn-primary">Upgrade To Pro</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 m-t-15">
+                <div class="form-group form-group-default bg-white" pg-form-group>
+                    <label>Greeting Text</label>
+                    <textarea class="form-control" id="name" style="max-width: 100%;min-height: 80px;" ng-model="$ctrl.greetingText.text" maxlength="160" wrap="hard" ng-change="$ctrl.validateCopyrights()"></textarea>
+                    <h6 class="pull-right">{{ 160 - $ctrl.greetingText.text.length }} characters remaining</h6>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div id="gt_preview_outer">
+                    <div id="gt_preview_inner">
+                        <div id="gt_preview_header">
+                            <h4 id="gt_preview_page_title">
+                                <a ng-href="{{ $root.page.url }}" target="_blank">
+                                    {{ $root.page.name }}
+                                </a>
+                                <span class="pull-right"><i class="fa fa-close"></i></span>
+                            </h4>
+                        </div>
+                        <div id="gt_preview_body_container">
+                            <table id="gt_preview_body_header">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div id="gt_preview_avatar_container">
+                                            <img ng-src="{{ $root.page.avatar_url }}" width="50" height="50" alt="" id="gt_preview_avatar" />
+                                        </div>
+                                        <div id="gt_preview_page_summary">
+                                            <div id="gt_preview_likes">
+                                                100K people like this
+                                            </div>
+                                            <div id="gt_preview_page_type">
+                                                Page Type
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div id="gt_preview_greeting_text">
+                                {{ $ctrl.greetingText.text }}
+                            </div>
+                            <div id="gt_preview_get_started">
+                                <a href="#">
+                                    Get Started
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 fs-14 p-t-10">
+                <p class="semi-bold">You may use the following dynamic short-codes in your message:</p>
+                <p>To display the user's first name: <span class="label label-info" ng-non-bindable>{{first_name}}</span></p>
+                <p>To display the user's last name: <span class="label label-info" ng-non-bindable>{{last_name}}</span></p>
+                <p> To display the user's full name: <span class="label label-info" ng-non-bindable>{{full_name}}</span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
