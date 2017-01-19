@@ -28,7 +28,7 @@ app.controller('AppController', ['$scope', '$rootScope', '$location', '$state', 
 
     // App globals
     $scope.app = {
-        name: 'Mr.Reply - The best Facebook chat bots platform',
+        name: 'Mr. Reply - The best Facebook chat bots platform',
         description: '',
         owner: 'Mr. Reply',
         layout: {
