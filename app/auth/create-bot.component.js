@@ -2,7 +2,7 @@ angular.module('auth').component('createBot', {
 
     templateUrl: "/templates/auth/create-bot.html",
 
-    bindings: { 
+    bindings: {
         remotePages: '=',
         activeBots: '=',
         disabledBots: '='
@@ -54,10 +54,10 @@ angular.module('auth').component('createBot', {
         };
 
         self.refresh = function () {
-            Pages.fetchRemote().then(function (response) {
-                self.remotePages = response;
-            }, function () {
-                self.remotePages = null;
+            return Pages.getList({ remote: true }).then(function (pages) {
+                self.remotePages = pages;
+            }, function (pages) {
+                self.remotePages = pages;
             });
         };
 
