@@ -1,18 +1,27 @@
 {
   "name": "mrreply-frontend",
   "version": "1.0.0",
-  "description": "Mr.Reply Frontend",
-  "main": "gruntFile.js",
+  "description": "Angular frontend for Mr. Reply",
+  "author": "Mr. Reply",
   "dependencies": {
-    "grunt": "^0.4.5"
-  },
-  "devDependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "^0.4.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.6",
+    "browserify": "^14.0.0",
+    "browserify-ngannotate": "^2.0.0",
     "connect-modrewrite": "^0.9.0",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1",
+    "gulp-util": "^3.0.8",
+    "merge-stream": "^1.0.1",
+    "del": "^2.2.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

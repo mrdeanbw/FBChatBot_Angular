@@ -1,7 +1,8 @@
-(function (window) {
-    window.__ENV = window.__ENV || {};
-    window.__ENV.API_URL           = 'http://localhost:8888/api';
-    window.__ENV.FACEBOOK_APP_ID   = '';
-    window.__ENV.STRIPE_PUBLIC_KEY = '';
-    window.__ENV.MAINTENANCE_ENABLED = false;
-}(this));
+let __ENV = {
+    API_URL: 'http://localhost:8888/api',
+    FACEBOOK_APP_ID: '',
+    STRIPE_PUBLIC_KEY: '',
+    MAINTENANCE_ENABLED: false
+};
+
+export default __ENV;
