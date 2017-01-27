@@ -2,8 +2,11 @@
 
 # Installation
 
+### Prerequisites
+- Make sure you have `gulp` installed globally (`npm install -g gulp`)
+- Make sure you have `bower` installed globally (`npm install -g bower`)
+
 ### Development
-0. Make sure you have gulp installed globally (`npm install -g gulp`)
 1. Clone repo
 2. Copy `.env.example.js` to `.env.js`, and configure it properly.
 3. `npm install`
@@ -11,7 +14,6 @@
 5. `gulp`
 
 ### Production
-0. Make sure you have gulp installed globally (`npm install -g gulp`)
 1. Clone repo
 2. Copy `.env.example.js` to `.env.js`, and configure it properly.
 3. `npm install`

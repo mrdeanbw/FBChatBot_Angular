@@ -39,3 +39,6 @@ node_modules
 src/app/config/app.templates.js
 /.env.js
 /.idea/
+/old/
+/bower_components/
+/src/app/app.templates.js
