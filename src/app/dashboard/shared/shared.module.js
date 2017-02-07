@@ -32,4 +32,10 @@ sharedModule.component('imageUploader', imageUploaderComponent);
 import SelectTreeComponent from './select-tree/select-tree.component';
 sharedModule.component('selectTree', SelectTreeComponent);
 
+import SelectTagsComponent from './select-tags/select-tags.component';
+sharedModule.component('selectTags', SelectTagsComponent);
+
+import SelectSequencesComponent from './select-sequences/select-sequences.component';
+sharedModule.component('selectSequences', SelectSequencesComponent);
+
 export default sharedModule;

@@ -1,6 +1,7 @@
 class TextController {
     constructor(MessageHelpers) {
         'ngInject';
+
         this._MessageHelpers = MessageHelpers;
         this.MAX_LENGTH = 320;
         this.MAX_BUTTONS = 3;
@@ -10,6 +11,7 @@ class TextController {
         let button = {
             title: 'New Button',
             url: '',
+            type: 'button',
             actions: {
                 add_tags: [],
                 remove_tags: [],
@@ -17,9 +19,9 @@ class TextController {
                 unsubscribe_sequences: []
             }
         };
-        
+
         this._MessageHelpers.addMessage(this.message.buttons, button);
-        this._MessageHelpers.openButtonModal(this.message.button, button);
+        this._MessageHelpers.openButtonModal(this.message.buttons, button);
     }
 }
 

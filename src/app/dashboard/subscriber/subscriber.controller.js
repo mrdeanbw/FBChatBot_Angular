@@ -1,9 +1,8 @@
 class SubscriberController {
 
-    constructor(NgTableParams, Subscribers, Modals, toaster, AppHelpers, $state, lodash, Tags, Sequences) {
+    constructor(NgTableParams, Subscribers, Modals, toaster, AppHelpers, $state, lodash, Sequences) {
         'ngInject';
 
-        this._Tags = Tags;
         this._lodash = lodash;
         this._$state = $state;
         this._Modals = Modals;
@@ -41,7 +40,7 @@ class SubscriberController {
             cb: success => {
                 self.selected = [];
                 this._toaster.pop("success", "Saved Successfully!");
-                this.audienceTableParams.reload();
+                this.tableParams.reload();
             }
         })
     }
@@ -50,10 +49,10 @@ class SubscriberController {
         subscriber.put().then(() => this._toaster.pop("success", "Saved Successfully!"))
     }
 
-    _bulkEdit($scope, close, $element) {
+    _bulkEdit($scope, close, $element, $rootScope) {
         'ngInject';
 
-        this._Tags(this.bot.id).getList().then(tags => $scope.tags = tags);
+        $scope.tags = $rootScope.bot.tags;
         this._Sequences(this.bot.id).getList().then(sequences => $scope.sequences = sequences);
 
         $scope.subscribers = this.selected;
@@ -91,7 +90,7 @@ class SubscriberController {
             {id: 'last_month', title: 'Last Month'}
         ];
 
-        let colsList = [
+        this.colList = [
             {field: "batch_select", title: "", show: true,},
             {field: "avatar_url", title: "Avatar", show: true},
             {
@@ -137,9 +136,9 @@ class SubscriberController {
             {field: "tags", title: "Tags", show: true}
         ];
 
-        this.cols = this._lodash.keyBy(colsList, "field");
+        this.cols = this._lodash.keyBy(this.colList, "field");
 
-        this.audienceTableParams = new this._NgTableParams(
+        this.tableParams = new this._NgTableParams(
             {sorting: {first_subscribed_at: "desc"}},
             {
                 getData: params => {

@@ -1,0 +1,46 @@
+<div class="panel panel-transparent">
+
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+            <div class="col-xs-3 text-right">
+                <a ui-sref="app.dashboard.build.message-tree.create" class="btn btn-primary">
+                    New Message Tree
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Tree Name</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="tree in $ctrl.trees | filter:search">
+                        <td>{{ tree.name }}</td>
+                        <td>
+                            <a ui-sref="app.dashboard.build.message-tree.edit({templateId: tree.id})">Edit</a>
+                        </td>
+                    </tr>
+                    <tr ng-show="!$ctrl.trees.length">
+                        <td colspan="2">No Message Trees.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

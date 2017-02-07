@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-xs-7">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3" align="center">
+                        <img ng-src="{{$ctrl.subscriber.avatar_url}}" class="img-circle img-responsive">
+                    </div>
+                    <div class="col-md-9 col-lg-9">
+                        <table class="table table-condensed m-b-10">
+                            <tbody>
+                            <tr>
+                                <td class="bold">First Name</td>
+                                <td>{{ $ctrl.subscriber.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Last Name</td>
+                                <td>{{ $ctrl.subscriber.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Gender</td>
+                                <td>{{ $ctrl.subscriber.gender | capitalize }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Status</td>
+                                <td>
+                                    <span ng-if="$ctrl.subscriber.is_active" class="text-success">Active</span>
+                                    <span ng-if="!$ctrl.subscriber.is_active">Inactive</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold">Latest Contact</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_contacted_at" data-toggle="tooltip"
+                                          data-original-title="{{ $ctrl.subscriber.last_contacted_at  | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
+                                          pg-tooltip>
+                                        {{ $ctrl.subscriber.last_contacted_at | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_contacted_at">Never</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold">First Subscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.first_subscribed_at" data-toggle="tooltip"
+                                          data-original-title="{{ $ctrl.subscriber.first_subscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
+                                          pg-tooltip>
+                                        {{ $ctrl.subscriber.first_subscribed_at | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.first_subscribed_at">Never</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Last Subscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_subscribed_at" data-toggle="tooltip"
+                                          data-original-title="{{ $ctrl.subscriber.last_subscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
+                                          pg-tooltip>
+                                        {{ $ctrl.subscriber.last_subscribed_at | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_subscribed_at">Never</em>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold">Last Unsubscribed At</td>
+                                <td>
+                                    <abbr ng-if="$ctrl.subscriber.last_unsubscribed_at" data-toggle="tooltip"
+                                          data-original-title="{{ $ctrl.subscriber.last_unsubscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
+                                          pg-tooltip>
+                                        {{ $ctrl.subscriber.last_unsubscribed_at | relativeDate }}
+                                    </abbr>
+                                    <em ng-if="!$ctrl.subscriber.last_unsubscribed_at">Never</em>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div class="m-b-10">
+                            <select-tags model="$ctrl.subscriber.tags"></select-tags>
+                        </div>
+
+                        <div class="m-b-20">
+                            <select-sequences model="$ctrl.subscriber.sequences"></select-sequences>
+                        </div>
+
+                        <button class="btn btn-success pull-right" ng-click="$ctrl.save()">Save</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-xs-5">
+        <h5 class="text-center">Subscription History</h5>
+        <div class="timeline-container top-circle">
+            <section class="timeline">
+                <div class="timeline-block" ng-repeat="record in $ctrl.subscriber.subscription_history">
+                    <div class="timeline-point small"
+                         ng-class="{'success' : record.action == 'subscribed', 'danger' : record.action == 'unsubscribed'}"></div>
+                    <!-- timeline-point -->
+                    <div class="timeline-content">
+                        <div class="card share full-width">
+                            <div class="card-description">
+                                <p ng-class="{'text-success' : record.action == 'subscribed', 'text-danger' : record.action == 'unsubscribed'}">
+                                    {{ record.action | capitalize }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="event-date">
+                            <small class="fs-12 hint-text">{{ record.action_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'
+                                }}
+                            </small>
+                        </div>
+                    </div>
+                    <!-- timeline-content -->
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

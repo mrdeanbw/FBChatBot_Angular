@@ -1,17 +1,14 @@
 class SelectTreeController {
-    constructor() {
+    constructor(MessageTrees, $rootScope) {
         'ngInject';
-        this.templates = [
-            {id: 1, name: "Hello World 1"},
-            {id: 2, name: "Hello World 2"}
-        ];
+        this._$rootScope = $rootScope;
+        this._MessageTrees = MessageTrees;
+
+        this.refresh();
     }
 
-    refresh(){
-        this.templates = [
-            {id: 3, name: "Hello World 3"},
-            {id: 5, name: "Hello World 4"}
-        ];
+    refresh() {
+        this._MessageTrees(this._$rootScope.bot.id).getList().then(trees=> this.trees = trees);
     }
 
 }

@@ -1,14 +1,24 @@
 import angular from 'angular';
+import 'angular-ui-tree';
 
-let messageTreeModule = angular.module('app.dashboard.build.messageTree', []);
+let messageTreeModule = angular.module('app.dashboard.build.messageTree', [
+    'ui.tree',
+]);
 
-// import AutoReplyRuleComponent from './auto-reply-rule.component';
-// messageTreeModule.component('autoReplyRule', AutoReplyRuleComponent);
-//
-// import AutoReplyRuleRoutes from './auto-reply-rule.routes';
-// messageTreeModule.config(AutoReplyRuleRoutes);
-//
-// import AutoReplyRuleService from './auto-reply-rule.service';
-// messageTreeModule.service('AutoReplyRules', AutoReplyRuleService);
-//
+import MessageTreeController from './message-tree.controller';
+messageTreeModule.controller('MessageTreeController', MessageTreeController);
+
+import MessageTreeListComponent from './message-tree-list.component';
+messageTreeModule.component('messageTreeList', MessageTreeListComponent);
+
+import CreateMessageTreeComponent from './create-message-tree.component';
+messageTreeModule.component('createMessageTree', CreateMessageTreeComponent);
+
+import EditMessageTreeComponent from './edit-message-tree.component';
+messageTreeModule.component('editMessageTree', EditMessageTreeComponent);
+
+import MessageTreeRoutes from './message-tree.routes';
+messageTreeModule.config(MessageTreeRoutes);
+
+
 export default messageTreeModule;

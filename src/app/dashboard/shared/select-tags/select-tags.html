@@ -1,0 +1,11 @@
+<div pg-form-group class="form-group m-b-0 form-group-default form-group-default-select">
+    <label>
+        {{ $ctrl.label || 'Tags' }}
+    </label>
+    <ui-select multiple tagging tagging-label="(new)" ng-model="$ctrl.model" theme="bootstrap" style="width:100%">
+        <ui-select-match placeholder="Select/Deselect Tags" class="ui-select-match">{{ $item }}</ui-select-match>
+        <ui-select-choices class="ui-select-choices" repeat="tag in $ctrl.tags | filter:$select.search">
+            <div ng-bind-html="tag | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+</div>

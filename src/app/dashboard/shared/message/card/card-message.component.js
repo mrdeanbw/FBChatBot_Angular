@@ -13,6 +13,7 @@ class CardController {
         let button = {
             title: 'New Button',
             url: '',
+            type: 'button',
             actions: {
                 add_tags: [],
                 remove_tags: [],
@@ -22,7 +23,7 @@ class CardController {
         };
 
         this._MessageHelpers.addMessage(this.message.buttons, button);
-        this._MessageHelpers.openButtonModal(this.message.button, button);
+        this._MessageHelpers.openButtonModal(this.message.buttons, button);
     }
 
     imageChanged(file) {

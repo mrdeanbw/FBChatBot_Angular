@@ -81,12 +81,9 @@ class MessageHelpers {
         });
     }
 
-    _buttonModal($scope, close, Sequences, Tags, $rootScope, button) {
+    _buttonModal($scope, close, button) {
         'ngInject';
         $scope.button = button;
-        $scope.tags = Tags($rootScope.bot.id).getList().$object;
-        $scope.sequences = Sequences($rootScope.bot.id).getList().$object;
-
         $scope.save = () => close(true, 500);
         $scope.delete = () => close(false, 500);
     }

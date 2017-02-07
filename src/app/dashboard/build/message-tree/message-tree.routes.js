@@ -4,18 +4,19 @@ function MessageTreeRoutes($stateProvider) {
     $stateProvider.state('app.dashboard.build.message-tree', {
         url: '/message-trees',
         abstract: true,
-        templateUr: 'dashboard/build/message-tree/views/layout.html'
+        title: 'Message Tress',
+        templateUrl: 'dashboard/build/message-tree/views/layout.html'
     });
 
     $stateProvider.state('app.dashboard.build.message-tree.index', {
         url: '/',
         component: 'messageTreeList',
-        title: 'Message Trees',
+        title: 'Message Tree List',
         description: 'Pre-defined message trees to be used across the app. A very powerful tool to chain your messages, use certain messages for more than one purpose, and to provide instant and smart button feedback!',
         resolve: {
-            trees: (Templates, bot) => {
+            trees: (MessageTrees, bot) => {
                 'ngInject';
-                return Templates(bot.id).getList();
+                return MessageTrees(bot.id).getList();
             }
         }
     });
@@ -26,26 +27,26 @@ function MessageTreeRoutes($stateProvider) {
         title: 'Create Message Tree',
         description: 'Configure your message tree nodes and a descriptive name so that you can find it easily!',
         resolve: {
-            trees: (Templates, bot) => {
+            trees: (MessageTrees, bot) => {
                 'ngInject';
-                return Templates(bot.id).getList();
+                return MessageTrees(bot.id).getList();
             }
         }
     });
 
     $stateProvider.state('app.dashboard.build.message-tree.edit', {
-        url: '/:templateId',
+        url: '/:treeId',
         component: 'editMessageTree',
         title: 'Edit Message Tree',
         description: 'Update your message tree.',
         resolve: {
-            tree: (Templates, $stateParams, bot) => {
+            tree: (MessageTrees, $stateParams, bot) => {
                 'ngInject';
-                return Templates(bot.id).one($stateParams.templateId).get();
+                return MessageTrees(bot.id).one($stateParams.treeId).get();
             },
-            trees: (Templates, bot) => {
+            trees: (MessageTrees, bot) => {
                 'ngInject';
-                return Templates(bot.id).getList();
+                return MessageTrees(bot.id).getList();
             }
         }
     });
