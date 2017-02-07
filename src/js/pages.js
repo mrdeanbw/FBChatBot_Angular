@@ -1298,12 +1298,12 @@
 
         if (this.$element.hasClass('panel-collapsed')) {
             this.$element.removeClass('panel-collapsed');
-            icon.removeClass().addClass('pg-arrow_maximize');
+            icon.removeClass().addClass('fa fa-compress');
             $.isFunction(this.options.onExpand) && this.options.onExpand(this);
             return
         }
         this.$element.addClass('panel-collapsed');
-        icon.removeClass().addClass('pg-arrow_minimize');
+        icon.removeClass().addClass('fa fa-expand');
         $.isFunction(this.options.onCollapse) && this.options.onCollapse(this);
     }
 

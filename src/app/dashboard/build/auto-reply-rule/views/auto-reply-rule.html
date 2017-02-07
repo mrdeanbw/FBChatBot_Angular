@@ -1,0 +1,35 @@
+<div class="panel panel-transparent">
+
+    <div class="panel-heading">
+        <div class="row m-b-10">
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="$ctrl.filter" placeholder="Filter Keywords">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <button class="btn btn-default" ng-click="$ctrl.paginate(1)">Filter</button>
+            </div>
+            <button class="btn pull-right btn-primary" ng-click="$ctrl.createRule()">+ Add rule</button>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="container-sm-height">
+            <div class="row-fluid row-sm-height" ng-repeat="rule in $ctrl.rules" ng-form="ruleForm"
+                 id="{{ rule.$$hashKey | normalizedHashkey }}">
+                <div ng-include="'dashboard/build/auto-reply-rule/views/readonly-rule.html'" ng-if="rule.readonly"
+                     include-replace></div>
+                <div ng-include="'dashboard/build/auto-reply-rule/views/editable-rule.html'" ng-if="!rule.readonly"
+                     include-replace></div>
+            </div>
+        </div>
+        <div class="row text-center m-t-10">
+            <div class="col-xs-12">
+                <pagination context="$ctrl.rules.meta.pagination" page-changed-callback="$ctrl.paginate(page)"></pagination>
+            </div>
+        </div>
+    </div>
+
+</div>

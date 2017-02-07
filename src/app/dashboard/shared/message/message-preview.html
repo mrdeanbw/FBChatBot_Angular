@@ -1,0 +1,14 @@
+<div class="view chat-view bg-white clearfix ">
+    <div class="chat-inner">
+        <div class="message clearfix">
+            <div class="profile-img-wrapper m-t-5 inline">
+                <img class="col-top" width="30" height="30" ng-src="{{ $ctrl.page.avatar_url }}"
+                     alt="{{ $ctrl.page.name }}">
+            </div>
+            <text-preview ng-if="$ctrl.message.type == 'text'" message="$ctrl.message"></text-preview>
+            <image-preview ng-if="$ctrl.message.type == 'image'" message="$ctrl.message"></image-preview>
+            <card-container-preview ng-if="$ctrl.message.type == 'card_container'"
+                                    message="$ctrl.message"></card-container-preview>
+        </div>
+    </div>
+</div>

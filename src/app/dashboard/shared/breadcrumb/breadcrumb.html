@@ -1,0 +1,6 @@
+<ul class="breadcrumb">
+    <li ng-repeat="breadcrumb in $ctrl.breadcrumb">
+        <a ng-if="::breadcrumb.url" ui-sref="{{ ::breadcrumb.url }}" ui-sref-active="active">{{ ::breadcrumb.title }}</a>
+        <a ng-if="::(!breadcrumb.url)">{{ ::breadcrumb.title }}</a>
+    </li>
+</ul>

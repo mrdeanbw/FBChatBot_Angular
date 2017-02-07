@@ -1,20 +1,36 @@
-function AuthConfig($stateProvider) {
+function AuthRoutes($stateProvider) {
     'ngInject';
 
     $stateProvider
-        
+
         .state('app.login', {
             url: '/login',
-            controller: 'AuthCtrl as $ctrl',
+            controller: 'AuthController as $ctrl',
             templateUrl: 'auth/auth.html',
-            title: 'Login'
+            title: 'Login',
+            resolve: {
+                auth: function (UserService, $state) {
+                    'ngInject';
+                    return UserService.ensureAuthIs(false).then((match) => {
+                        if (!match) {
+                            $state.go("app.bot.index");
+                        }
+                    });
+                }
+            }
         })
 
         .state('app.logout', {
             url: '/logout',
-            controller: 'AuthCtrl as $ctrl',
-            template: ''
+            controller: 'AuthController as $ctrl',
+            template: '&nbsp;',
+            resolve:{
+                auth: function (UserService) {
+                    'ngInject';
+                    return UserService.ensureAuthIs(true);
+                }
+            }
         })
 }
 
-export default AuthConfig;
+export default AuthRoutes;

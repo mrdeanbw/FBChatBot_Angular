@@ -1,0 +1,38 @@
+<div class="panel panel-default" pg-portlet>
+    <div class="panel-body">
+        <form role="form">
+
+            <div ng-if="$ctrl.message.readonly" class="alert alert-warning">
+                <p>
+                    You can remove this copyright by
+                    <a ui-sref="app.dashboard.settings({upgrade:true})" target="_blank">
+                        upgrading your account to PRO Plan.
+                    </a>
+                </p>
+            </div>
+
+            <div class="form-group form-group-default" pg-form-group>
+                <label>Message Text</label>
+                <textarea ng-disabled="$ctrl.message.readonly" class="form-control"
+                          style="max-width: 100%;min-height: 80px;" ng-model="$ctrl.message.text"
+                          maxlength="{{ $ctrl.MAX_LENGTH }}" wrap="hard">
+                </textarea>
+                <h6 class="pull-right">{{ $ctrl.MAX_LENGTH - $ctrl.message.text.length }} characters remaining</h6>
+            </div>
+            <!-- Text Block -->
+
+        </form>
+
+        <div ng-repeat="button in $ctrl.message.buttons">
+            <button-message message="button" container="$ctrl.message.buttons"></button-message>
+        </div>
+
+        <div class="row m-t-10">
+            <div class="col-xs-12">
+                <button ng-disabled="$ctrl.message.readonly || $ctrl.message.buttons.length >= $ctrl.MAX_BUTTONS"
+                        class="btn btn-default btn-block" ng-click="$ctrl.addButton()">+ Add Button
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

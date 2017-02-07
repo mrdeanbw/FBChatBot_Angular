@@ -1,0 +1,18 @@
+<div class="full-height">
+    <div id="timepicker-container"></div>
+    <sidebar-view bots="$ctrl.bots"></sidebar-view>
+    <div class="page-container">
+        <header-view bot="$ctrl.bot"></header-view>
+        <div class="page-content-wrapper">
+            <div class="content">
+                <div class="full-height full-width">
+                    <default-toaster></default-toaster>
+                    <fieldset ng-disabled="$root.loading">
+                        <ui-view></ui-view>
+                    </fieldset>
+                </div>
+            </div>
+            <footer-view></footer-view>
+        </div>
+    </div>
+</div>

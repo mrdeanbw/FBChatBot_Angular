@@ -1,14 +1,14 @@
-class AuthCtrl {
-    constructor(toaster, FlashBag, $facebook, UserService, $state) {
+class AuthController {
+    constructor(toaster, FlashBag, $facebook, UserService, $injector) {
         'ngInject';
 
-        this._$state = $state;
+        this._$injector = $injector;
         this._toaster = toaster;
         this._FlashBag = FlashBag;
         this._$facebook = $facebook;
         this._UserService = UserService;
 
-        if ($state.current.name == 'app.logout') {
+        if (this._$injector.get('$state').current.name == 'app.logout') {
             return this._logout();
         }
     }
@@ -24,9 +24,9 @@ class AuthCtrl {
             // If the user is logged in using Facebook, log him out.
             // Then log him out of our app.
             if (response.status === 'connected') {
-                return this._$facebook.logout().then(() => this._appLogout());
+                this._$facebook.logout().then(() => this._appLogout());
+                return;
             }
-
             // Otherwise, just log him out of our app.
             this._appLogout();
         });
@@ -34,26 +34,28 @@ class AuthCtrl {
 
     _appLogout() {
         this._UserService.logout();
-        this._FlashBag.add("info", "Logged Out!", "You have successfully logged out.");
-        this._$state.go("login", null, {reload: true});
+        this._FlashBag.info("Logged Out!", "You have successfully logged out.");
+        this._$injector.get('$state').go("app.login");
     }
 
     _handleFacebookResponse(response) {
         // user already connected
         if (response.status === 'connected') {
             let accessToken = response.authResponse.accessToken;
-            return this._UserService.login(accessToken).then(
-                () => this._$state.go('app.dashboard.overview')
+            this._UserService.login(accessToken).then(
+                () => this._$injector.get('$state').go('app.bot.index')
             );
+            return;
         }
 
         // Unauthorized.
         if (response.status === 'not_authorized') {
-            return this._toaster.pop('error', "Login Failed!", "Facebook Authorization has failed!");
+            this._toaster.pop('error', "Login Failed!", "Facebook Authorization has failed!");
+            return;
         }
 
         this._toaster.pop('warning', "Login Required!", "Please login into Facebook to continue!");
     }
 }
 
-export default AuthCtrl;
+export default AuthController;

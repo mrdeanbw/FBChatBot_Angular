@@ -3,7 +3,7 @@ function AuthConfig($facebookProvider, AppConstants) {
 
     $facebookProvider.setAppId(AppConstants.facebook.appId);
 
-    $facebookProvider.setVersion('v2.6');
+    $facebookProvider.setVersion('v2.8');
 
     $facebookProvider.setCustomInit({
         status: true,

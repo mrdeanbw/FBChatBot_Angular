@@ -1,0 +1,25 @@
+<div class="m-t-20 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <div ng-show="$ctrl.messageBlock.image_url" class="thumbnail m-b-15">
+        <img ng-src="{{ $ctrl.messageBlock.image_url? $ctrl.messageBlock.image_url : null }}"/>
+    </div>
+
+    <button
+            class="btn btn-primary btn-block m-b-15"
+            type="ngf-select"
+            ngf-select="$ctrl.changed()"
+            ng-model="$ctrl.file"
+            ngf-pattern="'image/*'"
+            ngf-accept="'image/*'"
+            ngf-max-size="5MB"
+            ngf-drop-disabled="true"
+            ngf-model-invalid="$ctrl.fileError">
+        Select Image
+    </button>
+
+
+    <h6 ng-show="$ctrl.fileError">
+        <strong class="text-danger">Only images of size less then 5 MBs are allowed.</strong>
+    </h6>
+
+</div>

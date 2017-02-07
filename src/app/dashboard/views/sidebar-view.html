@@ -1,0 +1,102 @@
+<div class="page-sidebar" data-pages="sidebar" pg-sidebar>
+    <div id="pageMenu" class="sidebar-overlay-slide from-top">
+        <div class="row p-l-15 p-r-15">
+            <div class="m-t-10 text-center fbpages-item" ng-repeat="bot in $ctrl.bots">
+                <a ui-sref="app.dashboard.overview({botId: bot.id})">
+                    <img ng-src="{{ bot.page.avatar_url }}" alt="{{bot.page.name}}">
+                    <h6 class="font-montserrat text-success hint-text">{{ bot.page.name }}</h6>
+                </a>
+            </div>
+            <div class="m-t-10 text-center fbpages-item">
+                <a ui-sref="app.bot.create">
+                    <img src="/img/add_more.svg">
+                    <h6 class="font-montserrat text-warning hint-text">Add More</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-header">
+        <a ui-sref="dashboard.overview">
+            <img src="/img/logo_white.png" alt="logo" class="brand">
+        </a>
+        <div class="sidebar-header-controls">
+            <button data-pages-toggle="#pageMenu"
+                    class="btn btn-sm btn-tag-light btn-rounded sidebar-slide-toggle m-r-20 m-l-20" type="button">
+                <i class="icon-set grid-box"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul class="menu-items">
+            <li ui-sref-active="active" class="m-t-30">
+                <a ui-sref="app.dashboard.overview">
+                    <span class="title">Overview</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-area-chart fa-fw"></i></span>
+            </li>
+            <br/>
+            <li ng-class="{'active open': $ctrl.state.includes('app.dashboard.build') } ">
+                <a href="javascript:;">
+                    <span class="title">Build Bot</span>
+                    <span class="arrow"></span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-edit fa-fw"></i></span>
+                <ul class="sub-menu">
+                    <li ng-class="{'active open': $ctrl.state.includes('dapp.ashboard.build.tree') } ">
+                        <a ui-sref="app.dashboard.build.tree.index">Message Trees</a>
+                        <span class="icon-thumbnail"><i class="fa fa-sitemap fa-fw"></i></span>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.dashboard.build.greeting-text">Greeting Text</a>
+                        <span class="icon-thumbnail"><i class="fa fa-handshake-o fa-fw"></i></span>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.dashboard.build.main-menu">Main Menu</a>
+                        <span class="icon-thumbnail"><i class="fa fa-bars fa-fw"></i></span>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.dashboard.build.welcome-message">Welcome Message</a>
+                        <span class="icon-thumbnail"><i class="fa fa-comment fa-fw"></i></span>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.dashboard.build.default-reply">Default Reply</a>
+                        <span class="icon-thumbnail"><i class="fa fa-commenting fa-fw"></i></span>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.dashboard.build.auto-reply-rule">Keywords</a>
+                        <span class="icon-thumbnail"><i class="fa fa-comments fa-fw"></i></span>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{'active open': $ctrl.state.includes('app.dashboard.broadcast') } ">
+                <a ui-sref="app.dashboard.broadcast.index">
+                    <span class="title">Broadcast</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-bullhorn fa-fw"></i></span>
+            </li>
+            <li ng-class="{'active open': $ctrl.state.includes('app.dashboard.sequence') } ">
+                <a ui-sref="app.dashboard.sequence.index">
+                    <span class="title">Sequences</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-tasks fa-fw"></i></span>
+            </li>
+            <br/>
+            <li ng-class="{'active open': $ctrl.state.includes('app.dashboard.subscriber') } ">
+                <a ui-sref="app.dashboard.subscriber.index">
+                    <span class="title">Audience</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-group fa-fw"></i></span>
+            </li>
+            <br/>
+            <li ui-sref-active="active">
+                <a ui-sref="app.dashboard.setting">
+                    <span class="title">Settings</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-cog fa-fw"></i></span>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>

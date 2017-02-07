@@ -1,0 +1,19 @@
+<div class="row m-t-10">
+    <div class="col-xs-12">
+        <div ng-if="!$ctrl.message.readonly">
+            <button class="btn btn-primary btn-block" ng-click="$ctrl.openButtonModal()" pg-tooltip hide-on-click="true" data-trigger="hover"
+                    data-original-title="Edit this button">
+                {{ $ctrl.message.title }}
+            </button>
+        </div>
+
+        <div ng-if="$ctrl.message.readonly">
+            <button class="btn btn-primary btn-block" data-trigger="click" data-html="true" data-placement="bottom"
+                    data-title="Upgrade to PRO"
+                    data-content="<p>You can remove this copyright by upgrading your account to PRO Plan.</p>"
+                    pg-popover>
+                {{ $ctrl.message.title }}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div ng-if="$ctrl.message.text" style="max-width: 80%;margin: 5px 0 5px 15px;padding: 5px 10px;" class="chat-bubble from-them">
+    <p>{{ $ctrl.message.text }}</p>
+</div>
+<div class="m-t-5" ng-repeat="button in $ctrl.message.buttons">
+    <div style="max-width: 80%;" class="m-t-5 m-l-40">
+        <button class="btn btn-sm text-primary semi-bold btn-rounded btn-block">
+            {{ button.title }}
+        </button>
+    </div>
+</div>

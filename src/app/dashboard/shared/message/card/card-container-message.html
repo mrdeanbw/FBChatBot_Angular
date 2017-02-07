@@ -1,0 +1,53 @@
+<div class="panel panel-default" pg-portlet>
+    <div class="panel-body">
+        <div id="carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}" class="carousel slide" data-ride="carousel"
+             data-wrap="false" data-interval="false" data-keyboard="false">
+            <div class="carousel-inner" role="listbox">
+
+                <div ng-repeat="card in $ctrl.message.cards" class="item"
+                     ng-class="{'active': $ctrl.message.cards.length && $first}">
+
+                    <div class="row">
+                        <div class="col-xs-12 m-b-10">
+                            <div class="text-center">
+                                <a ng-if="$ctrl.canMoveNext(card)" href="" class="btn btn-info btn-xs"
+                                   ng-click="$ctrl.moveNext(card)">
+                                    Move Right <i class="fa fa-arrow-right"></i>
+                                </a>
+                                <a ng-if="$ctrl.canMovePrevious(card)" href="" class="btn btn-info btn-xs"
+                                   ng-click="$ctrl.movePrevious(card)">
+                                    Move Left <i class="fa fa-arrow-left"></i>
+                                </a>
+                                <a ng-if="$ctrl.removable(card)" href="" class="btn btn-danger btn-xs"
+                                   ng-click="$ctrl.remove(card)">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <card-message message="card"></card-message>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="item" ng-class="{'active': !$ctrl.message.cards.length}" style="min-height: 400px;">
+                    <button ng-disabled="$ctrl.message.cards.length >= $ctrl.MAX_CARDS"
+                            data-target="#carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}"
+                            class="btn btn-default btn-block" ng-click="$ctrl.addCard()">+ Add Card
+                    </button>
+                </div>
+
+            </div>
+            <a class="left carousel-control" href=""
+               data-target="#carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}" data-slide="prev"><span
+                    class="fa fa-chevron-left"></span></a>
+            <a class="right carousel-control" href=""
+               data-target="#carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}" data-slide="next"><span
+                    class="fa fa-chevron-right"></span></a>
+        </div>
+    </div>
+</div>

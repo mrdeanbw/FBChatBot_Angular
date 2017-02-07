@@ -1,0 +1,15 @@
+<div pg-form-group class="form-group m-b-0 form-group-default form-group-default-select">
+    <label> {{ $ctrl.label }}
+            <span class="pull-right">
+                <a ui-sref="app.dashboard.build.tree.create" target="_blank">New</a> |
+                <a href="" ng-click="$ctrl.refresh()">Refresh</a>
+            </span>
+    </label>
+    <ui-select ng-model="$ctrl.model" theme="select2" title="Select a tree" style="width:100%">
+        <ui-select-match placeholder="Select Tree" class="ui-select-match">{{ $select.selected.name }}
+        </ui-select-match>
+        <ui-select-choices class="ui-select-choices" repeat="template in $ctrl.templates | filter:$select.search">
+            <div ng-bind-html="template.name | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+</div>

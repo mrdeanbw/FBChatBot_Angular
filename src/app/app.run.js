@@ -1,13 +1,12 @@
-function AppRun(AppConstants, $rootScope) {
+function AppRun(AppConstants, $rootScope, $transitions) {
     'ngInject';
 
-    // change page title based on state
-    $rootScope.$on('$stateChangeSuccess', (event, toState) => {
-        $rootScope.setPageTitle(toState.title);
+    $transitions.onEnter({}, (transition, state) => {
+        setPageTitle(state.title)
     });
 
     // Helper method for setting the page's title
-    $rootScope.setPageTitle = (title) => {
+    let setPageTitle = (title) => {
         $rootScope.pageTitle = '';
         if (title) {
             $rootScope.pageTitle += title;
@@ -15,7 +14,6 @@ function AppRun(AppConstants, $rootScope) {
         }
         $rootScope.pageTitle += AppConstants.app.name;
     };
-
 }
 
 export default AppRun;

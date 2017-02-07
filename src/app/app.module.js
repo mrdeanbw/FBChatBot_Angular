@@ -1,31 +1,35 @@
 import angular from 'angular';
 
-import 'angular-ui-router';
 import './app.templates';
+import './bot/bot.module';
 import './auth/auth.module';
-import './shared/shared.module';
+import './dashboard/dashboard.module';
 
 
-// Create and bootstrap application
-const requires = [
+let appModule = angular.module('app', [
     'templates',
-    'ui.router',
-    'app.shared',
-    'app.auth'
-];
 
-// Mount on window for testing
-window.app = angular.module('app', requires);
+    'app.bot',
+    'app.auth',
+    'app.shared',
+    'app.dashboard'
+]);
 
 import appRoutes  from './app.routes';
-angular.module('app').config(appRoutes);
+appModule.config(appRoutes);
 
 import appConfig  from './app.config';
-angular.module('app').config(appConfig);
+appModule.config(appConfig);
 
 import appRun  from './app.run';
-angular.module('app').run(appRun);
+appModule.run(appRun);
+
+// Mount on window for testing
+window.app = appModule;
 
 angular.bootstrap(document, ['app'], {
     strictDi: true
 });
+
+
+

@@ -1,0 +1,28 @@
+<div ng-if="$ctrl.message.cards.length" id="preview_carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}"
+     class="carousel slide" data-ride="carousel" data-wrap="false" data-interval="false" data-keyboard="false">
+    <div class="carousel-inner m-l-45 sm-m-l-25" style="width: 90%">
+        <div class="item" ng-class="{'active': $first}" ng-repeat="card in $ctrl.message.cards">
+            <div style="max-width: 80%;border-radius: 0px;background: #fff;margin: 5px 0 5px 15px;padding: 10px 10px;"
+                 class="chat-bubble from-them">
+                <img ng-if="card.image_url" ng-src="{{ card.image_url }}" class="img-responsive" alt="">
+                <img ng-if="card.file.encoded" ng-src="{{ card.file.encoded }}" class="img-responsive" alt="">
+                <p class="fs-14 bold p-t-10 text-black">{{ card.title }}</p>
+                <p class="fs-12 light hint-text">{{ card.subtitle }}</p>
+                <p class="fs-12 light hint-text">{{ card.url }}</p>
+            </div>
+            <div class="m-t-5" ng-repeat="button in card.buttons">
+                <div style="max-width: 80%;" class="m-t-5">
+                    <button class="btn btn-sm text-primary semi-bold btn-rounded btn-block">
+                        {{ button.title }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="" class="left carousel-control"
+       data-target="#preview_carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}" data-slide="prev"><span
+            class="fa fa-chevron-left"></span></a>
+    <a href="" class="right carousel-control"
+       data-target="#preview_carousel_{{ $ctrl.message.$$hashKey | normalizedHashkey }}" data-slide="next"><span
+            class="fa fa-chevron-right"></span></a>
+</div>

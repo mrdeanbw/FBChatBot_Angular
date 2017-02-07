@@ -20,6 +20,10 @@ const AppConstants = {
         ]
     },
 
+    pusher:{
+        publicKey: __ENV.PUSHER_PUBLIC_KEY
+    },
+    
     stripe: {
         publicId: __ENV.STRIPE_PUBLIC_KEY
     }

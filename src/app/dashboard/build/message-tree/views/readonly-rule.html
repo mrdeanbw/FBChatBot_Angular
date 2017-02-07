@@ -1,0 +1,29 @@
+<div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
+    <div class="form-group  m-b-0 form-group-default" pg-form-group>
+        <p class="form-control-static">
+            <strong>If</strong> Message {{ rule.mode.replace('_', ' ') }}
+        </p>
+    </div>
+</div>
+
+<div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
+    <div class="form-group  m-b-0 form-group-default" pg-form-group>
+        <p class="form-control-static">
+            {{ rule.keyword }}
+        </p>
+    </div>
+</div>
+
+<div class="col-md-4 p-b-10 p-t-10 col-sm-height col-middle">
+    <div class="form-group  m-b-0 form-group-default" pg-form-group>
+        <p class="form-control-static">
+            <strong>Then: </strong>
+            <span ng-if="rule.action == 'send'">
+                send &rightarrow; <strong>{{ rule.template.name }}</strong>
+            </span>
+            <span>
+                take action &rightarrow; {{ rule.action | capitalize }}
+            </span>
+        </p>
+    </div>
+</div>

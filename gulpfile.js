@@ -73,25 +73,19 @@ gulp.task('css', function () {
 
     // Source CSS file, bundle in 1 file.
     var cssFiles = [
-        // Bootstrap & Font awesome
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
         'bower_components/font-awesome/css/font-awesome.min.css',
-
-        // dashboard styles
-        // 'plugins/pace/pace-theme-flash.css',
-        // 'plugins/jquery-scrollbar/jquery.scrollbar.css',
-        // 'plugins/angular-wizard/angular-wizard.css',
-        // 'plugins/nvd3/nv.d3.min.css',
-        // 'plugins/switchery/css/switchery.min.css',
-        // 'plugins/angular-bootstrap-nav-tree/abn_tree.css',
-        // 'plugins/jquery-nestable/jquery.nestable.css',
-        // 'plugins/bootstrap-select2/select2.css',
-        // 'plugins/angular-ui-select/select.min.css',
-        // 'plugins/bootstrap-datepicker/css/datepicker3.css',
-        // 'plugins/bootstrap-timepicker/bootstrap-timepicker.min.css',
-        // 'plugins/ng-table/ng-table.min.css',
-        // 'plugins/angular-ui-tree/angular-ui-tree.min.css',
-        // 'plugins/angular-animate/animate.min.css',
+        'bower_components/PACE/themes/green/pace-theme-flash.css',
+        'bower_components/jquery.scrollbar/jquery.scrollbar.css',
+        'node_modules/angular-wizard/dist/angular-wizard.min.css',
+        'bower_components/nvd3/build/nv.d3.min.css',
+        'bower_components/switchery/dist/switchery.min.css',
+        'third-party/bootstrap-select2.css',
+        'node_modules/angular-ui-select/select.min.css',
+        'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        'third-party/bootstrap-timepicker.css',
+        'node_modules/ng-table/bundles/ng-table.min.css',
+        'node_modules/angular-ui-tree/dist/angular-ui-tree.min.css',
         'node_modules/angularjs-toaster/toaster.min.css',
 
         // Custom styles.
@@ -112,77 +106,25 @@ gulp.task('js', function () {
     // Source JS file, bundle in 1 file.
     var jsFiles = [
         'bower_components/jquery/dist/jquery.min.js',
-
-        // dashboard
-        // 'plugins/pace/pace.min.js',
-        // 'plugins/modernizr.custom.js',
-        // 'plugins/bootstrapv3/js/bootstrap.min.js',
-        // 'plugins/jquery/jquery-easy.js',
-        // 'plugins/jquery-unveil/jquery.unveil.min.js',
-        // 'plugins/jquery-bez/jquery.bez.min.js',
-        // 'plugins/jquery-actual/jquery.actual.min.js',
-        // 'plugins/jquery-scrollbar/jquery.scrollbar.min.js',
-        // 'plugins/classie/classie.js',
-        // 'plugins/angular/angular.js',
-        // 'plugins/angular-ui-router/angular-ui-router.min.js',
-        // 'plugins/angular-ui-util/ui-utils.min.js',
-        // 'plugins/angular-sanitize/angular-sanitize.min.js',
-        // 'plugins/angular-flash/angular-flash.min.js',
-        // 'plugins/lodash/lodash.min.js',
-        // 'plugins/angular-wizard/angular-wizard.min.js',
-        // 'plugins/ng-file-upload/ng-file-upload-all.min.js',
-        // 'plugins/angular-jwt/angular-jwt.min.js',
-        // 'plugins/ng-storage/ng-storage.min.js',
-
-        // nvd3
-        // 'plugins/nvd3/lib/d3.v3.js',
-        // 'plugins/nvd3/nv.d3.min.js',
-        // 'plugins/angular-nvd3/angular-nvd3.js',
-
-        // switchery
-        // 'plugins/switchery/js/switchery.min.js',
-        // 'plugins/ng-switchery/ng-switchery.js',
+        'bower_components/bootstrap/dist/js/bootstrap.min.js',
+        'bower_components/PACE/pace.min.js',
+        'third-party/modernizr.custom.js',
+        'bower_components/jquery.scrollbar/jquery.scrollbar.min.js',
+        'bower_components/jquery.actual/jquery.actual.min.js',
+        'bower_components/jquery.easing/js/jquery.easing.min.js',
+        'bower_components/jquery-bez/jquery.bez.min.js',
+        'bower_components/classie/classie.js',
+        'bower_components/d3/d3.min.js',
+        'bower_components/nvd3/build/nv.d3.min.js',
+        'bower_components/switchery/dist/switchery.min.js',
+        'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+        'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
+        'src/js/pages.js'
 
         // moment
         // 'plugins/moment/moment.min.js',
         // 'plugins/moment/moment-with-locales.min.js',
         // 'plugins/moment/moment-timezone-with-data.min.js',
-
-        // navTree
-        // 'plugins/angular-bootstrap-nav-tree/abn_tree_directive.js',
-
-        // Nestable
-        // 'plugins/jquery-nestable/jquery.nestable.js',
-        // 'plugins/angular-nestable/angular-nestable.js',
-
-        // angular-relative-date
-        // 'plugins/angular-relative-date/angular-relative-date.min.js',
-
-        // select
-        // 'plugins/angular-ui-select/select.min.js',
-
-        // date picker
-        // 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
-
-        // time picker
-        // 'plugins/bootstrap-timepicker/bootstrap-timepicker.js',
-
-        // input mask
-        // 'plugins/jquery-inputmask/jquery.inputmask.min.js',
-
-        // auto numeric
-        // 'plugins/jquery-autonumeric/autoNumeric.js',
-
-        // ng-table
-        // 'plugins/ng-table/ng-table.min.js',
-
-        // angular ui-tree
-        // 'plugins/angular-ui-tree/angular-ui-tree.min.js',
-
-        // 'plugins/angular-animate/animate.min.js',
-
-        // Custom scripts.
-        'src/js/pages.js'
     ];
 
     gulp.src(jsFiles)
@@ -198,7 +140,7 @@ gulp.task('fonts', function () {
         'bower_components/bootstrap/dist/fonts/*.*',
         'bower_components/font-awesome/fonts/*.*'
     ];
-    
+
     gulp.src(fontFiles)
         .on('error', interceptErrors)
         .pipe(expect(fontFiles))
@@ -219,7 +161,7 @@ gulp.task('.htaccess', function () {
         .pipe(gulp.dest('./build/'));
 });
 
-gulp.task('assets', ['clean:assets'], function() {
+gulp.task('assets', ['clean:assets'], function () {
     gulp.start('css', 'js', 'fonts', 'img');
 });
 

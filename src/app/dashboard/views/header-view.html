@@ -1,0 +1,67 @@
+<div class="header">
+    <div class="pull-left full-height visible-sm visible-xs">
+        <div class="sm-action-bar">
+            <a href="" class="btn-link toggle-sidebar" data-toggle="sidebar">
+                <span class="icon-set menu-hambuger"></span>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="pull-left sm-table">
+        <div class="header-inner">
+            <div class="brand inline">
+                <img src="/img/logo.png" alt="logo" width="78" height="22">
+            </div>
+        </div>
+    </div>
+
+    <div class="pull-left sm-table m-l-25">
+        <div class="header-inner">
+            <breadcrumb page="::$ctrl.bot.page"></breadcrumb>
+        </div>
+    </div>
+
+    <div class="pull-right">
+        <div class="visible-lg visible-md m-t-10">
+            <div class="pull-left p-r-10 p-l-20 p-t-10 fs-16 font-heading">
+            </div>
+            <div class="dropdown pull-right">
+                <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    <span class="semi-bold font-heading fs-16 pull-left m-r-10" style="line-height: 39px">
+                        {{ ::$ctrl.bot.page.name }}
+                    </span>
+                    <span class="thumbnail-wrapper d32 circular inline m-t-5 m-r-10">
+                        <img ng-src="{{ ::$ctrl.bot.page.avatar_url }}" alt="{{ ::$ctrl.bot.page.name }}" width="32"
+                             height="32">
+                    </span>
+                </button>
+                <ul class="dropdown-menu profile-dropdown" role="menu" style="position: absolute;">
+                    <li ng-if="::(!$ctrl.bot.page.payment_plan)"><a><i class="fa fa-star-o fa-fw"></i> Upgrade</a></li>
+                    <li><a ng-href="{{ ::$ctrl.bot.page.url }}" target="_blank"><i
+                            class="fa fa-facebook-square fa-fw"></i>
+                        Visit</a></li>
+                    <li><a ui-sref="dashboard.settings"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
+                    <li class="separator"></li>
+                    <li><a ui-sref="choose-bot"><i class="fa fa-refresh fa-fw"></i> Switch</a></li>
+                    <li class="bg-master-lighter">
+                        <a ui-sref="logout" class="clearfix">
+                            <span class="pull-left">Logout</span>
+                            <span class="pull-right"><i class="fa fa-power-off"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="pull-right">
+        <div class="header-inner">
+            <a ui-sref="dashboard.settings({upgrade: true})" class="btn btn-primary text-white"
+               ng-if="::(!$ctrl.bot.page.payment_plan)">
+                Upgrade To Pro
+            </a>
+        </div>
+    </div>
+</div>

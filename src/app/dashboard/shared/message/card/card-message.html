@@ -1,0 +1,47 @@
+<form role="form">
+    <div class="form-group-default">
+        <div class="form-group" pg-form-group>
+            <label>Card Image</label>
+            <div ng-if="$ctrl.message.image_url" class="thumbnail m-b-15">
+                <img ng-src="{{ $ctrl.message.image_url }}"/>
+            </div>
+            <div ng-if="$ctrl.message.file" class="thumbnail m-b-15">
+                <img ng-src="{{ $ctrl.message.file.encoded }}"/>
+            </div>
+            <image-uploader image-uploaded-callback="$ctrl.imageChanged(file)"></image-uploader>
+        </div>
+    </div>
+    <div class="form-group-default">
+        <div class="form-group" pg-form-group>
+            <label>Card Title</label>
+            <input type="text" class="form-control" ng-model="$ctrl.message.title"
+                   maxlength="{{ $ctrl.MAX_TITLE_LENGTH }}" placeholder="Enter your card title">
+        </div>
+        <h6 class="pull-right">{{$ctrl.MAX_TITLE_LENGTH - $ctrl.message.title.length}} characters remaining</h6>
+    </div>
+    <div class="form-group-default">
+        <div class="form-group" pg-form-group>
+            <label>Card Subtitle</label>
+            <input type="text" class="form-control" ng-model="$ctrl.message.subtitle"
+                   maxlength="{{ $ctrl.MAX_SUBTITLE_LENGTH }}" placeholder="(Optional) Enter your card subtitle">
+        </div>
+        <h6 class="pull-right">{{$ctrl.MAX_SUBTITLE_LENGTH - $ctrl.message.subtitle.length}} characters
+            remaining</h6>
+    </div>
+    <div class="form-group-default">
+        <div class="form-group" pg-form-group>
+            <label>Card URL</label>
+            <input type="text" class="form-control" ng-model="$ctrl.message.url"
+                   placeholder="(Optional) Enter your card URL">
+        </div>
+    </div>
+    <div ng-repeat="button in $ctrl.message.buttons">
+        <button-message container="$ctrl.message.buttons" message="button"></button-message>
+    </div>
+    <div class="row m-t-10">
+        <button ng-disabled="$ctrl.message.buttons.length >= $ctrl.MAX_BUTTONS" class="btn btn-default btn-block"
+                ng-click="$ctrl.addButton()">+ Add Button
+        </button>
+    </div>
+</form>
+

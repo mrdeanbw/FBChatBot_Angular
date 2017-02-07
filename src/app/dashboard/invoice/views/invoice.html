@@ -1,0 +1,81 @@
+<div class="container-fluid container-fixed-lg m-t-20">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="invoice padding-50 sm-padding-10">
+                <div>
+                    <div class="pull-left">
+                        <img alt="" class="invoice-logo" src="/img/logo.png">
+                    </div>
+                    <div class="pull-right sm-m-t-20">
+                        <h2 class="font-montserrat all-caps hint-text">Invoice</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <br>
+                <br>
+                <div class="container-sm-height">
+                    <div class="row-sm-height">
+                        <div class="col-md-8 col-sm-height sm-no-padding">
+                            <p class="small no-margin">Invoice to</p>
+                            <h5 class="semi-bold m-t-0">{{ $root.page.name }}</h5>
+                        </div>
+                        <div class="col-md-4 col-sm-height col-bottom sm-no-padding sm-p-b-20">
+                            <br>
+                            <div>
+                                <div class="pull-left font-montserrat bold all-caps">Invoice ID:</div>
+                                <div class="pull-right">in_19RaY0IW0nM3Uvmi4kf6zw9m</div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <div class="pull-left font-montserrat bold all-caps">Invoice date:</div>
+                                <div class="pull-right">{{ $ctrl.invoice.date }}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table m-t-50">
+                        <thead>
+                        <tr>
+                            <th class="">Description</th>
+                            <th class="">Quantity</th>
+                            <th class="text-right">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-black">
+                                Pro Plan Monthly Subscription
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-right">{{ $ctrl.invoice.total }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <br>
+                <div class="container-sm-height">
+                    <div class="row row-sm-height b-a b-grey">
+                        <div class="col-sm-2 col-sm-height col-middle p-l-25 sm-p-t-15 sm-p-l-15 clearfix sm-p-b-15">
+                        </div>
+                        <div class="col-sm-5 col-sm-height col-middle clearfix sm-p-b-15">
+                        </div>
+                        <div class="col-sm-5 text-right bg-menu col-sm-height padding-15">
+                            <h5 class="font-montserrat all-caps small no-margin hint-text text-white bold">Total</h5>
+                            <h1 class="no-margin text-white">{{ $ctrl.invoice.total }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <img src="/img/logo.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

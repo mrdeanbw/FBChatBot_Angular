@@ -1,0 +1,13 @@
+<div class="panel panel-default" pg-portlet>
+    <div class="panel-body">
+        <form role="form" name="form">
+            <div ng-if="$ctrl.message.image_url" class="thumbnail m-b-15">
+                <img ng-src="{{ $ctrl.message.image_url }}"/>
+            </div>
+            <div ng-if="$ctrl.message.file" class="thumbnail m-b-15">
+                <img ng-src="{{ $ctrl.message.file.encoded }}"/>
+            </div>
+            <image-uploader image-uploaded-callback="$ctrl.imageChanged(file)"></image-uploader>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div ng-if="!$ctrl.pages.data">
+
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-repeat="page in $ctrl.pages | filter:search" class="checkbox check-primary checkbox-circle">
+                <input type="checkbox" value="{{ ::(page.id) }}" ng-click="$ctrl.toggleSelection(page)"
+                       ng-checked="$ctrl.isSelected(page)" id="{{ ::(page.id) }}">
+                <label for="{{ ::(page.id) }}" style="width: 100%">
+                    {{ ::(page.name) }}
+                    <span class="label label-inverse" ng-if="$ctrl.hasBot(page)">
+                        (Chat-bot already created)
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!$ctrl.pages.length" class="alert alert-warning m-t-20">
+        <p class="lead semi-bold">
+            You need at least one Facebook Page to create a bot.<br /><br />
+            Click <a href="https://www.facebook.com/pages/create/" target="_blank">here</a> to create it, then come back
+            and click on the refresh button.
+        </p>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <button bs-tooltip data-toggle="tooltip" data-original-title="Refresh" ng-click="$ctrl.refresh()"
+                    class="btn btn-sm btn-success">
+                <i class="fa fa-refresh"></i>
+            </button>
+
+            <button ng-disabled="!$ctrl.selected.length" ng-click="$ctrl.create()" class="btn btn-sm btn-primary">
+                Manage Selected Page(s)
+            </button>
+
+            <a ng-if="::($ctrl.disabledBots.length)" ui-sref="disabled-bots" class="btn btn-sm btn-danger pull-right">
+                Disabled Bots ({{ ::($ctrl.disabledBots.length) | number }})
+            </a>
+
+            <a ng-if="::$ctrl.activeBots.length" ui-sref="choose-bot" class="btn btn-sm m-r-5 btn-info pull-right">
+                Existing Bots ({{ ::($ctrl.activeBots.length) | number }})
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+<div ng-if="$ctrl.pages.data && $ctrl.pages.data.message == 'missing_permissions'">
+    <p>It seems that you didn't provide us all the necessary permissions.</p>
+    <p>We need them to do the bot building stuff.</p>
+    <p>Don't worry – you are in total control of what your bot does.</p>
+    <form id="form-lock" method="post" ng-submit="$ctrl.login()">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-block btn-info" type="submit">
+                    <span class="pull-left"><i class="fa fa-facebook"></i></span>
+                    <span class="bold">Grant Permissions</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

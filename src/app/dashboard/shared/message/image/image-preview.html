@@ -1,0 +1,4 @@
+<div ng-if="$ctrl.message.image_url || $ctrl.message.file.encoded" style="max-width: 80%;margin: 5px 0 5px 15px;padding: 5px 5px;" class="chat-bubble from-them">
+    <img ng-if="$ctrl.message.image_url" ng-src="{{ $ctrl.message.image_url }}" class="img-responsive" alt="">
+    <img ng-if="$ctrl.message.file.encoded" ng-src="{{ $ctrl.message.file.encoded }}" class="img-responsive" alt="">
+</div>
