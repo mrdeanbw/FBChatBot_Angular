@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'ng-file-upload';
 import 'angular-sanitize';
 import 'angular-ui-select/select.min';
+import '../../../../bower_components/ng-switchery/src/ng-switchery';
 
 import './message/message.module';
 import './filters/filters.module';
@@ -12,6 +13,7 @@ import './directives/directives.module';
 let sharedModule = angular.module('app.dashboard.shared', [
     'ui.select', 
     'ngSanitize',
+    'NgSwitchery',
     'ngFileUpload',
     'app.dashboard.shared.message',
     'app.dashboard.shared.filters',

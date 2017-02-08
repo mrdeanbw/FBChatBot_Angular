@@ -1,0 +1,31 @@
+<div class="modal disable-scroll">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-close fs-14"></i></button>
+                    <h5>Create New Sequence</h5>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group form-group-default ">
+                            <label>Message Sequence Name</label>
+                            <input type="text" class="form-control m-t-15 input-lg" ng-model="sequence.name"
+                                   placeholder="Enter sequence name" style="margin-top: 5px;">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-cons pull-left inline"
+                            ng-click="save()">Create
+                    </button>
+                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline"
+                            ng-click="cancel()" data-dismiss="modal">Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

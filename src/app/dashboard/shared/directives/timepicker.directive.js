@@ -1,4 +1,4 @@
-function timepickerDirective($timeout) {
+function TimepickerDirective($timeout) {
     'ngInject';
 
     return {
@@ -14,15 +14,8 @@ function timepickerDirective($timeout) {
             };
 
             $timeout(() => $elem.timepicker(options));
-
-            if (options['allow-input-toggle']) {
-                alert('add focus listener to timpepicker directive');
-                // $elem.on('focus', function () {
-                //     $elem.timepicker('showWidget');
-                // });
-            }
         }
     }
 }
 
-export default timepickerDirective;
+export default TimepickerDirective;

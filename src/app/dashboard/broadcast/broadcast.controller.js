@@ -22,7 +22,9 @@ class BroadcastCtrl {
                     join_type: 'and',
                     groups: []
                 },
-                template: {},
+                template: {
+                    messages: []
+                },
                 send_from: 9,
                 send_to: 21
             };
@@ -48,7 +50,7 @@ class BroadcastCtrl {
         if (broadcast.id) {
             // update
             return broadcast.put().then(
-                () => this._toaster.pop('success', 'Saved successfully')
+                () => this._toaster.pop('success', 'Saved Successfully!')
             );
         }
         // create

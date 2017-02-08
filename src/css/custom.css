@@ -1,4 +1,6 @@
-
+.line-through{
+    text-decoration: line-through;
+}
 .filter_rule_item_wrapper {
     padding-right: 85px !important;
     margin-bottom: 1rem !important;

@@ -48,7 +48,7 @@ class FilterAudienceController {
     };
 
     _updateCount() {
-        console.log('updating matching subscribers...');
+        console.log(this.model);
         let params = {count: 1, filter: {filter: this.model}};
         this._Subscribers(this._$rootScope.bot.id).getList(params).then(data => this.count = data.meta.pagination.total);
     }

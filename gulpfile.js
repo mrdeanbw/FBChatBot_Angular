@@ -239,5 +239,6 @@ gulp.task('default', ['html', 'browserify'], function () {
     gulp.watch("src/index.html", ['html']);
     gulp.watch(viewFiles, ['views']);
     gulp.watch(appFiles, ['browserify']);
-    gulp.watch(['src/css/custom.css', 'src/.htaccess'], ['copy']);
+    gulp.watch(['src/css/custom.css'], ['css']);
+    gulp.watch('src/.htaccess', ['.htaccess']);
 });

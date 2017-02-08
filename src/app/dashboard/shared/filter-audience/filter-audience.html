@@ -1,10 +1,9 @@
 <div class="row">
     <div class="col-xs-12">
-
         <div class="form-group form-group-default p-t-15 p-b-15" ng-if="$ctrl.enableControl">
             <label class="inline p-r-20 fs-14">Enable Targeting: </label>
             <input type="checkbox" class="js-switch" ui-switch="{color: '#10cfbd', size: 'small'}"
-                   ng-change="$ctrl.model.enabled"/>
+                   ng-model="$ctrl.model.enabled"/>
             <p class="inline p-l-20 fs-14 m-b-0 m-t-5 bold">
                 <span class="label label-success" ng-if="$ctrl.model.enabled">Enabled</span>
                 <span class="label label-danger" ng-if="!$ctrl.model.enabled">Disabled</span>
@@ -110,7 +109,8 @@
             <span class="bold text-success">{{ $ctrl.count | number }}</span>
             <br/>
             <span class="fs-16">
-                Current <abbr class="bold" pg-tooltip data-original-title="Unsubscribed users may not receive any messages!">ACTIVE</abbr> subscribers who match your filter criteria.</span>
+                Current <abbr class="bold" pg-tooltip
+                              data-original-title="Unsubscribed users may not receive any messages!">ACTIVE</abbr> subscribers who match your filter criteria.</span>
         </h2>
     </div>
 </div>

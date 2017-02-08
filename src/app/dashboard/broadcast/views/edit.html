@@ -76,8 +76,7 @@
 
                     <div class="col-md-9 b-l b-dashed b-grey ">
                         <div class="sm-padding-0 m-l-30 m-t-50">
-                            <message-template template="$ctrl.bot.default_reply.template" page="$ctrl.bot.page"
-                                              preview="true">
+                            <message-template template="$ctrl.broadcast.template" page="$ctrl.bot.page" preview="true">
                             </message-template>
                         </div>
                     </div>
@@ -118,7 +117,6 @@
 
                     <div class="col-md-9 sm-b-t b-l b-dashed b-grey">
                         <div class="p-l-80 p-r-80 sm-padding-0 m-t-50">
-                            <pre>{{ $ctrl.broadcast | json }}</pre>
                             <filter-audience model="$ctrl.broadcast.filter" enable-control="false">
                             </filter-audience>
                         </div>
@@ -170,16 +168,16 @@
                                 <div pg-form-group="" class="form-group form-group-default input-group">
                                     <label>Broadcast Date</label>
                                     <input type="text" ng-model="$ctrl.broadcast.date" class="form-control"
-                                           ui-jq="datepicker" ui-options='{startDate: "today", format: "yyyy-mm-dd"}'>
+                                           datepicker start-date="-1d">
                                     <span class="input-group-addon btn-primary" style="cursor: pointer">
                                         <i class="fa fa-calendar"></i>
                                     </span>
                                 </div>
+
                                 <div pg-form-group="" class="form-group form-group-default input-group">
                                     <label>Broadcast Time</label>
-                                    <input type="text" ng-model="$ctrl.broadcast.time" data-allow-input-toggle="true"
-                                           data-append-widget-to="#timepicker-container" data-show-meridian="false"
-                                           data-default-time="{{ $ctrl.broadcast.time || 'current' }}"
+                                    <input type="text" ng-model="$ctrl.broadcast.time" data-show-meridian="false"
+                                           data-default-time="{{ $ctrl.broadcast.time || 'current' }}" data-minute-step="1"
                                            class="form-control" timepicker/>
                                     <span class="input-group-addon btn-primary" style="cursor: pointer">
                                         <i class="fa fa-clock-o"></i>

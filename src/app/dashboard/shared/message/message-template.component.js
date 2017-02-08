@@ -1,8 +1,10 @@
 class TemplateController {
-    constructor(MessageHelpers, MessagePreviews, Modals, $rootScope, toaster) {
+    constructor(MessageHelpers, MessagePreviews, Modals, $rootScope, toaster, $timeout, $filter) {
         'ngInject';
         this._Modals = Modals;
         this._toaster = toaster;
+        this._$filter = $filter;
+        this._$timeout = $timeout;
         this._$rootScope = $rootScope;
         this._MessageHelpers = MessageHelpers;
         this._MessagePreviews = MessagePreviews;
@@ -11,15 +13,20 @@ class TemplateController {
     }
 
     addTextMessage() {
-        this._MessageHelpers.addMessage(this.template.messages, {type: 'text', text: '', buttons: []});
+        this._addMessage({type: 'text', text: '', buttons: []});
     }
 
     addImage() {
-        this._MessageHelpers.addMessage(this.template.messages, {type: 'image', image_url: ''});
+        this._addMessage({type: 'image', image_url: ''});
     }
 
     addCardContainer() {
-        this._MessageHelpers.addMessage(this.template.messages, {type: 'card_container', cards: []});
+        this._addMessage({type: 'card_container', cards: []});
+    }
+
+    _addMessage(message) {
+        this._MessageHelpers.addMessage(this.template.messages, message);
+        this._$timeout(() => $('body').animate({scrollTop: $("#" + this._$filter('normalizedHashkey')(message.$$hashKey)).offset().top}, 'slow'));
     }
 
     canMoveNext(message) {
