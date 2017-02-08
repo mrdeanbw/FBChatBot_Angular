@@ -23,7 +23,7 @@
                     <!--</td>-->
 
                     <td ng-if="true">
-                        <a ui-sref="dashboard.subscriber.show({subscriberId:subscriber.id})"><span class="fa fa-info fa-fw" pg-tooltip data-original-title="View"></span></a>&nbsp;
+                        <a ui-sref="app.dashboard.subscriber.show({subscriberId:subscriber.id})"><span class="fa fa-info fa-fw" pg-tooltip data-original-title="View"></span></a>&nbsp;
                         <input type="checkbox" ng-checked="$ctrl.isSelected(subscriber)" ng-click="$ctrl.toggleSelection(subscriber)" />
                     </td>
 

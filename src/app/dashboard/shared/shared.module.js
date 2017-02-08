@@ -38,4 +38,7 @@ sharedModule.component('selectTags', SelectTagsComponent);
 import SelectSequencesComponent from './select-sequences/select-sequences.component';
 sharedModule.component('selectSequences', SelectSequencesComponent);
 
+import FilterAudienceComponent from './filter-audience/filter-audience.component';
+sharedModule.component('filterAudience', FilterAudienceComponent);
+
 export default sharedModule;

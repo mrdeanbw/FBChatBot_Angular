@@ -3,11 +3,11 @@ class BroadcastCtrl {
     constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, WizardHandler) {
         'ngInject';
 
-        this._$state        = $state;
-        this._toaster       = toaster;
-        this._FlashBag      = FlashBag;
-        this._Broadcasts    = Broadcasts;
-        this._AppHelpers    = AppHelpers;
+        this._$state = $state;
+        this._toaster = toaster;
+        this._FlashBag = FlashBag;
+        this._Broadcasts = Broadcasts;
+        this._AppHelpers = AppHelpers;
         this._WizardHandler = WizardHandler;
 
         if ($state.current.name === 'app.dashboard.broadcast.create') {
@@ -17,12 +17,28 @@ class BroadcastCtrl {
                 time: '',
                 timezone: 'same_time',
                 notification: 'regular',
-                filter_groups: [],
-                filter_type: 'and',
-                filter_enabled: true,
-                message_blocks: [],
+                filter: {
+                    enabled:true,
+                    join_type: 'and',
+                    groups: []
+                },
+                template: {},
                 send_from: 9,
                 send_to: 21
+            };
+        }
+
+        if ($state.current.name === 'app.dashboard.broadcast.index') {
+            this.pending = [];
+            this.processed = [];
+            this.$onInit = () => {
+                for (let broadcast of this.broadcasts) {
+                    if (broadcast.status == 'pending') {
+                        this.pending.push(broadcast);
+                    } else {
+                        this.processed.push(broadcast);
+                    }
+                }
             };
         }
     }

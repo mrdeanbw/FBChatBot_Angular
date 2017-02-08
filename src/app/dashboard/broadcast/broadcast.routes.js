@@ -9,14 +9,13 @@ function BroadcastRoutes($stateProvider) {
             abstract: true,
             title: 'Broadcasts',
             breadcrumbState: 'app.dashboard.broadcast.index',
-            templateUrl: 'dashboard/broadcast/views/layout.html',
+            templateUrl: 'dashboard/broadcast/views/layout.html'
         })
 
         .state('app.dashboard.broadcast.index', {
             url: '/',
             title: 'Broadcasts',
-            templateUrl: 'dashboard/broadcast/views/index.html',
-            controller: 'BroadcastController as $ctrl',
+            component: 'broadcastList',
             description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
             resolve: {
                 broadcasts: (Broadcasts, bot) => {
@@ -30,16 +29,14 @@ function BroadcastRoutes($stateProvider) {
             url: "/create",
             title: 'New broadcast',
             description: 'Configure your template message blocks and a descriptive name so that you can find it easily!',
-            templateUrl: 'dashboard/broadcast/views/create.html',
-            controller: 'BroadcastController as $ctrl',
+            component: 'createBroadcast'
         })
 
         .state('app.dashboard.broadcast.edit', {
             url: "/:broadcastId/edit",
             title: 'Edit your broadcast',
             description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
-            templateUrl: 'dashboard/broadcast/views/edit.html',
-            controller: 'BroadcastController as $ctrl',
+            component: 'editBroadcast',
             resolve: {
                 broadcast: (Broadcasts, $stateParams, bot) => {
                     'ngInject';
@@ -52,8 +49,7 @@ function BroadcastRoutes($stateProvider) {
             url: "/:broadcastId",
             title: 'Broadcast Details',
             description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
-            templateUrl: 'dashboard/broadcast/views/show.html',
-            controller: 'BroadcastController as $ctrl',
+            component: 'showBroadcast',
             resolve: {
                 broadcast: (Broadcasts, $stateParams, bot) => {
                     'ngInject';
