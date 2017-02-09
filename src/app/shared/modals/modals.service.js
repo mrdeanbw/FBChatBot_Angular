@@ -24,6 +24,7 @@ class Modals {
         this.openModal({
             templateUrl: 'layout/errors/error.modal.html',
             controller: ($scope) => {
+                'ngInject';
                 $scope.title = title;
                 $scope.message = message;
             }

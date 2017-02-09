@@ -4,9 +4,8 @@
 
         <div class="pull-left" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
 
-            <a ng-if="node.messages.length || node.buttons.length || node.cards.length"
-               class="btn btn-success btn-xs m-r-5" ng-if="$ctrl.hasChildren(node)" data-nodrag
-               ng-click="$ctrl.toggle(this)">
+            <a ng-if="node.messages.length || node.buttons.length || node.cards.length || node.template" data-nodrag
+               class="btn btn-success btn-xs m-r-5" ng-click="$ctrl.toggle(this)">
                 <i class="fa" ng-class="{'fa-arrow-right': collapsed,'fa-arrow-down': !collapsed}"></i>
             </a>
 
@@ -32,9 +31,7 @@
             </span>
 
             <span ng-if="!node.type">
-                <em ng-if="!node.explicit">[Subtree]</em>
-                <em ng-if="node.explicit">[Send Another Message Tree]</em>
-                {{ node.name }}
+                [Send Another Message Tree] {{ node.name }}
             </span>
 
         </div>
@@ -52,7 +49,7 @@
             </a>
 
             <a class="btn btn-warning btn-xs" ng-click="$ctrl.edit(node)" pg-tooltip
-               ng-if="node.type !== 'card' && node.type !== 'button' && !node.explicit">
+               ng-if="node.type && node.type !== 'card' && node.type !== 'button'">
                 <i class="fa fa-pencil"></i>
             </a>
 
@@ -72,9 +69,8 @@
                 <i class="fa fa-pencil"></i>
             </a>
 
-            <a class="btn btn-success btn-xs" ng-click="$ctrl.openSubtreeModal(node, this)"
-               ng-if="node.messages.length && !node.explicit" pg-tooltip
-               data-original-title="Save as a separate message tree.">
+            <a class="btn btn-success btn-xs" ng-click="$ctrl.openSubtreeModal(node)" ng-if="node.messages.length"
+               pg-tooltip data-original-title="Save as a separate message tree.">
                 <i class="fa fa-save"></i>
             </a>
 
@@ -84,24 +80,14 @@
         </div>
     </div>
 
-    <!--<ol ui-tree-nodes="" ng-if="node.type =='button' && node.template.is_explicit"-->
-    <!--ng-model="$ctrl.tempNodes[node.$$hashKey]" ng-class="{hidden: collapsed}">-->
-    <!--<li ng-repeat="node in $ctrl.tempNodes[node.$$hashKey]" ui-tree-node ng-include="'nodes_renderer.html'"></li>-->
-    <!--</ol>-->
-
-    <!--<ol ui-tree-nodes="" ng-if="node.type =='button' && !node.template.is_explicit"-->
-    <!--ng-init="node.template = node.template || {name: 'Subtree', message_blocks: []}"-->
-    <!--ng-model="node.template.messages" ng-class="{hidden: collapsed}">-->
-    <!--<li ng-repeat="node in node.template.messages" ui-tree-node ng-include="'nodes_renderer.html'"></li>-->
-    <!--</ol>-->
-
-    <!--<ol ui-tree-nodes="" ng-if="node.type && node.type != 'button' " ng-model="node.messages"-->
-    <!--ng-class="{hidden: collapsed}">-->
-    <!--<li ng-repeat="node in node.messages" ui-tree-node ng-include="'nodes_renderer.html'"></li>-->
-    <!--</ol>-->
-
-    <ol ui-tree-nodes="" ng-if="node.messages" ng-model="node.messages" ng-class="{hidden: collapsed}">
+    <ol ui-tree-nodes="" ng-if="node.type == 'button' && !node.template" ng-model="node.messages"
+        ng-class="{hidden: collapsed}">
         <li ng-repeat="node in node.messages" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+    </ol>
+
+    <ol ui-tree-nodes="" ng-if="node.type == 'button' && node.template" ng-model="node.template"
+        ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in [node.template]" ui-tree-node ng-include="'nodes_renderer.html'"></li>
     </ol>
 
     <ol ui-tree-nodes="" ng-if="node.type == 'text' || node.type == 'card'" ng-model="node.buttons"
@@ -111,11 +97,6 @@
 
     <ol ui-tree-nodes="" ng-if="node.type == 'card_container'" ng-model="node.cards" ng-class="{hidden: collapsed}">
         <li ng-repeat="node in node.cards" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-    </ol>
-
-    <ol ui-tree-nodes="" ng-if="node.type == 'button' && (node.template.explicit || node.template.messages.length)"
-        ng-model="node.template" ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in [node.template]" ui-tree-node ng-include="'nodes_renderer.html'"></li>
     </ol>
 
 </script>
@@ -161,39 +142,40 @@
         <card-container-message ng-if="$ctrl.active.type == 'card_container'" message="$ctrl.active">
         </card-container-message>
 
-        <div ng-if="$ctrl.active.type == 'button'">
-            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.template.messages.length">
-                <strong>Attention!</strong> Clicking any of the buttons below, will remove your current subtree.
-            </div>
-            <div class="text-center m-t-10 m-b-10">
-                <button class="btn btn-primary" ng-click="$ctrl.addTree({explicit: false, messages:[]})">
-                    New Subtree
+        <div ng-if="$ctrl.active.messages !== undefined">
+            <div class="text-center">
+                <h4>Add New Message</h4>
+                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
+                        ng-click="$ctrl.addTextMessage($ctrl.active)">
+                    + Add Text
                 </button>
-            </div>
-            <h4 class="text-center">[Or] Send a predefined message tree</h4>
-            <select-tree model="treeToAdd"></select-tree>
-            <div class="text-center m-t-10 m-b-10">
-                <button class="btn btn-primary" ng-disabled="!treeToAdd" ng-click="$ctrl.addTree(treeToAdd)">
-                    Add Predefined Message Tree
+                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
+                        ng-click="$ctrl.addImage($ctrl.active)">
+                    + Add Image
+                </button>
+                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
+                        ng-click="$ctrl.addCardContainer($ctrl.active)">
+                    + Add Card Container
                 </button>
             </div>
         </div>
 
-        <div ng-if="$ctrl.active.messages">
-            <div class="text-center">
-                <h4>Select New Message Block Type</h4>
-                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
-                        ng-click="$ctrl.addTextMessage()">
-                    + Add Text
+
+        <div ng-if="$ctrl.active.type == 'button'">
+            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.template">
+                <strong>Attention!</strong> Adding any of the above messages, will remove your current associated
+                message tree.
+            </div>
+            <h4 class="text-center">[Or] Send a predefined message tree</h4>
+            <select-tree model="treeToAdd"></select-tree>
+            <div class="text-center m-t-10">
+                <button class="btn btn-primary" ng-disabled="!treeToAdd" ng-click="$ctrl.addTree(treeToAdd)">
+                    Add Predefined Message Tree
                 </button>
-                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
-                        ng-click="$ctrl.addImage()">
-                    + Add Image
-                </button>
-                <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
-                        ng-click="$ctrl.addCardContainer()">
-                    + Add Card Container
-                </button>
+            </div>
+
+            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.messages.length">
+                <strong>Attention!</strong> Adding a new predefined message tree, will remove your current subtree.
             </div>
         </div>
     </div>

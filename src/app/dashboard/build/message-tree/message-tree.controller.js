@@ -140,12 +140,9 @@ class MessageTreeController {
                     if (this.active == node) {
                         this.active = this.tree;
                     }
-                    let parent = this._getParentNode(scope, node);
-                    if (parent.type == 'button') {
-                        parent.template = {
-                            explicit: false,
-                            messages: []
-                        };
+                    if (node.explicit) {
+                        let button = this._getParentNode(scope, node);
+                        button.template = undefined;
                     } else {
                         scope.remove();
                     }
@@ -154,20 +151,23 @@ class MessageTreeController {
         });
     }
 
-    addTextMessage() {
-        this._addMessage({type: 'text', text: '', buttons: []});
+    addTextMessage(node) {
+        this._addMessage(node, {type: 'text', text: '', buttons: []});
     }
 
-    addImage() {
-        this._addMessage({type: 'image', image_url: ''});
+    addImage(node) {
+        this._addMessage(node, {type: 'image', image_url: ''});
     }
 
-    addCardContainer() {
-        this._addMessage({type: 'card_container', cards: []});
+    addCardContainer(node) {
+        this._addMessage(container, {type: 'card_container', cards: []});
     }
 
-    _addMessage(message) {
-        this._MessageHelpers.addMessage(this.active.messages, message);
+    _addMessage(node, message) {
+        if (node.type == 'button') {
+            node.template = undefined;
+        }
+        this._MessageHelpers.addMessage(node.messages, message);
         this.edit(message);
     }
 
@@ -178,10 +178,8 @@ class MessageTreeController {
     }
 
     addTree(tree) {
+        this.active.messages = [];
         this.active.template = tree;
-        if (!tree.explicit) {
-            this.edit(tree);
-        }
     }
 
     _defaultTreeOptions() {
@@ -189,6 +187,8 @@ class MessageTreeController {
             beforeDrop: (e) => {
                 let source = e.source.nodeScope.node;
                 let destination = e.dest.nodesScope.node ? e.dest.nodesScope.node : undefined;
+
+                console.log(source, destination);
 
                 if (source.type == 'button') {
                     if (destination && (destination.type == 'text' || destination.type == 'card')) {
@@ -206,8 +206,15 @@ class MessageTreeController {
                     return false;
                 }
 
-
                 if (!destination) {
+                    return true;
+                }
+
+                if (destination.type == 'button') {
+                    if (destination.template) {
+                        this._showError("Buttons that have associated message trees cannot have other messages.");
+                        return false;
+                    }
                     return true;
                 }
 
@@ -218,32 +225,36 @@ class MessageTreeController {
     }
 
     _showError(error) {
-        alert(error);
+        this._Modals.errorModal("Drag & Drop Error!", error)
     }
 
 
-    openSubtreeModal(subtree, scope) {
+    openSubtreeModal(button) {
+        let tree = {
+            name: '',
+            messages: this._lodash.cloneDeep(button.messages)
+        };
+        this._clearIDs(tree);
+
         this._Modals.openModal({
             templateUrl: 'dashboard/build/message-tree/views/subtree.modal.html',
             controller: this._saveSubtree,
-            inputs: {subtree},
+            inputs: {tree},
             cb: tree => {
                 if (tree) {
                     this._toaster.pop("success", "Saved successfully!", "Don't forget to save your current tree as well!");
-                    let button = this._getParentNode(scope, scope.node);
                     button.template = tree;
+                    button.messages = [];
                 }
             }
         });
     }
 
-    _saveSubtree($scope, $element, close, MessageTrees, subtree, $rootScope, lodash) {
+    _saveSubtree($scope, $element, close, MessageTrees, tree, $rootScope) {
         'ngInject';
-        
+        $scope.tree = tree;
         $scope.save = () => {
-            let data = lodash.cloneDeep(subtree);
-            data.name = $scope.name;
-            MessageTrees($rootScope.bot.id).post(data).then(
+            MessageTrees($rootScope.bot.id).post(tree).then(
                 tree => {
                     $element.modal('hide');
                     close(tree, 500);

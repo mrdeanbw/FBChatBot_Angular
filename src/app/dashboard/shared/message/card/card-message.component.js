@@ -14,11 +14,7 @@ class CardController {
             title: 'New Button',
             url: '',
             type: 'button',
-            template: {
-                name: null,
-                explicit: false,
-                messages: []
-            },
+            messages: [],
             actions: {
                 add_tags: [],
                 remove_tags: [],
