@@ -31,7 +31,7 @@
                     <tr ng-repeat="tree in $ctrl.trees | filter:search">
                         <td>{{ tree.name }}</td>
                         <td>
-                            <a ui-sref="app.dashboard.build.message-tree.edit({templateId: tree.id})">Edit</a>
+                            <a ui-sref="app.dashboard.build.message-tree.edit({treeId: tree.id})">Edit</a>
                         </td>
                     </tr>
                     <tr ng-show="!$ctrl.trees.length">

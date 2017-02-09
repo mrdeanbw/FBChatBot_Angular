@@ -26,12 +26,6 @@ function MessageTreeRoutes($stateProvider) {
         component: 'createMessageTree',
         title: 'Create Message Tree',
         description: 'Configure your message tree nodes and a descriptive name so that you can find it easily!',
-        resolve: {
-            trees: (MessageTrees, bot) => {
-                'ngInject';
-                return MessageTrees(bot.id).getList();
-            }
-        }
     });
 
     $stateProvider.state('app.dashboard.build.message-tree.edit', {
@@ -42,11 +36,7 @@ function MessageTreeRoutes($stateProvider) {
         resolve: {
             tree: (MessageTrees, $stateParams, bot) => {
                 'ngInject';
-                return MessageTrees(bot.id).one($stateParams.treeId).get();
-            },
-            trees: (MessageTrees, bot) => {
-                'ngInject';
-                return MessageTrees(bot.id).getList();
+                return MessageTrees(bot.id).one($stateParams.treeId).get({include: 'messages'});
             }
         }
     });

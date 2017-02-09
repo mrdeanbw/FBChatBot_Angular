@@ -2,7 +2,9 @@ function AppRun(AppConstants, $rootScope, $transitions) {
     'ngInject';
 
     $transitions.onEnter({}, (transition, state) => {
-        setPageTitle(state.title)
+        if (!state.abstract) {
+            setPageTitle(state.title)
+        }
     });
 
     // Helper method for setting the page's title

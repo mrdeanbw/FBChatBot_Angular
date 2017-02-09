@@ -12,24 +12,24 @@ class FlashBagService {
         return 4000;
     }
 
-    add(title, text, type, duration = FlashBagService.defaultDuration) {
+    add(type, title, text, duration = FlashBagService.defaultDuration) {
         this.message = {title, text, type, duration};
     }
 
     info(title, text, duration = FlashBagService.defaultDuration) {
-        this.add(title, text, 'info', duration);
+        this.add('info', title, text, duration);
     }
 
     success(title, text, duration = FlashBagService.defaultDuration) {
-        this.add(title, text, 'success', duration);
+        this.add('success', title, text, duration);
     }
 
     error(title, text, duration = FlashBagService.defaultDuration) {
-        this.add(title, text, 'error', duration);
+        this.add('error', title, text, duration);
     }
 
     warning(title, text, duration = FlashBagService.defaultDuration) {
-        this.add(title, text, 'warning', duration);
+        this.add('warning', title, text, duration);
     }
 
     get() {
