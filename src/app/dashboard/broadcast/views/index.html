@@ -17,22 +17,21 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="broadcast in $ctrl.pendingBroadcasts">
+            <tr ng-repeat="broadcast in $ctrl.pending">
                 <td class="v-align-middle">{{ broadcast.name }}</td>
                 <td class="v-align-middle">{{ broadcast.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}</td>
                 <td class="v-align-middle"><span class="semi-bold">{{ broadcast.target_count | number }}</span>
                     Subscriber(s).
                 </td>
                 <td class="v-align-middle text-right">
-                    <button ui-sref="dashboard.broadcast.edit({broadcastId: broadcast.id})"
+                    <button ui-sref="app.dashboard.broadcast.edit({broadcastId: broadcast.id})"
                             class="btn sm-m-b-5 btn-sm btn-info btn-rounded">Edit
                     </button>
-                    <button class="btn sm-m-b-5 btn-sm btn-danger btn-rounded" data-toggle="modal"
-                            data-target="#modalDelBroadcast" ng-click="$ctrl.active = broadcast">Cancel
+                    <button class="btn sm-m-b-5 btn-sm btn-danger btn-rounded">Cancel
                     </button>
                 </td>
             </tr>
-            <tr ng-if="!$ctrl.pendingBroadcasts">
+            <tr ng-if="!$ctrl.pending.length">
                 <td colspan="4" class="text-center">
                     You have no scheduled broadcasts.
                 </td>
@@ -58,7 +57,7 @@
 
             <tbody>
 
-            <tr ng-repeat="broadcast in $ctrl.processedBroadcasts">
+            <tr ng-repeat="broadcast in $ctrl.processed">
                 <td class="v-align-middle">{{ broadcast.name }}</td>
                 <td class="v-align-middle p-l-10">{{ broadcast.send_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}
                     <span ng-if="broadcast.status == 'running'" pg-tooltip data-toggle="tooltip"
@@ -78,7 +77,7 @@
                 </td>
             </tr>
 
-            <tr ng-if="!$ctrl.processedBroadcasts">
+            <tr ng-if="!$ctrl.processed.length">
                 <td colspan="6" class="text-center">
                     No Broadcast History.
                 </td>

@@ -40,7 +40,7 @@ function BroadcastRoutes($stateProvider) {
             resolve: {
                 broadcast: (Broadcasts, $stateParams, bot) => {
                     'ngInject';
-                    return Broadcasts(bot.id).one($stateParams.broadcastId).get();
+                    return Broadcasts(bot.id).one($stateParams.broadcastId).get({include: 'filter,template'});
                 }
             }
         })
@@ -53,7 +53,7 @@ function BroadcastRoutes($stateProvider) {
             resolve: {
                 broadcast: (Broadcasts, $stateParams, bot) => {
                     'ngInject';
-                    return Broadcasts(bot.id).one($stateParams.broadcastId).get();
+                    return Broadcasts(bot.id).one($stateParams.broadcastId).get({include: 'template'});
                 }
             }
         })

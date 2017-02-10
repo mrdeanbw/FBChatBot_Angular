@@ -163,7 +163,7 @@
 
 
                                 <p class="m-b-5 m-t-5 hint-text alert alert-info">Date & Time are in your current bot's
-                                    timezone: {{ $root.page.bot_timezone_string }}. Go to settings to change it.</p>
+                                    timezone: {{ $ctrl.bot.timezone }}. Go to settings to change it.</p>
 
                                 <div pg-form-group="" class="form-group form-group-default input-group">
                                     <label>Broadcast Date</label>
@@ -177,7 +177,8 @@
                                 <div pg-form-group="" class="form-group form-group-default input-group">
                                     <label>Broadcast Time</label>
                                     <input type="text" ng-model="$ctrl.broadcast.time" data-show-meridian="false"
-                                           data-default-time="{{ $ctrl.broadcast.time || 'current' }}" data-minute-step="1"
+                                           data-default-time="{{ $ctrl.broadcast.time || 'current' }}"
+                                           data-minute-step="1"
                                            class="form-control" timepicker/>
                                     <span class="input-group-addon btn-primary" style="cursor: pointer">
                                         <i class="fa fa-clock-o"></i>
@@ -253,9 +254,8 @@
                 <div class="padding-20 bg-white">
                     <ul class="pager wizard">
                         <li class="next">
-                            <button type="button finish"
-                                    class="btn btn-success btn-cons btn-animated from-left fa fa-check pull-right"
-                                    wz-finish>
+                            <button class="btn btn-success btn-cons btn-animated from-left fa fa-check pull-right"
+                                    type="button finish" wz-finish>
                                 <span>Finish & Save</span>
                             </button>
                         </li>

@@ -1,6 +1,6 @@
 class BroadcastCtrl {
 
-    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, WizardHandler) {
+    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, WizardHandler, $filter) {
         'ngInject';
 
         this._$state = $state;
@@ -13,12 +13,12 @@ class BroadcastCtrl {
         if ($state.current.name === 'app.dashboard.broadcast.create') {
             this.broadcast = {
                 name: '',
-                date: '',
+                date: $filter('date')(new Date(), 'yyyy-MM-dd'),
                 time: '',
                 timezone: 'same_time',
                 notification: 'regular',
                 filter: {
-                    enabled:true,
+                    enabled: true,
                     join_type: 'and',
                     groups: []
                 },
@@ -45,16 +45,15 @@ class BroadcastCtrl {
         }
     }
 
-    save(broadcast) {
-
-        if (broadcast.id) {
-            // update
-            return broadcast.put().then(
+    save() {
+        // update
+        if (this.broadcast.id) {
+            return this.broadcast.put({include: 'filter,messages'}).then(
                 () => this._toaster.pop('success', 'Saved Successfully!')
             );
         }
         // create
-        this._Broadcasts.post(broadcast).then(
+        this._Broadcasts(this.bot.id).post(this.broadcast).then(
             () => {
                 this._FlashBag.success('Saved Successfully');
                 this._$state.go('app.dashboard.broadcast.index');

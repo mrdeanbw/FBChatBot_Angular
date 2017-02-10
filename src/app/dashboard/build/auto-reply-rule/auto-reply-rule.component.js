@@ -38,17 +38,21 @@ class AutoReplyRuleController {
     }
 
     _updateRule(rule) {
-        rule.put().then(() => this._toaster.pop("success", "Saved Successfully!"));
+        rule.put().then(res => {
+            rule = res;
+            this._toaster.pop("success", "Saved Successfully!")
+        });
     }
 
 
     openDeleteRuleModal(rule) {
         this._Modals.openModal({
-            templateUrl: 'dashboard/build/keyword/views/delete.modal.html',
+            templateUrl: 'dashboard/build/auto-reply-rule/views/delete.modal.html',
             controller: this._confirmDeleteModal,
             inputs: {rule},
             cb: deleted => {
                 if (deleted) {
+                    this._toaster.pop('success', 'Deleted Successfully!');
                     this._AppHelpers.deleteFromArray(this.rules, rule);
                 }
             }
@@ -57,7 +61,6 @@ class AutoReplyRuleController {
 
     _confirmDeleteModal($scope, close, rule) {
         'ngInject';
-
         $scope.delete = () => {
             if (!rule.id) {
                 return close(true, 500);
