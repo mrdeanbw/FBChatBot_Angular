@@ -18,8 +18,7 @@
 1. Clone repo
 2. Copy `.env.example.js` to `.env.js`, and configure it properly.
 3. `npm install`
-4. `bower install --config.interactive=fals`
+4. `bower install --config.interactive=false`
 5. `gulp assets`
 6. `gulp html`
-7. `gulp browserify`
-8. `gulp build`
+7. `gulp build`
