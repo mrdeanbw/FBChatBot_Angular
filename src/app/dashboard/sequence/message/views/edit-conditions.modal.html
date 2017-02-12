@@ -11,9 +11,9 @@
                                 <div class="form-group form-group-default p-t-15 p-b-15">
                                     <p class="inline p-r-5 fs-14">Wait for</p>
                                     <input ng-model="message.conditions.wait_for.days" type="number" min="0" class="inline form-control" style="max-width: 50px;padding-left: 5px"/> day(s),
-                                    <input ng-model="message.conditions.wait_for.hours" type="number" min="0" class="inline form-control" style="max-width: 50px;padding-left: 5px"/> hour(s) and
-                                    <input ng-model="message.conditions.wait_for.minutes" type="number" min="0" class="inline form-control" style="max-width: 50px;padding-left: 5px"/> minute(s)
-                                    <p class="inline p-l-0 fs-14 m-b-0 m-t-5">
+                                    <input ng-model="message.conditions.wait_for.hours" type="number" min="0" max="23" class="inline form-control" style="max-width: 50px;padding-left: 5px"/> hour(s) and
+                                    <input ng-model="message.conditions.wait_for.minutes" type="number" min="0" max="59" class="inline form-control" style="max-width: 50px;padding-left: 5px"/> minute(s)
+                                    <p class="inline p-l-0 fs-14 m-b-0 m-t-5"> after
                                         <span class="bold" ng-if="isFirst">Subscription</span>
                                         <span class="bold" ng-if="!isFirst">Previous Message</span>
                                     </p>

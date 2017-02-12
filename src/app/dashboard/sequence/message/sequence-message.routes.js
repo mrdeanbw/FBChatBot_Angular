@@ -8,6 +8,7 @@ function SequenceMessageRoutes($stateProvider) {
             url: "/:sequenceId/message",
             templateUrl: 'dashboard/sequence/message/views/layout.html',
             abstract: true,
+            title: 'Messages',
             resolve: {
                 sequence: (Sequences, $stateParams, bot) => {
                     'ngInject';
@@ -26,8 +27,11 @@ function SequenceMessageRoutes($stateProvider) {
             url: "/:messageId/edit",
             title: 'Edit Sequence Message',
             component: 'editSequenceMessage',
-            message: (sequence, $stateParams) => {
-                sequence.one('messages', $stateParams.messageId).get({include: 'template'});
+            resolve: {
+                message: (sequence, $stateParams) => {
+                    'ngInject';
+                    return sequence.one('messages', $stateParams.messageId).get({ include: 'template' });
+                }
             }
         });
 }

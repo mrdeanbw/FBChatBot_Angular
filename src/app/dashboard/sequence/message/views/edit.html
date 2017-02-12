@@ -1,61 +1,41 @@
-<div class="row-fluid">
-    <div class="col-xs-12">
-        <ul class="breadcrumb">
-            <li>
-                <a>Sequence <strong>"{{ $ctrl.sequence.name}}"</strong></a>
-            </li>
-            <li>
-                <a>
-                    <span ng-if="$ctrl.message.id">Edit</span>
-                    <span ng-if="!$ctrl.message.id">New</span>
-                    Sequence Message
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-xs-6">
-        <div class="form-group form-group-default ">
-            <label>Message Name</label>
-            <input ng-model="$ctrl.message.name" type="text" class="form-control m-t-15 input-lg"
-                   placeholder="Enter message name" style="margin-top: 5px;">
-        </div>
-        <div class="form-group form-group-default p-t-15 p-b-15">
-            <p class="inline p-r-5 fs-14">This message will be sent after</p>
-            <input ng-model="$ctrl.message.conditions.wait_for.days" type="number" min="0" class="inline form-control"
-                   style="max-width: 50px;padding-left: 5px"/> day(s),
-            <input ng-model="$ctrl.message.conditions.wait_for.hours" type="number" min="0" max="23" class="inline form-control"
-                   style="max-width: 50px;padding-left: 5px"/> hour(s) and
-            <input ng-model="$ctrl.message.conditions.wait_for.minutes" type="number" min="0" max="59" class="inline form-control"
-                   style="max-width: 50px;padding-left: 5px"/> minute(s) from
-            <p class="inline p-l-0 fs-14 m-b-0 m-t-5">
-                <span class="bold"> from
-                    <span ng-if="$ctrl.message.is_first">Subscription</span>
-                    <span ng-if="!$ctrl.message.is_first">Previous Message</span>
-                </span>
-            </p>
-        </div>
-        <div class="form-group form-group-default p-t-15 p-b-15">
-            <label class="inline p-r-20 fs-14">Status: </label>
-            <input type="checkbox" class="js-switch" ui-switch="{color: '#10cfbd', size: 'small'}"
-                   ng-model="$ctrl.message.live"/>
-            <p class="inline p-l-20 fs-14 m-b-0 m-t-5">
-                Sequence is
-                <span class="semi-bold label" ng-if="!$ctrl.message.live">Draft</span>
-                <span class="semi-bold label label-success" ng-if="$ctrl.message.live">Live</span>
-            </p>
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-success" ng-click="$ctrl.save()">Save</button>
-            <button ng-if="$ctrl.message.id" type="button" class="btn btn-danger"
-                    ng-click="$ctrl.openDeleteMessageModal()">Delete
-            </button>
-            <a ng-if="!$ctrl.message.id" ui-sref="dashboard.sequence.edit({sequenceId: $ctrl.sequence.id})"
-               class="btn btn-success"
-               ng-click="$ctrl.save()">Cancel</a>
+<div class="panel panel-transparent">
+
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group form-group-default ">
+                    <label>Message Name</label>
+                    <input ng-model="$ctrl.message.name" type="text" class="form-control m-t-15 input-lg" placeholder="Enter message name" style="margin-top: 5px;">
+                </div>
+                <div class="form-group form-group-default p-t-15 p-b-15">
+                    <label class="inline p-r-20 fs-14">Status: </label>
+                    <input type="checkbox" class="js-switch" ui-switch="{color: '#10cfbd', size: 'small'}"
+                           ng-model="$ctrl.message.live"/>
+                    <p class="inline p-l-20 fs-14 m-b-0 m-t-5">
+                        Sequence is
+                        <span class="semi-bold label" ng-if="!$ctrl.message.live">Draft</span>
+                        <span class="semi-bold label label-success" ng-if="$ctrl.message.live">Live</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-xs-6 text-right">
+                <button type="button" class="m-r-5 btn btn-success" ng-click="$ctrl.save()">Save</button>
+                <button ng-if="$ctrl.message.id" type="button" class="btn btn-danger" ng-click="$ctrl.openDeleteMessageModal()">Delete</button>
+                <a ng-if="!$ctrl.message.id" ui-sref="app.dashboard.sequence.edit({sequenceId: $ctrl.sequence.id})" class="btn btn-danger">Cancel</a>
+            </div>
         </div>
     </div>
 
-    <div class="col-xs-9">
-        <message-template template="$ctrl.message.template" page="$root.bot.page" preview="true"></message-template>
+    <div class="panel-body">
+        <div class="row">
+        </div>
+
+        <div class="row">
+            <div class="col-xs-9">
+                <message-template template="$ctrl.message.template" page="$root.bot.page" preview="true"></message-template>
+            </div>
+        </div>
     </div>
+
 </div>

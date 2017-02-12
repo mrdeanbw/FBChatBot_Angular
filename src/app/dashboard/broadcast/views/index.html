@@ -4,14 +4,13 @@
         <a ui-sref="app.dashboard.broadcast.create" class="btn sm-m-b-5 btn-primary">Create new Broadcast</a>
     </div>
 
-    <div class="col-md-12 ">
-        <h4 class="col-md-12 semi-bold m-t-20 m-b-10">Active Broadcasts</h4>
+    <div class="col-md-9">
+        <h4 class="semi-bold m-t-20 m-b-10">Active Broadcasts</h4>
         <table class="table table-hover table-responsive">
             <thead>
             <tr>
                 <th>Broadcast Name</th>
                 <th>Created</th>
-                <th>Target</th>
                 <th style="width:30%"></th>
             </tr>
             </thead>
@@ -20,19 +19,13 @@
             <tr ng-repeat="broadcast in $ctrl.pending">
                 <td class="v-align-middle">{{ broadcast.name }}</td>
                 <td class="v-align-middle">{{ broadcast.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}</td>
-                <td class="v-align-middle"><span class="semi-bold">{{ broadcast.target_count | number }}</span>
-                    Subscriber(s).
-                </td>
                 <td class="v-align-middle text-right">
-                    <button ui-sref="app.dashboard.broadcast.edit({broadcastId: broadcast.id})"
-                            class="btn sm-m-b-5 btn-sm btn-info btn-rounded">Edit
-                    </button>
-                    <button class="btn sm-m-b-5 btn-sm btn-danger btn-rounded">Cancel
-                    </button>
+                    <button ui-sref="app.dashboard.broadcast.edit({broadcastId: broadcast.id})" class="btn sm-m-b-5 btn-sm btn-info btn-rounded">Edit</button>
+                    <button class="btn sm-m-b-5 btn-sm btn-danger btn-rounded" ng-click="$ctrl.openCancelModal(broadcast)">Cancel</button>
                 </td>
             </tr>
             <tr ng-if="!$ctrl.pending.length">
-                <td colspan="4" class="text-center">
+                <td colspan="3" class="text-center">
                     You have no scheduled broadcasts.
                 </td>
             </tr>
@@ -41,14 +34,14 @@
     </div>
 
 
-    <div class="col-md-12 ">
-        <h4 class="col-md-12 semi-bold m-t-20 m-b-10">History</h4>
+    <div class="col-md-12">
+        <h4 class="semi-bold m-t-20 m-b-10">History</h4>
         <table class="table table-hover table-responsive">
             <thead>
             <tr>
                 <th>Broadcast Name</th>
                 <th style="width: 30%">Sent Date</th>
-                <th class="text-center" style="width: 7%">Sent</th>
+                <th class="text-center" style="width: 7%">Completed</th>
                 <th class="text-center" style="width: 7%">Read</th>
                 <th style="width: 12%">Clicks / CTR</th>
                 <th style="width:10%"></th>
@@ -59,10 +52,10 @@
 
             <tr ng-repeat="broadcast in $ctrl.processed">
                 <td class="v-align-middle">{{ broadcast.name }}</td>
-                <td class="v-align-middle p-l-10">{{ broadcast.send_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}
-                    <span ng-if="broadcast.status == 'running'" pg-tooltip data-toggle="tooltip"
-                          data-original-title="Sending...">
+                <td class="v-align-middle p-l-10">{{ broadcast.completed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}
+                    <span ng-if="broadcast.status == 'running'">
                         <i class="fa fa-spin fa-spinner text-success"></i>
+                        Sending...
                     </span>
                 </td>
                 <td class="v-align-middle text-center">{{ broadcast.stats.sent }}</td>

@@ -1,11 +1,12 @@
 class SequenceController {
 
-    constructor($state, Modals, toaster, AppHelpers) {
+    constructor($state, Modals, toaster, AppHelpers, lodash) {
         'ngInject';
 
-        this._$state = $state;
-        this._Modals = Modals;
-        this._toaster = toaster;
+        this._$state     = $state;
+        this._Modals     = Modals;
+        this._lodash     = lodash;
+        this._toaster    = toaster;
         this._AppHelpers = AppHelpers;
 
         if ($state.current.name === 'app.dashboard.sequence.edit') {
@@ -14,18 +15,38 @@ class SequenceController {
     }
 
     _sequenceMessagesMeta() {
-        let totalPrecedingDays = 0;
+
+        let totalWait = {
+            days: 0,
+            hours: 0,
+            minutes: 0
+        };
+
         for (let message of this.sequence.messages) {
-            message.total_days = totalPrecedingDays;
-            if (!message.is_deleted) {
-                totalPrecedingDays += message.days;
+
+            if (message.is_deleted){
+                continue;
             }
+
+            totalWait.days += message.conditions.wait_for.days;
+            totalWait.hours += message.conditions.wait_for.hours;
+            totalWait.minutes += message.conditions.wait_for.minutes;
+            totalWait.hours += Math.floor(totalWait.minutes / 60);
+            totalWait.minutes = totalWait.minutes % 60;
+            totalWait.days += Math.floor(totalWait.hours / 24);
+            totalWait.hours   = totalWait.hours % 24;
+
+            message.total_wait = this._lodash.cloneDeep(totalWait);
         }
     }
 
     save() {
-        this.sequence.put().then(
-            () => this._toaster.pop('success', 'Saved successfully!')
+        this.sequence.put({ include: 'messages,filter' }).then(
+            sequence => {
+                this.sequence = sequence;
+                this._sequenceMessagesMeta();
+                this._toaster.pop('success', 'Saved successfully!')
+            }
         );
     }
 
@@ -39,7 +60,8 @@ class SequenceController {
             controller: this._createSequence,
             cb: sequence => {
                 if (sequence) {
-                    return this._$state.go('app.dashboard.sequence.edit', {sequenceId: sequence.id});
+                    this._toaster.pop('success', 'Saved successfully!');
+                    return this._$state.go('app.dashboard.sequence.edit', { sequenceId: sequence.id });
                 }
             }
         });
@@ -47,8 +69,8 @@ class SequenceController {
 
     _createSequence($scope, $element, close, $rootScope, Sequences) {
         'ngInject';
-        $scope.sequence = {name: ''};
-        $scope.save = () => {
+        $scope.sequence = { name: '' };
+        $scope.save     = () => {
             return Sequences($rootScope.bot.id).post($scope.sequence).then(
                 response => {
                     $element.modal('hide');
@@ -56,16 +78,17 @@ class SequenceController {
                 }
             );
         };
-        $scope.cancel = () => close(false, 500);
+        $scope.cancel   = () => close(false, 500);
     }
 
     openDeleteSequenceModal(sequence) {
         this._Modals.openModal({
             templateUrl: 'dashboard/sequence/views/delete.modal.html',
             controller: this._deleteSequence,
-            inputs: {sequence: sequence},
-            cb: success => {
-                if (success) {
+            inputs: { sequence: sequence },
+            cb: deleted => {
+                if (deleted) {
+                    this._AppHelpers.deleteFromArray(this.sequences, sequence);
                     this._toaster.pop("success", "Deleted Successfully!");
                 }
             }
@@ -75,23 +98,30 @@ class SequenceController {
     _deleteSequence($scope, $element, close, sequence) {
         'ngInject';
         $scope.sequence = sequence;
-        $scope.delete = function () {
+        $scope.delete   = function () {
             sequence.remove().then(() => {
                 $element.modal('hide');
                 close(true, 500);
             });
         };
-        $scope.cancel = () => close(false, 500);
+        $scope.cancel   = () => close(false, 500);
     }
 
-    openDeleteMessageModal(sequence, message) {
+    openDeleteMessageModal(message) {
         this._Modals.openModal({
             templateUrl: 'dashboard/sequence/message/views/delete.modal.html',
             controller: this._deleteMessage,
-            inputs: {sequence: sequence, message: message},
-            cb: success => {
-                if (success) {
-                    this._AppHelpers.deleteFromArray(sequence.messages, message);
+            inputs: { sequence: this.sequence, message },
+            cb: deletedMessage => {
+                if (deletedMessage !== false) {
+                    // soft deleted
+                    if (deletedMessage) {
+                        let index = this.sequence.messages.indexOf(message);
+                        this.sequence.messages[index] = deletedMessage;
+                    } else {
+                        this._AppHelpers.deleteFromArray(this.sequence.messages, message);
+                    }
+                    this._sequenceMessagesMeta();
                     this._toaster.pop("success", "Deleted Successfully!");
                 }
             }
@@ -101,24 +131,25 @@ class SequenceController {
     _deleteMessage($scope, $element, close, sequence, message) {
         'ngInject';
         $scope.message = message;
-        $scope.delete = function () {
-            sequence.one('messages', message.id).customDELETE().then(() => {
+        $scope.delete  = function () {
+            sequence.one('messages', message.id).customDELETE().then(message => {
                 $element.modal('hide');
-                close(true, 500);
+                close(message, 500);
             });
         };
-        $scope.cancel = () => close(false, 500);
+        $scope.cancel  = () => close(false, 500);
     }
 
     openEditMessageConditionsModal(message) {
         this._Modals.openModal({
             templateUrl: 'dashboard/sequence/message/views/edit-conditions.modal.html',
             controller: this._editMessageConditions,
-            inputs: {sequence: this.sequence, message: message, isFirst: this._isFirstMessage(message)},
+            inputs: { sequence: this.sequence, message: message, isFirst: this._isFirstMessage(message) },
             cb: res => {
                 if (res) {
-                    let index = this.sequence.messages.indexOf(message);
+                    let index                     = this.sequence.messages.indexOf(message);
                     this.sequence.messages[index] = res;
+                    this._sequenceMessagesMeta();
                     this._toaster.pop("success", "Saved Successfully!");
                 }
             }
@@ -129,7 +160,7 @@ class SequenceController {
         'ngInject';
         $scope.message = lodash.cloneDeep(message);
         $scope.isFirst = isFirst;
-        $scope.save = function () {
+        $scope.save    = function () {
             sequence.one('messages', $scope.message.id).customPUT($scope.message, 'conditions').then(
                 res => {
                     $element.modal('hide');
@@ -137,7 +168,7 @@ class SequenceController {
                 }
             );
         };
-        $scope.cancel = () => close(false, 500);
+        $scope.cancel  = () => close(false, 500);
     }
 }
 

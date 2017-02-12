@@ -3,9 +3,9 @@ class SequenceMessageController {
     constructor($state, Modals, toaster, FlashBag) {
         'ngInject';
 
-        this._$state = $state;
-        this._Modals = Modals;
-        this._toaster = toaster;
+        this._$state   = $state;
+        this._Modals   = Modals;
+        this._toaster  = toaster;
         this._FlashBag = FlashBag;
 
         if ($state.current.name === 'app.dashboard.sequence.message.create') {
@@ -29,15 +29,15 @@ class SequenceMessageController {
     save() {
         // update
         if (this.message.id) {
-            return this.sequence.one('messages', message.id).customPUT(message).then(
+            return this.sequence.one('messages', this.message.id).customPUT(this.message).then(
                 () => this._toaster.pop('success', 'Saved Successfully!')
             );
         }
         // create
-        this.sequence.post('messages', message).then(
+        this.sequence.post('messages', this.message).then(
             () => {
                 this._FlashBag.success('Created Successfully!');
-                this._$state.go("app.dashboard.sequence.edit", {sequenceId: this.sequence.id})
+                this._$state.go("app.dashboard.sequence.edit", { sequenceId: this.sequence.id })
             }
         );
     }
@@ -50,11 +50,11 @@ class SequenceMessageController {
         this._Modals.openModal({
             templateUrl: 'dashboard/sequence/message/views/delete.modal.html',
             controller: this._deleteMessage,
-            inputs: {sequence: this.sequence, message: this.message},
+            inputs: { sequence: this.sequence, message: this.message },
             cb: success => {
                 if (success) {
                     this._FlashBag.success("Deleted Successfully");
-                    this._$state.go('app.dashboard.sequence.edit', {sequenceId: this.sequence.id});
+                    this._$state.go('app.dashboard.sequence.edit', { sequenceId: this.sequence.id });
                 }
             }
         });

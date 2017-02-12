@@ -11,14 +11,14 @@
                     <h5>Delete Sequence</h5>
                 </div>
                 <div class="modal-body">
-                    <p class="no-margin">Are you sure to <span class="bold text-danger">delete</span> this Sequence?</p>
+                    <p class="no-margin">Are you sure to delete <span class="bold text-danger">{{ sequence.name }}</span> sequence?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-cons  pull-left inline" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger btn-cons pull-left inline" data-dismiss="modal" ng-click="delete()">
                         Delete
                     </button>
-                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline"
-                            data-dismiss="modal">Cancel
+                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal" ng-click="cancel()">
+                        Cancel
                     </button>
                 </div>
             </div>

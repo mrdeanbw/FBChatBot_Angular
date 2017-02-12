@@ -21,6 +21,7 @@ class BreadcrumbController {
             current = current.parent;
         }
         this.breadcrumb.push({title: this.page.name, url: 'app.dashboard.overview'});
+
         this.breadcrumb.reverse();
     }
 }

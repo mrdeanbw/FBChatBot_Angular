@@ -163,7 +163,7 @@
 
 
                                 <p class="m-b-5 m-t-5 hint-text alert alert-info">Date & Time are in your current bot's
-                                    timezone: {{ $ctrl.bot.timezone }}. Go to settings to change it.</p>
+                                    timezone: <strong>{{ $ctrl.bot.timezone }}</strong>. Go to settings to change it.</p>
 
                                 <div pg-form-group="" class="form-group form-group-default input-group">
                                     <label>Broadcast Date</label>
@@ -228,9 +228,9 @@
                                 <div class="form-group form-group-default ">
                                     <label>Notification Settings</label>
                                     <select ng-model="$ctrl.broadcast.notification" class="full-width m-t-10">
-                                        <option value="regular">Regular Push</option>
-                                        <option value="silent_push">Silent Push</option>
-                                        <option value="no_push">Silent</option>
+                                        <option value="REGULAR">Regular Push</option>
+                                        <option value="SILENT_PUSH">Silent Push</option>
+                                        <option value="NO_PUSH">Silent</option>
                                     </select>
                                     <p class="m-b-5 m-t-5 hint-text" ng-if="$ctrl.broadcast.notification == 'regular'">
                                         Regular Push notification will make a sound and display a phone notification.
