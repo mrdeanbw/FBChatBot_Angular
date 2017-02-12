@@ -28,7 +28,6 @@
         </p>
     </div>
 
-
     <div class="row">
         <div class="col-xs-12">
             <button pg-tooltip data-toggle="tooltip" data-original-title="Refresh" ng-click="$ctrl.refresh()"
@@ -40,11 +39,11 @@
                 Manage Selected Page(s)
             </button>
 
-            <a ng-if="::($ctrl.disabledBots.length)" ui-sref="disabled-bots" class="btn btn-sm btn-danger pull-right">
+            <a ng-if="::($ctrl.disabledBots.length)" ui-sref="app.bot.disabled" class="btn btn-sm btn-danger pull-right">
                 Disabled Bots ({{ ::($ctrl.disabledBots.length) | number }})
             </a>
 
-            <a ng-if="::$ctrl.activeBots.length" ui-sref="choose-bot" class="btn btn-sm m-r-5 btn-info pull-right">
+            <a ng-if="::$ctrl.activeBots.length" ui-sref="app.bot.index" class="btn btn-sm m-r-5 btn-info pull-right">
                 Existing Bots ({{ ::($ctrl.activeBots.length) | number }})
             </a>
 
