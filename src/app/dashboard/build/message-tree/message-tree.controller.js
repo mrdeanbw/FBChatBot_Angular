@@ -268,6 +268,11 @@ class MessageTreeController {
         $scope.cancel = () => close(false, 500);
     }
 
+
+    paginate(page) {
+        this._MessageTrees(this.bot.id).getList({name: this.filter, page}).then((trees)=> this.trees = trees);
+    }
+
 }
 
 export default MessageTreeController;
