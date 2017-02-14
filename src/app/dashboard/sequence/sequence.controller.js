@@ -1,13 +1,15 @@
 class SequenceController {
 
-    constructor($state, Modals, toaster, AppHelpers, lodash) {
+    constructor($state, Modals, toaster, AppHelpers, lodash, Sequences) {
         'ngInject';
 
         this._$state     = $state;
         this._Modals     = Modals;
         this._lodash     = lodash;
         this._toaster    = toaster;
+        this._Sequences = Sequences;
         this._AppHelpers = AppHelpers;
+
 
         if ($state.current.name === 'app.dashboard.sequence.edit') {
             this.$onInit = () =>this._sequenceMessagesMeta();
@@ -170,6 +172,12 @@ class SequenceController {
         };
         $scope.cancel  = () => close(false, 500);
     }
+
+
+    paginate(page) {
+        this._Sequences(this.bot.id).getList({name: this.filter, page}).then((sequences)=> this.sequences = sequences);
+    }
+
 }
 
 export default SequenceController;

@@ -1,87 +1,101 @@
-<div class="row-fluid">
-    <div class="col-md-12 m-t-20 text-right sm-text-center">
-        <button class="btn col-xs-12 pull-right col-md-3 m-b-20 btn-primary" ng-click="$ctrl.openCreateSequenceModal()">
-            Create new sequence
-        </button>
-    </div>
-</div>
+<div class="panel panel-transparent">
 
-
-<div class="row-fluid">
-    <div class="col-md-12" ng-show="!$ctrl.sequences.length">
-        <div class="panel panel-transparent">
-            <div class="panel-heading">
-                <div class="panel-title"></div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="$ctrl.filter" placeholder="Filter Sequences">
+                    <span class="input-group-btn"><button class="btn btn-complete" ng-click="$ctrl.paginate(1)"><i class="fa fa-search"></i> Search</button></span>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="text-center ">
-                        <h3>
-                            You have no sequences. <br>You can use this
-                            <button ng-click="$ctrl.openCreateSequenceModal()"
-                                    class="btn btn-sm btn-primary m-l-sm m-r-sm">Create
-                                Sequence
-                            </button>
-                            button to create a new sequence.
-                        </h3>
+            <button class="btn col-xs-12 pull-right col-md-3 m-b-20 btn-primary" ng-click="$ctrl.openCreateSequenceModal()">
+                Create new sequence
+            </button>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-12" ng-show="!$ctrl.sequences.length">
+                <div class="panel panel-transparent">
+                    <div class="panel-heading">
+                        <div class="panel-title"></div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="text-center ">
+                                <h3>
+                                    You have no sequences. <br>You can use this
+                                    <button ng-click="$ctrl.openCreateSequenceModal()" class="btn btn-sm btn-primary m-l-sm m-r-sm">Create Sequence</button>
+                                    button to create a new sequence.
+                                </h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="sequence in $ctrl.sequences" class="col-xs-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading separator sm-text-center">
+                        <div class="panel-title overflow-ellipsis" style="max-width: 100%">
+                            {{ sequence.name }} &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="panel-body p-t-10 sm-p-t-10 p-b-0 sm-p-b-0">
+                        <div class="container-sm-height">
+                            <div class="row row-sm-height text-center">
+                                <div class="col-xs-6 col-sm-height col-middle">
+                                    <div class="row">
+                                        <p class=" fs-12 m-b-0 hint-text">Subscribers</p>
+                                        <h4 class="semi-bold text-black font-montserrat m-t-0">
+                                            {{ sequence.subscriber_count | number }}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-height col-middle">
+                                    <div class="row">
+                                        <p class=" fs-12 m-b-0 hint-text">Messages</p>
+                                        <h4 class="semi-bold text-black font-montserrat m-t-0">
+                                            {{ sequence.message_count | number }}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body b-grey b-t p-t-10 sm-p-t-10 p-b-10 sm-p-b-10">
+                        <div class="container-sm-height">
+                            <div class="row-fluid row-sm-height text-center">
+                                <div class="col-xs-12 pull-right col-sm-height col-middle">
+                                    <div class="row text-right sm-text-center">
+                                        <a ui-sref="app.dashboard.sequence.edit({sequenceId: sequence.id})"
+                                           class="btn inline btn-primary btn-sm">Edit</a>
+                                        <button class="btn inline btn-danger btn-sm"
+                                                ng-click="$ctrl.openDeleteSequenceModal(sequence)">Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
-
-    <div ng-repeat="sequence in $ctrl.sequences" class="col-xs-3">
-        <div class="panel panel-default">
-            <div class="panel-heading separator sm-text-center">
-                <div class="panel-title overflow-ellipsis" style="max-width: 100%">
-                    {{ sequence.name }} &nbsp;
-                </div>
+        <div class="row m-t-10" ng-if="$ctrl.sequences.length">
+            <div class="col-xs-12">
+                <pagination context="$ctrl.sequences.meta.pagination" page-changed-callback="$ctrl.paginate(page)"></pagination>
             </div>
-
-            <div class="panel-body p-t-10 sm-p-t-10 p-b-0 sm-p-b-0">
-                <div class="container-sm-height">
-                    <div class="row row-sm-height text-center">
-                        <div class="col-xs-6 col-sm-height col-middle">
-                            <div class="row">
-                                <p class=" fs-12 m-b-0 hint-text">Subscribers</p>
-                                <h4 class="semi-bold text-black font-montserrat m-t-0">
-                                    {{ sequence.subscriber_count | number }}
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-height col-middle">
-                            <div class="row">
-                                <p class=" fs-12 m-b-0 hint-text">Messages</p>
-                                <h4 class="semi-bold text-black font-montserrat m-t-0">
-                                    {{ sequence.message_count | number }}
-                                </h4>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel-body b-grey b-t p-t-10 sm-p-t-10 p-b-10 sm-p-b-10">
-                <div class="container-sm-height">
-                    <div class="row-fluid row-sm-height text-center">
-                        <div class="col-xs-12 pull-right col-sm-height col-middle">
-                            <div class="row text-right sm-text-center">
-                                <a ui-sref="app.dashboard.sequence.edit({sequenceId: sequence.id})"
-                                   class="btn inline btn-primary btn-sm">Edit</a>
-                                <button class="btn inline btn-danger btn-sm"
-                                        ng-click="$ctrl.openDeleteSequenceModal(sequence)">Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
+
     </div>
 
 </div>

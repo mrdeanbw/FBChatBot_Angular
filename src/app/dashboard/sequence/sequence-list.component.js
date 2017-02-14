@@ -1,5 +1,5 @@
 export default{
     templateUrl: 'dashboard/sequence/views/index.html',
-    bindings: {sequences: '<'},
+    bindings: {sequences: '<', bot: '<'},
     controller: 'SequenceController'
 }
