@@ -22,41 +22,43 @@
                                 <td>{{ $ctrl.subscriber.gender | capitalize }}</td>
                             </tr>
                             <tr>
+                                <td class="bold">Locale</td>
+                                <td>{{ $ctrl.subscriber.locale }}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Timezone</td>
+                                <td>{{ $ctrl.subscriber.timezone }}</td>
+                            </tr>
+                            <tr>
                                 <td class="bold">Status</td>
                                 <td>
-                                    <span ng-if="$ctrl.subscriber.is_active" class="text-success">Active</span>
-                                    <span ng-if="!$ctrl.subscriber.is_active">Inactive</span>
+                                    <span ng-if="$ctrl.subscriber.active" class="text-success">Active</span>
+                                    <span ng-if="!$ctrl.subscriber.active" class="text-danger">Inactive</span>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="bold">Latest Contact</td>
+                                <td class="bold">Latest Interaction</td>
                                 <td>
-                                    <abbr ng-if="$ctrl.subscriber.last_contacted_at" data-toggle="tooltip"
-                                          data-original-title="{{ $ctrl.subscriber.last_contacted_at  | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
-                                          pg-tooltip>
-                                        {{ $ctrl.subscriber.last_contacted_at | relativeDate }}
+                                    <abbr ng-if="$ctrl.subscriber.last_interaction_at" data-original-title="{{ $ctrl.subscriber.last_interaction_at  | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
+                                        {{ $ctrl.subscriber.last_interaction_at | relativeDate }}
                                     </abbr>
-                                    <em ng-if="!$ctrl.subscriber.last_contacted_at">Never</em>
+                                    <em ng-if="!$ctrl.subscriber.last_interaction_at">Never</em>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="bold">First Subscribed At</td>
+                                <td class="bold">Joined</td>
                                 <td>
-                                    <abbr ng-if="$ctrl.subscriber.first_subscribed_at" data-toggle="tooltip"
-                                          data-original-title="{{ $ctrl.subscriber.first_subscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
-                                          pg-tooltip>
-                                        {{ $ctrl.subscriber.first_subscribed_at | relativeDate }}
+                                    <abbr ng-if="$ctrl.subscriber.created_at" data-original-title="{{ $ctrl.subscriber.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
+                                        {{ $ctrl.subscriber.created_at | relativeDate }}
                                     </abbr>
-                                    <em ng-if="!$ctrl.subscriber.first_subscribed_at">Never</em>
+                                    <em ng-if="!$ctrl.subscriber.created_at">Never</em>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="bold">Last Subscribed At</td>
                                 <td>
-                                    <abbr ng-if="$ctrl.subscriber.last_subscribed_at" data-toggle="tooltip"
-                                          data-original-title="{{ $ctrl.subscriber.last_subscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
-                                          pg-tooltip>
+                                    <abbr ng-if="$ctrl.subscriber.last_subscribed_at" data-original-title="{{ $ctrl.subscriber.last_subscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
                                         {{ $ctrl.subscriber.last_subscribed_at | relativeDate }}
                                     </abbr>
                                     <em ng-if="!$ctrl.subscriber.last_subscribed_at">Never</em>
@@ -66,9 +68,7 @@
                             <tr>
                                 <td class="bold">Last Unsubscribed At</td>
                                 <td>
-                                    <abbr ng-if="$ctrl.subscriber.last_unsubscribed_at" data-toggle="tooltip"
-                                          data-original-title="{{ $ctrl.subscriber.last_unsubscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}"
-                                          pg-tooltip>
+                                    <abbr ng-if="$ctrl.subscriber.last_unsubscribed_at" data-original-title="{{ $ctrl.subscriber.last_unsubscribed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
                                         {{ $ctrl.subscriber.last_unsubscribed_at | relativeDate }}
                                     </abbr>
                                     <em ng-if="!$ctrl.subscriber.last_unsubscribed_at">Never</em>
@@ -93,16 +93,14 @@
             </div>
 
         </div>
-
-
     </div>
+
     <div class="col-xs-5">
         <h5 class="text-center">Subscription History</h5>
         <div class="timeline-container top-circle">
             <section class="timeline">
-                <div class="timeline-block" ng-repeat="record in $ctrl.subscriber.subscription_history">
-                    <div class="timeline-point small"
-                         ng-class="{'success' : record.action == 'subscribed', 'danger' : record.action == 'unsubscribed'}"></div>
+                <div class="timeline-block" ng-repeat="record in $ctrl.subscriber.history">
+                    <div class="timeline-point small" ng-class="{'success' : record.action == 'subscribed', 'danger' : record.action == 'unsubscribed'}"></div>
                     <!-- timeline-point -->
                     <div class="timeline-content">
                         <div class="card share full-width">
@@ -113,8 +111,10 @@
                             </div>
                         </div>
                         <div class="event-date">
-                            <small class="fs-12 hint-text">{{ record.action_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'
-                                }}
+                            <small class="fs-12 hint-text">
+                                <abbr ng-if="record.action_at" data-original-title="{{ record.action_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
+                                    {{ record.action_at | relativeDate }}
+                                </abbr>
                             </small>
                         </div>
                     </div>

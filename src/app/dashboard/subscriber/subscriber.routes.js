@@ -28,7 +28,7 @@ function BotRoutes($stateProvider) {
             resolve: {
                 subscriber: (Subscribers, $stateParams, bot) => {
                     'ngInject';
-                    return Subscribers(bot.id).one($stateParams.subscriberId).get();
+                    return Subscribers(bot.id).one($stateParams.subscriberId).get({include: 'history,sequences'});
                 }
             }
         });

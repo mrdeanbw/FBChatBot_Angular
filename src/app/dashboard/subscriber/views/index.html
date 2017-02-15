@@ -50,19 +50,19 @@
                         <span ng-if="!subscriber[$ctrl.cols.is_active.field]" class="text-danger">Inactive</span>
                     </td>
 
-                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.first_subscribed_at.show">
-                        <abbr ng-if="subscriber[$ctrl.cols.first_subscribed_at.field]" data-toggle="tooltip" data-original-title="{{ subscriber[$ctrl.cols.first_subscribed_at.field] | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
-                            {{ subscriber[$ctrl.cols.first_subscribed_at.field] | relativeDate }}
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.created_at.show">
+                        <abbr ng-if="subscriber[$ctrl.cols.created_at.field]" data-original-title="{{ subscriber[$ctrl.cols.created_at.field] | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}" pg-tooltip>
+                            {{ subscriber[$ctrl.cols.created_at.field] | relativeDate }}
                         </abbr>
-                        <span ng-if="!subscriber[$ctrl.cols.first_subscribed_at.field]">Never</span>
+                        <span ng-if="!subscriber[$ctrl.cols.created_at.field]">Never</span>
 
                     </td>
 
-                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.last_contacted_at.show">
-                        <abbr ng-if="subscriber[$ctrl.cols.last_contacted_at.field]" data-toggle="tooltip" data-original-title="{{ subscriber[$ctrl.cols.last_contacted_at.field] | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}" pg-tooltip>
-                            {{ subscriber[$ctrl.cols.last_contacted_at.field] | relativeDate }}
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.last_interaction_at.show">
+                        <abbr ng-if="subscriber[$ctrl.cols.last_interaction_at.field]" data-original-title="{{ subscriber[$ctrl.cols.last_interaction_at.field] | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}" pg-tooltip>
+                            {{ subscriber[$ctrl.cols.last_interaction_at.field] | relativeDate }}
                         </abbr>
-                        <span ng-if="!subscriber[$ctrl.cols.last_contacted_at.field]">Never</span>
+                        <span ng-if="!subscriber[$ctrl.cols.last_interaction_at.field]">Never</span>
                     </td>
 
                     <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.tags.show">
