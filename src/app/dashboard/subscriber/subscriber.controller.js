@@ -46,7 +46,12 @@ class SubscriberController {
     }
 
     save(subscriber) {
-        subscriber.put().then(() => this._toaster.pop("success", "Saved Successfully!"))
+        subscriber.put({include: 'sequences,history'}).then(
+            subscriber => {
+                this.subscriber = subscriber;
+                this._toaster.pop("success", "Saved Successfully!")
+            }
+        );
     }
 
     _bulkEdit($scope, close, $element, $rootScope) {
