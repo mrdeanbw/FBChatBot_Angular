@@ -9,9 +9,6 @@ messageModule.service('MessageHelpers', MessageHelperService);
 import messageTemplateComponent from './message-template.component';
 messageModule.component('messageTemplate', messageTemplateComponent);
 
-import messagePreviewComponent from './message-preview.component';
-messageModule.component('messagePreview', messagePreviewComponent);
-
 import textMessageComponent from './text/text-message.component';
 messageModule.component('textMessage', textMessageComponent);
 
