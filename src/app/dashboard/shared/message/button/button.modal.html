@@ -4,117 +4,57 @@
             <div class="modal-content">
 
                 <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-close fs-14"></i>
+                    </button>
                     <h5 class="m-b-20">Add <span class="semi-bold">Button</span></h5>
                 </div>
 
                 <div class="modal-body modal-lg">
                     <div class="row">
                         <div class="col-sm-12">
-                            <form>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div pg-form-group="" class="form-group form-group-default">
-                                            <label>Button Title</label>
-                                            <input type="text" ng-model="button.title" class="form-control">
-                                        </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div pg-form-group="" class="form-group form-group-default">
+                                        <label>Button Title</label>
+                                        <input type="text" ng-model="button.title" class="form-control">
                                     </div>
                                 </div>
-                                <div class="alert alert-info">You can specify <span
-                                        class="text-danger">more than one</span> action.
-                                </div>
-                                <div class="alert alert-warning">In order to provide a feedback to your customers, you
-                                    have to specify either a <span class="bold">Go To Url</span> or <span class="bold">Send Other Messages</span>
-                                    action.
-                                </div>
-                                <div class="row column-seperation">
-                                    <div class="col-xs-6">
-                                        <div pg-form-group="" class="form-group form-group-default">
-                                            <label>Go To URL</label>
-                                            <input type="text" placeholder="Enter URL" ng-model="button.url"
-                                                   class="form-control">
-                                        </div>
+                            </div>
+                            <div class="alert alert-info">You can specify <span class="text-danger">more than one</span> action.</div>
+                            <div class="alert alert-warning">
+                                In order to provide a feedback to your customers, youhave to specify either a
+                                <span class="bold">Go To Url</span> or <span class="bold">Send Other Messages</span>action.
+                            </div>
+                            <div class="row column-seperation">
+                                <div class="col-xs-6">
+                                    <div pg-form-group="" class="form-group form-group-default">
+                                        <label>Go To URL</label>
+                                        <input type="text" placeholder="Enter URL" ng-model="button.url" class="form-control">
                                     </div>
-
-                                    <!--<div class="col-xs-6" ng-if="sendTrees">-->
-                                    <!--<div pg-form-group=""-->
-                                    <!--class="form-group form-group-default form-group-default-select">-->
-                                    <!--<label>-->
-                                    <!--Send message tree-->
-                                    <!--<span class="pull-right">-->
-                                    <!--<a ui-sref="dashboard.build.tree.create" target="_blank">New</a> |-->
-                                    <!--<a href="" ng-click="refreshTrees()">Refresh List</a>-->
-                                    <!--</span>-->
-                                    <!--</label>-->
-                                    <!--<ui-select ng-model="button.template" theme="select2" style="width:100%">-->
-                                    <!--<ui-select-match placeholder="Select Message Tree">{{-->
-                                    <!--$select.selected.name }}-->
-                                    <!--</ui-select-match>-->
-                                    <!--<ui-select-choices-->
-                                    <!--repeat="tree in trees | propsFilter: {name: $select.search }">-->
-                                    <!--<div ng-bind-html="tree.name | highlight: $select.search"></div>-->
-                                    <!--</ui-select-choices>-->
-                                    <!--</ui-select>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                 </div>
-
-                                <!--<div class="row column-seperation">-->
-                                <!--<div class="col-xs-6">-->
-                                <!--<div pg-form-group-->
-                                <!--class="form-group form-group-default form-group-default-select">-->
-                                <!--<label>Add tag to user when this button is clicked</label>-->
-                                <!--<ui-select multiple tagging tagging-label="(new)" ng-model="button.tag"-->
-                                <!--theme="select2" style="width:100%">-->
-                                <!--<ui-select-match placeholder="Select/Deselect Tags">{{ $item }}-->
-                                <!--</ui-select-match>-->
-                                <!--<ui-select-choices repeat="tag in tags | filter:$select.search">-->
-                                <!--<div ng-bind-html="tag | highlight: $select.search"></div>-->
-                                <!--</ui-select-choices>-->
-                                <!--</ui-select>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-6">-->
-                                <!--<div pg-form-group=""-->
-                                <!--class="form-group form-group-default form-group-default-select">-->
-                                <!--<label>Remove tag from the user when this button is clicked</label>-->
-                                <!--<ui-select multiple tagging tagging-label="(new)" ng-model="button.untag"-->
-                                <!--theme="select2" style="width:100%">-->
-                                <!--<ui-select-match placeholder="Select/Deselect Tags">{{ $item }}-->
-                                <!--</ui-select-match>-->
-                                <!--<ui-select-choices repeat="tag in tags | filter:$select.search">-->
-                                <!--<div ng-bind-html="tag | highlight: $select.search"></div>-->
-                                <!--</ui-select-choices>-->
-                                <!--</ui-select>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="row column-seperation">-->
-                                <!--<div class="col-xs-6">-->
-                                <!--<div pg-form-group="" class="form-group form-group-default form-group-default-select">-->
-                                <!--<label>When button clicked, Subscribe user to sequence(s)</label>-->
-                                <!--<ui-select multiple ng-model="button.subscribe" theme="select2" style="width:100%">-->
-                                <!--<ui-select-match placeholder="Select/Deselect Sequences">{{ $item.name }}</ui-select-match>-->
-                                <!--<ui-select-choices repeat="sequence in sequences | propsFilter: {name: $select.search }">-->
-                                <!--<div ng-bind-html="sequence.name | highlight: $select.search"></div>-->
-                                <!--</ui-select-choices>-->
-                                <!--</ui-select>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-6">-->
-                                <!--<div pg-form-group="" class="form-group form-group-default form-group-default-select">-->
-                                <!--<label>When button clicked, Unsubscribe user from sequence</label>-->
-                                <!--<ui-select multiple ng-model="button.unsubscribe" theme="select2" style="width:100%">-->
-                                <!--<ui-select-match placeholder="Select/Deselect Sequences">{{ $item.name }}</ui-select-match>-->
-                                <!--<ui-select-choices repeat="sequence in sequences | propsFilter: {name: $select.search }">-->
-                                <!--<div ng-bind-html="sequence.name | highlight: $select.search"></div>-->
-                                <!--</ui-select-choices>-->
-                                <!--</ui-select>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                            </form>
-
+                                <div class="col-xs-6">
+                                    <select-tree model="button.template" label="'Send message tree'"></select-tree>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row column-seperation">
+                                <div class="col-sm-6">
+                                    <select-sequences model="button.actions.add_sequences" label="'When button clicked, Subscribe user to sequence(s)'"></select-sequences>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select-sequences model="button.actions.remove_sequences" label="'When button clicked, Unsubscribe user from sequence'"></select-sequences>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row column-seperation">
+                                <div class="col-sm-6">
+                                    <select-tags model="button.actions.add_tags" label="'Add tag to user when this button is clicked'"></select-tags>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select-tags model="button.actions.remove_tags" label="'Remove tag from the user when this button is clicked'"></select-tags>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
