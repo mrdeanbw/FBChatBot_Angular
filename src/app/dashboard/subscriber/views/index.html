@@ -17,10 +17,7 @@
 
             <table ng-table-dynamic="$ctrl.tableParams with $ctrl.colList" class="table table-hover table-bordered">
 
-                <tr ng-repeat="subscriber in $data" ng-class="{'danger': !subscriber[$ctrl.cols.is_active.field]}">
-
-                    <!--<td>-->
-                    <!--</td>-->
+                <tr ng-repeat="subscriber in $data" ng-class="{'danger': !subscriber[$ctrl.cols.active.field]}">
 
                     <td ng-if="true">
                         <a ui-sref="app.dashboard.subscriber.show({subscriberId:subscriber.id})"><span class="fa fa-info fa-fw" pg-tooltip data-original-title="View"></span></a>&nbsp;
@@ -45,9 +42,9 @@
                         {{ subscriber[$ctrl.cols.gender.field] | capitalize }}
                     </td>
 
-                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.is_active.show">
-                        <span ng-if="subscriber[$ctrl.cols.is_active.field]" class="text-success">Active</span>
-                        <span ng-if="!subscriber[$ctrl.cols.is_active.field]" class="text-danger">Inactive</span>
+                    <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.active.show">
+                        <span ng-if="subscriber[$ctrl.cols.active.field]" class="text-success">Active</span>
+                        <span ng-if="!subscriber[$ctrl.cols.active.field]" class="text-danger">Inactive</span>
                     </td>
 
                     <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.created_at.show">

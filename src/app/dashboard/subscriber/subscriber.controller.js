@@ -45,8 +45,8 @@ class SubscriberController {
         })
     }
 
-    save(subscriber) {
-        subscriber.put({include: 'sequences,history'}).then(
+    save() {
+        this.subscriber.patch(this.subscriber, {include: 'sequences,history'}).then(
             subscriber => {
                 this.subscriber = subscriber;
                 this._toaster.pop("success", "Saved Successfully!")
@@ -73,7 +73,7 @@ class SubscriberController {
             var data         = this._lodash.clone($scope.actions);
             data.subscribers = $scope.subscribers;
 
-            this._Subscribers(this.bot.id).post(data).then(() => {
+            this._Subscribers(this.bot.id).patch(data).then(() => {
                 $element.modal('hide');
                 close(true, 500); // close, but give 500ms for bootstrap to animate
             });
@@ -115,10 +115,10 @@ class SubscriberController {
                 show: true
             },
             {
-                field: "is_active",
+                field: "active",
                 title: "Status",
-                sortable: "is_active",
-                filter: { is_active: "select" },
+                sortable: "active",
+                filter: { active: "select" },
                 filterData: [{ id: 1, title: 'Active' }, { id: 0, title: 'Inactive' }],
                 show: true
             },
