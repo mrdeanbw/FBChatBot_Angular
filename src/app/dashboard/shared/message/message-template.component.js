@@ -54,53 +54,10 @@ class TemplateController {
     }
 
     sendPreview() {
-        if (this._$rootScope.bot.subscriber_id) {
-            return this._MessagePreviews(this._$rootScope.bot.id).post({template: this.template}).then(
-                ()=> this._toaster.pop('success', "Sent Successfully!", "Preview message has been successfully sent. Check your messenger.")
-            );
-        }
-
-        this._openPreviewModal();
-    }
-
-    _openPreviewModal() {
-        this._Modals.openModal({
-            templateUrl: 'dashboard/shared/message/preview.modal.html',
-            controller: this._previewModal,
-            inputs: {template: this.template}
-        });
-    }
-
-    _previewModal($element, $scope, AppConstants, UserService, $window, $timeout, Pusher, $rootScope, template, MessagePreviews, toaster) {
-        'ngInject';
-
-        $scope.userId = UserService.current.id;
-        $scope.appId = AppConstants.facebook.appId;
-        $scope.pageId = $rootScope.bot.page.id;
-
-
-        var handledClickedEvent = false;
-
-        $timeout(() => {
-            $window.FB.XFBML.parse($element.find('.modal-body').get(0));
-            $window.FB.Event.subscribe('send_to_messenger', (e) => {
-                if (e.event == "clicked" && !handledClickedEvent) {
-                    toaster.pop('info', 'Hold on there!', "It will take us a few seconds to subscribe you and send the messages. Hold on there.");
-                    handledClickedEvent = true;
-                    let channel = `${$rootScope.bot.id}_${$scope.userId}_subscriptions`;
-                    Pusher.subscribe(channel, 'subscribed', (data) => {
-                        $rootScope.bot.subscriber_id = data.subscriber_id;
-                        Pusher.unsubscribe(channel);
-                        MessagePreviews($rootScope.bot.id).post({template}).then(
-                            ()=> toaster.pop('success', "Sent Successfully!", "Preview message has been successfully sent. Check your messenger.")
-                        );
-                        $element.modal('hide');
-                    });
-                }
-            });
-        });
+        this._MessagePreviews.sendPreview(this.template);    
     }
 }
+
 
 export default{
     templateUrl: 'dashboard/shared/message/message-template.html',

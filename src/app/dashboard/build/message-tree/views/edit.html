@@ -110,15 +110,12 @@
                     <input type="text" ng-model="$ctrl.tree.name" class="form-control">
                 </div>
             </div>
-            <div class="col-xs-6">
-                <button ng-click="$ctrl.save()" class="pull-right btn btn-sm btn-success">Save</button>
-                <button ng-click="$ctrl.collapseAll()" class="pull-right btn btn-sm btn-default m-r-5" pg-tooltip
-                        data-original-title="Collapse All"><i class="fa fa-minus"></i></button>
-                <button ng-click="$ctrl.expandAll()" class="pull-right btn btn-sm btn-default m-r-5" pg-tooltip
-                        data-original-title="Expand All"><i class="fa fa-plus"></i></button>
-                <button ng-click="$ctrl.edit($ctrl.tree)" class="pull-right btn btn-sm btn-primary m-r-5"
-                        ng-if="$ctrl.active != $ctrl.tree">Add Node
-                </button>
+            <div class="col-xs-6 text-right">
+                <button ng-click="$ctrl.expandAll()" class="btn btn-xs btn-default" pg-tooltip data-original-title="Expand All"><i class="fa fa-plus"></i></button>
+                <button ng-click="$ctrl.collapseAll()" class="btn btn-xs btn-default" pg-tooltip data-original-title="Collapse All"><i class="fa fa-minus"></i></button>
+                <button ng-click="$ctrl.edit($ctrl.tree)" class="btn btn-xs btn-primary" ng-if="$ctrl.active != $ctrl.tree">Add Node</button>
+                <button ng-if="$ctrl.tree.messages.length" class="btn btn-xs btn-complete" ng-click="$ctrl.sendPreview()"><i class="fa fa-comment"></i> Preview</button>
+                <button ng-click="$ctrl.save()" class="btn btn-xs btn-success">Save</button>
             </div>
         </div>
         <div class="row">

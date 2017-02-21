@@ -1,5 +1,5 @@
 class MessageTreeController {
-    constructor($state, Modals, MessageHelpers, $timeout, $filter, lodash, MessageTrees, FlashBag, toaster, $scope) {
+    constructor($state, Modals, MessageHelpers, $timeout, $filter, lodash, MessageTrees, FlashBag, toaster, $scope, MessagePreviews) {
         'ngInject';
 
         this._Modals = Modals;
@@ -12,6 +12,7 @@ class MessageTreeController {
         this._$timeout = $timeout;
         this._MessageTrees = MessageTrees;
         this._MessageHelpers = MessageHelpers;
+        this._MessagePreviews = MessagePreviews;
 
         if ($state.current.name === 'app.dashboard.build.message-tree.create') {
             this.tree = {name: 'New Message Tree', messages: [], explicit: true};
@@ -271,6 +272,10 @@ class MessageTreeController {
 
     paginate(page) {
         this._MessageTrees(this.bot.id).getList({name: this.filter, page}).then((trees)=> this.trees = trees);
+    }
+    
+    sendPreview(){
+        this._MessagePreviews.sendPreview(this.tree);
     }
 
 }
