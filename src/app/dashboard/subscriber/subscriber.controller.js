@@ -3,13 +3,13 @@ class SubscriberController {
     constructor(NgTableParams, Subscribers, Modals, toaster, AppHelpers, $state, lodash, Sequences) {
         'ngInject';
 
-        this._lodash        = lodash;
-        this._$state        = $state;
-        this._Modals        = Modals;
-        this._toaster       = toaster;
-        this._Sequences     = Sequences;
-        this._AppHelpers    = AppHelpers;
-        this._Subscribers   = Subscribers;
+        this._lodash = lodash;
+        this._$state = $state;
+        this._Modals = Modals;
+        this._toaster = toaster;
+        this._Sequences = Sequences;
+        this._AppHelpers = AppHelpers;
+        this._Subscribers = Subscribers;
         this._NgTableParams = NgTableParams;
 
         if (this._$state.current.name === 'app.dashboard.subscriber.index') {
@@ -30,17 +30,20 @@ class SubscriberController {
     }
 
     showSubscriber(subscriber) {
-        this._$state.go('app.dashboard.subscriber.show', { subscriberId: subscriber.id });
+        this._$state.go('app.dashboard.subscriber.show', {subscriberId: subscriber.id});
     };
 
     openBulkEditModal() {
         this._Modals.openModal({
-            tempalteUrl: 'dashboard/subscriber/views/bulk-edit.modal.html',
+            templateUrl: 'dashboard/subscriber/views/bulk-edit.modal.html',
             controller: this._bulkEdit,
+            inputs: {subscribers: this.selected},
             cb: success => {
-                self.selected = [];
-                this._toaster.pop("success", "Saved Successfully!");
-                this.tableParams.reload();
+                if (success){
+                    self.selected = [];
+                    this._toaster.pop("success", "Saved Successfully!");
+                    this.tableParams.reload();
+                }
             }
         })
     }
@@ -54,79 +57,80 @@ class SubscriberController {
         );
     }
 
-    _bulkEdit($scope, close, $element, $rootScope) {
+    _bulkEdit($scope, close, $element, $rootScope, subscribers) {
         'ngInject';
 
         $scope.tags = $rootScope.bot.tags;
-        this._Sequences(this.bot.id).getList().then(sequences => $scope.sequences = sequences);
 
-        $scope.subscribers = this.selected;
-
+        $scope.subscribers = subscribers;
+        
         $scope.actions = {
-            tag: [],
-            untag: [],
-            subscribe: [],
-            unsubscribe: []
+            add_tags: [],
+            remove_tags: [],
+            add_sequences: [],
+            remove_sequences: []
         };
 
         $scope.save = () => {
-            var data         = this._lodash.clone($scope.actions);
-            data.subscribers = $scope.subscribers;
+            let data = {
+                actions: $scope.actions,
+                subscribers: $scope.subscribers
+            };
 
-            this._Subscribers(this.bot.id).patch(data).then(() => {
+            $rootScope.bot.all('subscribers').customPATCH(data).then(() => {
                 $element.modal('hide');
-                close(true, 500); // close, but give 500ms for bootstrap to animate
+                close(true, 500);
             });
         };
 
         $scope.cancel = function () {
-            close(false, 500); // close, but give 500ms for bootstrap to animate
+            close(false, 500);
         };
     }
 
     _initSubscriberTable() {
 
         let dateFilter = [
-            { id: 'today', title: 'Today' },
-            { id: 'yesterday', title: 'Yesterday' },
-            { id: 'last_seven_days', title: 'Last 7 Days' },
-            { id: 'last_thirty_days', title: 'Last 30 Days' },
-            { id: 'this_month', title: 'This Month' },
-            { id: 'last_month', title: 'Last Month' }
+            {id: 'today', title: 'Today'},
+            {id: 'yesterday', title: 'Yesterday'},
+            {id: 'last_seven_days', title: 'Last 7 Days'},
+            {id: 'last_thirty_days', title: 'Last 30 Days'},
+            {id: 'this_month', title: 'This Month'},
+            {id: 'last_month', title: 'Last Month'}
         ];
 
         this.colList = [
-            { field: "batch_select", title: "", show: true, },
-            { field: "avatar_url", title: "Avatar", show: true },
+            {field: "batch_select", title: "", show: true,},
+            {field: "avatar_url", title: "Avatar", show: true},
             {
                 field: "first_name",
                 title: "First Name",
                 sortable: "first_name",
-                filter: { first_name: "text" },
+                filter: {first_name: "text"},
                 show: true
             },
-            { field: "last_name", title: "Last Name", sortable: "last_name", filter: { last_name: "text" }, show: true },
+            {field: "last_name", title: "Last Name", sortable: "last_name", filter: {last_name: "text"}, show: true},
             {
                 field: "gender",
                 title: "gender",
                 sortable: "gender",
-                filter: { gender: "select" },
-                filterData: [{ id: 'male', title: 'Male' }, { id: 'female', title: 'Female' }],
+                filter: {gender: "select"},
+                filterData: [{id: 'male', title: 'Male'}, {id: 'female', title: 'Female'}],
                 show: true
             },
             {
                 field: "active",
                 title: "Status",
                 sortable: "active",
-                filter: { active: "select" },
-                filterData: [{ id: 1, title: 'Active' }, { id: 0, title: 'Inactive' }],
+                filter: {active: "select"},
+                filterData: [{id: 1, title: 'Active'}, {id: 0, title: 'Inactive'}],
                 show: true
             },
             {
                 field: "created_at",
                 title: "Joined",
                 sortable: "created_at",
-                filter: { created_at: "select" },
+                filter: {created_at: "select"},
                 filterData: dateFilter,
                 show: true
             },
@@ -134,17 +138,17 @@ class SubscriberController {
                 field: "last_interaction_at",
                 title: "Latest Contact",
                 sortable: "last_interaction_at",
-                filter: { last_interaction_at: "select" },
+                filter: {last_interaction_at: "select"},
                 filterData: dateFilter,
                 show: true
             },
-            { field: "tags", title: "Tags", show: true }
+            {field: "tags", title: "Tags", show: true}
         ];
 
         this.cols = this._lodash.keyBy(this.colList, "field");
 
         this.tableParams = new this._NgTableParams(
-            { sorting: { created_at: "desc" } },
+            {sorting: {created_at: "desc"}},
             {
                 getData: params => {
                     return this._Subscribers(this.bot.id).getList(params.url()).then(

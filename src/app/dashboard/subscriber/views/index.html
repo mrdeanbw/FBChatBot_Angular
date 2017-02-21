@@ -7,7 +7,9 @@
             <div class="col-xs-6">
                 <div class="pull-right text-right">
                     <p> ({{ $ctrl.selected.length | number }} Selected)</p>
-                    <button class="btn btn-primary" ng-class="{'disabled' : !$ctrl.selected.length}" ng-click="$ctrl.openBulkEditModal()">Bulk Edit</button>
+                    <button class="btn btn-primary" ng-disabled="!$ctrl.selected.length" ng-click="$ctrl.openBulkEditModal()">
+                        Bulk Edit
+                    </button>
                 </div>
             </div>
         </div>
@@ -21,12 +23,12 @@
 
                     <td ng-if="true">
                         <a ui-sref="app.dashboard.subscriber.show({subscriberId:subscriber.id})"><span class="fa fa-info fa-fw" pg-tooltip data-original-title="View"></span></a>&nbsp;
-                        <input type="checkbox" ng-checked="$ctrl.isSelected(subscriber)" ng-click="$ctrl.toggleSelection(subscriber)" />
+                        <input type="checkbox" ng-checked="$ctrl.isSelected(subscriber)" ng-click="$ctrl.toggleSelection(subscriber)"/>
                     </td>
 
                     <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.avatar_url.show">
                         <a ng-href="{{ subscriber[$ctrl.cols.avatar_url.field] }}" target="_blank">
-                            <img ng-src="{{ subscriber[$ctrl.cols.avatar_url.field] }}" style="width: 32px" />
+                            <img ng-src="{{ subscriber[$ctrl.cols.avatar_url.field] }}" style="width: 32px"/>
                         </a>
                     </td>
 
@@ -63,9 +65,7 @@
                     </td>
 
                     <td ng-click="$ctrl.showSubscriber(subscriber)" ng-if="$ctrl.cols.tags.show">
-                        <span ng-repeat="tag in subscriber[$ctrl.cols.tags.field]">
-                            <span class="label label-info">{{ tag }}</span>
-                        </span>
+                        <span ng-repeat="tag in subscriber[$ctrl.cols.tags.field]" class="label label-info">{{ tag }}&nbsp;</span>
                     </td>
                 </tr>
             </table>
