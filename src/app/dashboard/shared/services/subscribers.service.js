@@ -1,9 +1,8 @@
 class Subscribers {
     constructor(Restangular, Bots) {
         'ngInject';
-        return function (botId) {
-            return Restangular.service('subscribers', Bots.one(botId));
-        }
+        
+        return botId => Restangular.service('subscribers', Bots.one(botId));
     }
 }
 

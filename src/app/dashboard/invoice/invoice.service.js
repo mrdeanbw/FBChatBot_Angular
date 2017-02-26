@@ -1,9 +1,8 @@
 class Invoices {
     constructor(Restangular, Bots) {
         'ngInject';
-        return function (botId) {
-            return Restangular.service('invoices', Bots.one(botId));
-        }
+
+        return botId => Restangular.service('invoices', Bots.one(botId));
     }
 }
 
