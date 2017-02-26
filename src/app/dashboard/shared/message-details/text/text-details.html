@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-xs-3">
+        <div ng-if="$ctrl.message.text" style="margin: 5px 0 5px;padding: 5px 10px;" class="chat-bubble from-them">
+            <p>{{ $ctrl.message.text }}</p>
+        </div>
+        <br />
+        <div class="m-t-5" ng-repeat="button in $ctrl.message.buttons">
+            <button style="width: 80%" class="btn btn-sm text-primary semi-bold btn-rounded btn-block" data-html="true" data-title="Details" data-container="body" data-content="<p>Total Clicks: <strong>{{ button.stats.clicked.total }}</strong></p><p>(Unique) User Clicks: <strong>{{ button.stats.clicked.per_subscriber }}</strong></p>" pg-popover>
+                {{ button.title }} <span class="pull-right">CTR: {{ (button.stats.clicked.per_subscriber / $ctrl.message.stats.read.per_subscriber) | percentage}}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-sm-12">
+                <span class="font-montserrat fs-11 all-caps">Date</span>
+                <span class="text-primary fs-16">
+                    {{ $ctrl.message.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}
+                </span>
+            </div>
+        </div>
+        <message-stats stats="$ctrl.message.stats"></message-stats>
+    </div>
+
+</div>
+

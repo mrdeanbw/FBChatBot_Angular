@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-sm-12">
+        <span class="font-montserrat fs-11 all-caps">Sent</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.sent.total | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Times, To</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.sent.per_subscriber | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Different People</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <span class="font-montserrat fs-11 all-caps">Delivered</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.delivered.total | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Times, To</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.delivered.per_subscriber | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Different People</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <span class="font-montserrat fs-11 all-caps">Seen</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.read.total | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Times, By</span>
+        <strong class="text-primary fs-16 all-caps">{{ $ctrl.stats.read.per_subscriber | number }}</strong>
+        <span class="font-montserrat fs-11 all-caps">Different People</span>
+    </div>
+</div>
