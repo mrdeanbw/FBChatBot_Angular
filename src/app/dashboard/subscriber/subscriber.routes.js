@@ -8,7 +8,6 @@ function BotRoutes($stateProvider) {
             url: '/audience',
             abstract: true,
             title: 'Audience',
-            breadcrumbState: 'app.dashboard.subscriber.index',
             templateUrl: 'dashboard/subscriber/views/layout.html'
         })
 

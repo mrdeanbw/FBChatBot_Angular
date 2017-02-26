@@ -8,7 +8,6 @@ function BroadcastRoutes($stateProvider) {
             url: '/broadcasts',
             abstract: true,
             title: 'Broadcasts',
-            breadcrumbState: 'app.dashboard.broadcast.index',
             templateUrl: 'dashboard/broadcast/views/layout.html'
         })
 

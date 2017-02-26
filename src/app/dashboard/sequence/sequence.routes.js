@@ -8,7 +8,6 @@ function SequenceRoutes($stateProvider) {
             url: '/sequences',
             abstract: true,
             title: 'Sequences',
-            breadcrumbState: 'app.dashboard.sequence.index',
             templateUrl: 'dashboard/sequence/views/layout.html'
         })
 

@@ -5,7 +5,6 @@ function OverviewRoutes($stateProvider) {
         url: '/overview',
         title: 'Overview',
         component: 'overview',
-        breadcrumbState: 'app.dashboard.overview'
     });
 }
 
