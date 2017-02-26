@@ -8,7 +8,6 @@ import './dashboard/dashboard.module';
 
 let appModule = angular.module('app', [
     'templates',
-
     'app.bot',
     'app.auth',
     'app.shared',

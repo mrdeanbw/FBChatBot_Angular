@@ -7,7 +7,6 @@
     "angular": "^1.6.1",
     "angular-jwt": "^0.1.9",
     "angular-modal-service": "^0.10.1",
-    "angular-nvd3": "^1.0.9",
     "angular-relative-date": "^2.1.0",
     "angular-sanitize": "^1.6.1",
     "angular-ui-bootstrap": "^2.5.0",

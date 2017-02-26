@@ -41,17 +41,32 @@ class OverviewController {
                 },
                 xAxis: {
                     tickFormat: d => {
-                        var dx = this.graphData[0].values[d] && this.graphData[0].values[d][0] || 0;
+                        let dx = this.graphData[0].values[d] && this.graphData[0].values[d][0] || 0;
                         return d3.time.format('%b %d')(new Date(dx));
-                    }
+                    },
+                    tickValues: d3.range(0, this.graphData[0].values.length, 1)
                 },
-                y1Axis: {tickFormat: d3.format('d')},
-                y2Axis: {tickFormat: d3.format('d')},
+                y1Axis: {
+                    tickFormat: d3.format('d')
+                },
+                y2Axis: {
+                    tickFormat: d3.format('d')
+                },
                 xScale: d3.time.scale(),
                 showLegend: true,
-                useInteractiveGuideline: false,
-                bars: {forceY: [0, maxPlus]},
-                lines: {forceY: [0, maxTotal]}
+                showXAxis: true,
+                showYAxis: true,
+                useInteractiveGuideline: true,
+                bars: { // for bar chart
+                    forceY: [0, maxPlus],
+                    // yDomain: [0,1],
+                    // yRange: [0,10]
+                },
+                lines: { // for line chart
+                    forceY: [0, maxTotal],
+                    // yDomain: [0,1],
+                    // yRange: [0,10]
+                }
             }
         };
     }

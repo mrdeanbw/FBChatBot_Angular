@@ -1,5 +1,5 @@
 import angular from 'angular';
-import 'angular-nvd3';
+import '../../../../third-party/nvd3/angular-nvd3';
 
 let overviewModule = angular.module('app.dashboard.overview', ['nvd3']);
 
