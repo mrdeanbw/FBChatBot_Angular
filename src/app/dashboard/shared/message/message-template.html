@@ -35,22 +35,23 @@
                             </div>
                             <div class="panel-controls">
                                 <ul>
+                                    <li>
+                                        <a target="_blank" ng-if="message.id" ui-sref="app.dashboard.message.history({messageId: message.id})" class="text-success" pg-tooltip data-trigger="hover" data-original-title="Message History & Stats">
+                                            <i class="fa fa-history"></i>
+                                        </a>
+                                    </li>
                                     <li ng-if="$ctrl.canMoveNext(message)">
-                                        <a href="" ng-click="$ctrl.moveNext(message)" pg-tooltip data-trigger="hover"
-                                           data-original-title="Move Down">
+                                        <a href="" ng-click="$ctrl.moveNext(message)" pg-tooltip data-trigger="hover" data-original-title="Move Down">
                                             <i class="fa fa-arrow-down"></i>
                                         </a>
                                     </li>
                                     <li ng-if="$ctrl.canMovePrevious(message)">
-                                        <a href="" ng-click="$ctrl.movePrevious(message)" pg-tooltip
-                                           data-trigger="hover" data-original-title="Move Up">
+                                        <a href="" ng-click="$ctrl.movePrevious(message)" pg-tooltip data-trigger="hover" data-original-title="Move Up">
                                             <i class="fa fa-arrow-up"></i>
                                         </a>
                                     </li>
                                     <li ng-if="$ctrl.removable(message)">
-                                        <a href="" class="portlet-close"
-                                           ng-click="$ctrl.openDeleteModal(message)" pg-tooltip data-trigger="hover"
-                                           data-original-title="Remove">
+                                        <a href="" class="portlet-close" ng-click="$ctrl.openDeleteModal(message)" pg-tooltip data-trigger="hover" data-original-title="Remove">
                                             <i class="fa fa-times"></i>
                                         </a>
                                     </li>
@@ -72,14 +73,12 @@
                                     <div ng-switch on="message.type">
                                         <text-message ng-switch-when="text" message="message"></text-message>
                                         <image-message ng-switch-when="image" message="message"></image-message>
-                                        <card-container-message ng-switch-when="card_container"
-                                                                message="message"></card-container-message>
+                                        <card-container-message ng-switch-when="card_container" message="message"></card-container-message>
                                     </div>
                                 </div>
 
-
                                 <div ng-if="$ctrl.preview" class="col-xs-5">
-                                    <message-preview message="message" page="$ctrl.page"></message-preview>
+                                    <message-preview message="message"></message-preview>
                                 </div>
                             </div>
 

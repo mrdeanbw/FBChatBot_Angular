@@ -6,6 +6,7 @@ import './overview/overview.module';
 import './sequence/sequence.module';
 import './broadcast/broadcast.module';
 import './subscriber/subscriber.module';
+import './message-history/message-history.module';
 
 let dashboardModule = angular.module('app.dashboard', [
     'app.dashboard.build',
@@ -13,7 +14,8 @@ let dashboardModule = angular.module('app.dashboard', [
     'app.dashboard.overview',
     'app.dashboard.sequence',
     'app.dashboard.broadcast',
-    'app.dashboard.subscriber'
+    'app.dashboard.subscriber',
+    'app.dashboard.message.history'
 ]);
 
 import DashboardRoutes from './dashboard.routes';

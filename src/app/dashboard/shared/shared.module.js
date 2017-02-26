@@ -10,6 +10,7 @@ import './services/services.module';
 import './pagination/pagination.module';
 import './directives/directives.module';
 import './message-preview/message-preview.module';
+import './message-details/message-details.module';
 
 let sharedModule = angular.module('app.dashboard.shared', [
     'ui.select', 
@@ -21,7 +22,8 @@ let sharedModule = angular.module('app.dashboard.shared', [
     'app.dashboard.shared.services',
     'app.dashboard.shared.directives',
     'app.dashboard.shared.pagination',
-    'app.dashboard.shared.message-preview'
+    'app.dashboard.shared.message-preview',
+    'app.dashboard.shared.message-details'
 ]);
 
 import pageHeaderComponent from './page-header/page-header.component';

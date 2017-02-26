@@ -1,4 +1,4 @@
 export default{
-    templateUrl: 'dashboard/shared/message/message-preview.html',
-    bindings: {message: '<', page: '<'}
+    templateUrl: 'dashboard/shared/message-preview/message-preview.html',
+    bindings: {message: '<'}
 }
