@@ -5,6 +5,9 @@ function OverviewRoutes($stateProvider) {
         url: '/overview',
         title: 'Overview',
         component: 'overview',
+        resolve: {
+            data: (bot) => bot.customGET('stats', {graph_date: 'last_seven_days'})
+        }
     });
 }
 

@@ -1,1 +1,32 @@
-<h1>Hello world!!</h1>
+<div class="container-fluid container-fixed-lg padding-25 sm-padding-10 sm-gutter">
+    <div class="row m-b-20">
+        <div class="col-xs-12 text-right">
+            <select class="cs-select cs-skin-slide" ng-model="$ctrl.graphDate" ng-change="$ctrl.refreshAll()" cs-select>
+                <option value="last_seven_days">Last Seven Days</option>
+                <option value="last_thirty_days">Last 30 Days</option>
+                <option value="this_month">This Month</option>
+                <option value="last_month">Last Month</option>
+            </select>
+            <button class="btn btn-info m-l-5" ng-click="$ctrl.refreshAll()">
+                <i class="fa fa-refresh fa-fw"></i> Refresh All
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9 m-b-10">
+            <div ng-include="'dashboard/overview/views/subscriptions.html'"></div>
+        </div>
+
+        <div class="col-md-3 m-b-10">
+            <div ng-include="'dashboard/overview/views/referral.html'"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xlg-12 m-b-10">
+            <div ng-include="'dashboard/overview/views/metrics.html'"></div>
+        </div>
+    </div>
+
+</div>

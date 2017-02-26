@@ -1,0 +1,51 @@
+<div id="subscriptions" class="widget-12 panel no-border widget-loader-circle no-margin" pg-portlet progress="circle" on-refresh="$ctrl.refreshSection('#subscriptions')">
+    <div class="row">
+        <div class="col-xlg-8 ">
+            <div class="panel-heading pull-up top-right ">
+                <div class="panel-controls">
+                    <ul>
+                        <li>
+                            <a ng-click="$ctrl.refreshAllSectionsExceptForOne('#subscriptions')" data-toggle="refresh" class="portlet-refresh text-black">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="p-l-10">
+                    <h2 class="pull-left">Subscription Metrics</h2>
+                    <h2 class="pull-right m-l-50">
+                        <span class="bold">
+                            <span ng-if="$ctrl.data.subscription_timeline.total > 0" class="text-success">+{{ $ctrl.data.subscription_timeline.total | number }}</span>
+                            <span ng-if="$ctrl.data.subscription_timeline.total < 0" class="text-danger">{{ $ctrl.data.subscription_timeline.total | number }}</span>
+                            <span ng-if="$ctrl.data.subscription_timeline.total == 0" class="text-info">0</span>
+                        </span>
+                        <span class="fs-16">
+                            subscription in {{ $ctrl.readableDate() }}
+                        </span>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <nvd3 options="$ctrl.graphOptions" data="$ctrl.graphData" class="nvd3-line line-chart text-center"></nvd3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .nvd3 g.nv-groups path.nv-line {
+        stroke-width: 2px;
+    }
+</style>

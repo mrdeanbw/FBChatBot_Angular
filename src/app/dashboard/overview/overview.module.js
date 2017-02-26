@@ -1,6 +1,7 @@
 import angular from 'angular';
+import 'angular-nvd3';
 
-let overviewModule = angular.module('app.dashboard.overview', []);
+let overviewModule = angular.module('app.dashboard.overview', ['nvd3']);
 
 import OverviewComponent from './overview.component';
 overviewModule.component('overview', OverviewComponent);
