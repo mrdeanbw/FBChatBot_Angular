@@ -7,7 +7,6 @@
         </div>
     </div>
 
-
     <div class="pull-left sm-table">
         <div class="header-inner">
             <div class="brand inline">
@@ -38,15 +37,19 @@
                     </span>
                 </button>
                 <ul class="dropdown-menu profile-dropdown" role="menu" style="position: absolute;">
-                    <li ng-if="::(!$ctrl.bot.page.payment_plan)"><a><i class="fa fa-star-o fa-fw"></i> Upgrade</a></li>
-                    <li><a ng-href="{{ ::$ctrl.bot.page.url }}" target="_blank"><i
-                            class="fa fa-facebook-square fa-fw"></i>
-                        Visit</a></li>
-                    <li><a ui-sref="dashboard.settings"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
+                    <li ng-if="::(!$ctrl.bot.page.payment_plan)">
+                        <a ui-sref="app.dashboard.setting"><i class="fa fa-star-o fa-fw"></i> Upgrade</a>
+                    </li>
+                    <li>
+                        <a ng-href="{{ ::$ctrl.bot.page.url }}" target="_blank">
+                            <i class="fa fa-facebook-square fa-fw"></i> Visit
+                        </a>
+                    </li>
+                    <li><a ui-sref="app.dashboard.setting"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
                     <li class="separator"></li>
-                    <li><a ui-sref="choose-bot"><i class="fa fa-refresh fa-fw"></i> Switch</a></li>
+                    <li><a ui-sref="app.bot.index"><i class="fa fa-refresh fa-fw"></i> Switch Bot</a></li>
                     <li class="bg-master-lighter">
-                        <a ui-sref="logout" class="clearfix">
+                        <a ui-sref="app.logout" class="clearfix">
                             <span class="pull-left">Logout</span>
                             <span class="pull-right"><i class="fa fa-power-off"></i></span>
                         </a>
@@ -58,8 +61,7 @@
 
     <div class="pull-right">
         <div class="header-inner">
-            <a ui-sref="dashboard.settings({upgrade: true})" class="btn btn-primary text-white"
-               ng-if="::(!$ctrl.bot.page.payment_plan)">
+            <a ui-sref="app.dashboard.setting" class="btn btn-primary text-white" ng-if="!$ctrl.bot.page.payment_plan">
                 Upgrade To Pro
             </a>
         </div>
