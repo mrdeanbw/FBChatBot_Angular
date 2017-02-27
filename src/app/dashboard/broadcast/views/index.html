@@ -53,10 +53,10 @@
             <tr ng-repeat="broadcast in $ctrl.processed">
                 <td class="v-align-middle">{{ broadcast.name }}</td>
                 <td class="v-align-middle p-l-10">{{ broadcast.completed_at | date:'EEE, MMM d, y — h:mm a (UTCZ)'}}
-                    <span ng-if="broadcast.status == 'running'">
+                    <strong ng-if="broadcast.status == 'running'">
                         <i class="fa fa-spin fa-spinner text-success"></i>
-                        Sending...
-                    </span>
+                        Still Sending...
+                    </strong>
                 </td>
                 <td class="v-align-middle text-center">{{ broadcast.stats.sent }}</td>
                 <td class="v-align-middle text-center">{{ broadcast.stats.read }}</td>
