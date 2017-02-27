@@ -14,6 +14,9 @@ broadcastModule.component('createBroadcast', CreateBroadcastComponent);
 import EditBroadcastComponent from './edit-broadcast.component';
 broadcastModule.component('editBroadcast', EditBroadcastComponent);
 
+import ShowBroadcastComponent from './show-broadcast.component';
+broadcastModule.component('showBroadcast', ShowBroadcastComponent);
+
 import BroadcastService from './broadcast.service';
 broadcastModule.service('Broadcasts', BroadcastService);
 

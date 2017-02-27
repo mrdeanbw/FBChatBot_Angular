@@ -1,0 +1,160 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-transparent">
+
+            <div class="panel-heading">
+                <div class="panel-title">Sent broadcast Metrics</div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row m-b-20">
+
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Sent</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h3 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.sent | number }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Messages Delivered Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Delivered</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">
+                                            {{ $ctrl.broadcast.stats.delivered | number }}
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Read Rate Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Read</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ ($ctrl.broadcast.stats.read / $ctrl.broadcast.stats.delivered) | percentage }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Unique Clicks Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Clicks</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.clicked.per_subscriber | number }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- CTR Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">
+                                        CTR
+                                        <a href="" pg-tooltip data-original-title="Click-through rate"><i class="fa fa-question-circle fa-lg text-primary"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">
+                                            {{ ($ctrl.broadcast.stats.clicked.per_subscriber / $ctrl.broadcast.stats.read) | percentage }}
+                                        </h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Total Clicks Block -->
+                    <div class="col-md-2 sm-m-b-15 text-center">
+                        <div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">
+
+                            <div class="panel-heading top-left top-right ">
+                                <div class="panel-title text-black hint-text">
+                                    <span class="font-montserrat fs-11 all-caps">Total Clicks</span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body p-t-40">
+                                <div class="row">
+                                    <div class="col-sm-12 m-t-20">
+                                        <h4 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.clicked.total | number }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <message-details message="message" ng-repeat="message in $ctrl.broadcast.template.messages"></message-details>
+    </div>
+</div>

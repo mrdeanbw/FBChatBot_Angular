@@ -60,13 +60,11 @@
                 </td>
                 <td class="v-align-middle text-center">{{ broadcast.stats.sent }}</td>
                 <td class="v-align-middle text-center">{{ broadcast.stats.read }}</td>
-                <td class="v-align-middle text-center">{{ broadcast.stats.clicks.unique }}
-                    <span ng-if="broadcast.stats.clicks.unique">({{(broadcast.stats.clicks.unique / broadcast.stats.read) | percentage}})</span>
+                <td class="v-align-middle text-center">{{ broadcast.stats.clicked.per_subscriber }}
+                    <span ng-if="broadcast.stats.clicks.unique">({{(broadcast.stats.clicked.per_subscriber / broadcast.stats.read) | percentage}})</span>
                 </td>
                 <td class="v-align-middle text-right">
-                    <button ui-sref="app.dashboard.broadcast.show({broadcastId: broadcast.id})"
-                            class="btn sm-m-b-5 btn-sm btn-info btn-rounded">Details
-                    </button>
+                    <a ui-sref="app.dashboard.broadcast.show({broadcastId: broadcast.id})" class="btn sm-m-b-5 btn-sm btn-info btn-rounded">Details</a>
                 </td>
             </tr>
 
