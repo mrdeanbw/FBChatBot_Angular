@@ -2,8 +2,9 @@ import angular from 'angular';
 
 import './build/build.module';
 import './shared/shared.module';
-import './overview/overview.module';
+import './setting/setting.module';
 import './sequence/sequence.module';
+import './overview/overview.module';
 import './broadcast/broadcast.module';
 import './subscriber/subscriber.module';
 import './message-history/message-history.module';
@@ -11,6 +12,7 @@ import './message-history/message-history.module';
 let dashboardModule = angular.module('app.dashboard', [
     'app.dashboard.build',
     'app.dashboard.shared',
+    'app.dashboard.setting',
     'app.dashboard.overview',
     'app.dashboard.sequence',
     'app.dashboard.broadcast',
