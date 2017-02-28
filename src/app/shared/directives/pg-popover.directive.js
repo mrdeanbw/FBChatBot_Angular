@@ -7,6 +7,9 @@ function pgPopover() {
     return {
         link: function (scope, element, attrs) {
             $(element).popover();
+            $(element).on('click', function (e) {
+                $('[pg-popover]').not(this).popover('hide');
+            });
         }
     };
 }

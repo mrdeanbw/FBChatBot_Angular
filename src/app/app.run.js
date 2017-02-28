@@ -5,6 +5,9 @@ function AppRun(AppConstants, $rootScope, $transitions) {
         if (!state.abstract) {
             setPageTitle(state.title)
         }
+
+        //TODO: is this the right place for this?
+        $('[pg-popover]').popover('destroy')
     });
 
     // Helper method for setting the page's title
