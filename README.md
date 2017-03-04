@@ -22,3 +22,10 @@
 5. `gulp assets`
 6. `gulp html`
 7. `gulp build`
+
+----------
+
+##### Cleaning up
+- `gulp clean:assets` cleans the static assets directories `(build/css)`, `(build/js)` ... etc
+- `gulp clean:build` cleans the build directory
+- `gulp clean:dist` cleans the dist directory
