@@ -14,6 +14,7 @@ var modRewrite = require('connect-modrewrite');
 var concat = require('gulp-concat');
 var del = require('del');
 var expect = require('gulp-expect-file');
+var cachebust = require('gulp-cache-bust');
 
 // Angular files
 var viewFiles = "src/app/**/*.html";
@@ -49,6 +50,7 @@ gulp.task('html', function () {
     var htmlFile = "src/index.html";
     return gulp.src(htmlFile)
         .on('error', interceptErrors)
+        .pipe(cachebust({type: 'timestamp'}))
         .pipe(expect(htmlFile))
         .pipe(gulp.dest('./build/'));
 });
@@ -165,6 +167,16 @@ gulp.task('assets', ['clean:assets'], function () {
     gulp.start('css', 'js', 'fonts', 'img');
 });
 
+gulp.task('views', function () {
+    return gulp.src(viewFiles)
+        .pipe(templateCache({
+            standalone: true
+        }))
+        .on('error', interceptErrors)
+        .pipe(rename("app.templates.js"))
+        .pipe(gulp.dest('./src/app/'));
+});
+
 gulp.task('clean:assets', function () {
     return del([
         './build/js',
@@ -174,14 +186,8 @@ gulp.task('clean:assets', function () {
     ]);
 });
 
-gulp.task('views', function () {
-    return gulp.src(viewFiles)
-        .pipe(templateCache({
-            standalone: true
-        }))
-        .on('error', interceptErrors)
-        .pipe(rename("app.templates.js"))
-        .pipe(gulp.dest('./src/app/'));
+gulp.task('clean:build', function () {
+    return del('./build');
 });
 
 gulp.task('clean:dist', function () {
