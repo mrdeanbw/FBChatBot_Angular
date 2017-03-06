@@ -28,7 +28,7 @@ class MainMenuController {
         };
 
         this._MessageHelpers.addMessage(this.bot.main_menu.buttons, button);
-        this._MessageHelpers.openButtonModal(this.bot.main_menu.buttons, button);
+        this._MessageHelpers.openButtonModal(this.bot.main_menu.buttons, button, true);
     }
 
 }

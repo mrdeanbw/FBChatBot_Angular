@@ -23,31 +23,44 @@
                             </div>
                             <div class="alert alert-info">You can specify <span class="text-danger">more than one</span> action.</div>
                             <div class="alert alert-warning">
-                                In order to provide a feedback to your customers, youhave to specify either a
-                                <span class="bold">Go To Url</span> or <span class="bold">Send Other Messages</span>action.
+                                In order to provide a feedback to your customers, you have to specify either a
+                                <span class="bold">Go To Url</span> or <span class="bold">Send Other Messages</span> action.
+                            </div>
+                            <div class="alert alert-danger" ng-show="isMainMenuButton && button.main_action == 'url'">
+                                In Main Menu Buttons <strong>only</strong>, if your main action is "redirect to another website", you cannot chain any other actions.
                             </div>
                             <div class="row column-seperation">
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" ng-if="isMainMenuButton">
+                                    <div pg-form-group="" class="form-group form-group-default">
+                                        <label>Main Action</label>
+                                        <select ng-model="button.main_action">
+                                            <option value="url">Redirect to another website</option>
+                                            <option value="template">Send message tree</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6" ng-if="!isMainMenuButton || button.main_action == 'url'">
                                     <div pg-form-group="" class="form-group form-group-default">
                                         <label>Go To URL</label>
                                         <input type="text" placeholder="Enter URL" ng-model="button.url" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" ng-if="!isMainMenuButton || button.main_action == 'template'">
                                     <select-tree model="button.template" label="'Send message tree'"></select-tree>
                                 </div>
                             </div>
-                            <hr/>
-                            <div class="row column-seperation">
+                            <hr ng-if="!isMainMenuButton || button.main_action == 'template'"/>
+                            <div class="row column-seperation" ng-if="!isMainMenuButton || button.main_action == 'template'">
                                 <div class="col-sm-6">
                                     <select-sequences model="button.actions.add_sequences" label="'When button clicked, Subscribe user to sequence(s)'"></select-sequences>
                                 </div>
                                 <div class="col-sm-6">
                                     <select-sequences model="button.actions.remove_sequences" label="'When button clicked, Unsubscribe user from sequence'"></select-sequences>
                                 </div>
+                                <hr/>
                             </div>
-                            <hr/>
-                            <div class="row column-seperation">
+                            <hr ng-if="!isMainMenuButton || button.main_action == 'template'"/>
+                            <div class="row column-seperation" ng-if="!isMainMenuButton || button.main_action == 'template'">
                                 <div class="col-sm-6">
                                     <select-tags model="button.actions.add_tags" label="'Add tag to user when this button is clicked'"></select-tags>
                                 </div>

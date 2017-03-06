@@ -32,7 +32,7 @@ class MessageHelpers {
     movePrevious(container, message) {
         if (this.canMovePrevious(container, message)) {
             let index = container.indexOf(message);
-            this._AppHelpers.swapArrayElements(container, index-1, index );
+            this._AppHelpers.swapArrayElements(container, index - 1, index);
         }
     }
 
@@ -68,10 +68,10 @@ class MessageHelpers {
     }
 
 
-    openButtonModal(container, button) {
+    openButtonModal(container, button, isMainMenuButton = false) {
         this._Modals.openModal({
             templateUrl: 'dashboard/shared/message/button/button.modal.html',
-            inputs: {button: button},
+            inputs: {button, isMainMenuButton},
             controller: this._buttonModal,
             cb: (keep) => {
                 if (!keep) {
@@ -81,8 +81,12 @@ class MessageHelpers {
         });
     }
 
-    _buttonModal($scope, close, button) {
+    _buttonModal($scope, close, button, isMainMenuButton) {
         'ngInject';
+        $scope.isMainMenuButton = isMainMenuButton;
+        if (isMainMenuButton) {
+            button.main_action = button.url ? 'url' : 'template';
+        }
         $scope.button = button;
         $scope.save = () => close(true, 500);
         $scope.delete = () => close(false, 500);
