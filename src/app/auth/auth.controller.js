@@ -14,22 +14,31 @@ class AuthController {
     }
 
     login() {
-        this._$facebook.login().then(
-            (res) => this._handleFacebookResponse(res)
+        this._$facebook.getLoginStatus().then(
+            res => {
+                console.log(res);
+                // already logged in using Facebook.
+                if (res.status === 'connected') {
+                    return this._handleFacebookResponse(res);
+                }
+                // Not logged in, or not authorize, prompt logging in.
+                this._$facebook.login().then(res => this._handleFacebookResponse(res));
+            }
         );
     }
 
     _logout() {
-        this._$facebook.getLoginStatus().then((response) => {
-            // If the user is logged in using Facebook, log him out.
-            // Then log him out of our app.
-            if (response.status === 'connected') {
-                this._$facebook.logout().then(() => this._appLogout());
-                return;
+        this._$facebook.getLoginStatus().then(
+            response => {
+                // If the user is logged in using Facebook, log him out.
+                // Then log him out of our app.
+                if (response.status === 'connected') {
+                    return this._$facebook.logout().then(() => this._appLogout());
+                }
+                // Otherwise, just log him out of our app.
+                this._appLogout();
             }
-            // Otherwise, just log him out of our app.
-            this._appLogout();
-        });
+        );
     }
 
     _appLogout() {
@@ -54,7 +63,7 @@ class AuthController {
             return;
         }
 
-        this._toaster.pop('warning', "Login Required!", "Please login into Facebook to continue!");
+        this._toaster.pop('warning', "Login Required!", "Please login into Facebook, and grant us the necessary permissions.");
     }
 }
 
