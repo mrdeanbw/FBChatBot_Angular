@@ -188,9 +188,7 @@ class MessageTreeController {
             beforeDrop: (e) => {
                 let source = e.source.nodeScope.node;
                 let destination = e.dest.nodesScope.node ? e.dest.nodesScope.node : undefined;
-
-                console.log(source, destination);
-
+                
                 if (source.type == 'button') {
                     if (destination && (destination.type == 'text' || destination.type == 'card')) {
                         return true;
