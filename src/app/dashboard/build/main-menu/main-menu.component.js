@@ -24,7 +24,9 @@ class MainMenuController {
                 remove_tags: [],
                 subscribe_sequences: [],
                 unsubscribe_sequences: []
-            }
+            },
+            template: {},
+            main_action: 'template'
         };
 
         this._MessageHelpers.addMessage(this.bot.main_menu.buttons, button);

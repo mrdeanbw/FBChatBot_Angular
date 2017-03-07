@@ -73,8 +73,8 @@ class MessageHelpers {
             templateUrl: 'dashboard/shared/message/button/button.modal.html',
             inputs: {button, isMainMenuButton},
             controller: this._buttonModal,
-            cb: (keep) => {
-                if (!keep) {
+            cb: remove => {
+                if (remove) {
                     this._remove(container, button);
                 }
             }
@@ -83,13 +83,9 @@ class MessageHelpers {
 
     _buttonModal($scope, close, button, isMainMenuButton) {
         'ngInject';
-        $scope.isMainMenuButton = isMainMenuButton;
-        if (isMainMenuButton) {
-            button.main_action = button.url ? 'url' : 'template';
-        }
         $scope.button = button;
-        $scope.save = () => close(true, 500);
-        $scope.delete = () => close(false, 500);
+        $scope.isMainMenuButton = isMainMenuButton;
+        $scope.delete = () => close(true, 500);
     }
 
 }
