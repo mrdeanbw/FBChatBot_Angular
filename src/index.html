@@ -45,8 +45,9 @@
         restartOnPushState: true,
         restartOnRequestAfter: true,
         ajax: {
+            trackWebSockets: false,
             trackMethods: ['POST', 'GET', 'PATCH'],
-            ignoreURLs: ['hotjar.com']
+            ignoreURLs: ['hotjar.com', 'pusher.com']
         }
     };
 </script>

@@ -196,7 +196,7 @@ gulp.task('clean:dist', function () {
 
 // This task is used for building production ready
 // minified JS/CSS files into the dist/ folder
-gulp.task('build', ['clean:dist', 'html', 'browserify'], function () {
+gulp.task('build', ['html', 'browserify'], function () {
     var html = gulp.src("build/index.html")
         .pipe(gulp.dest('./dist/'));
 

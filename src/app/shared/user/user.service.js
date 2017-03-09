@@ -101,15 +101,7 @@ class UserService {
 
     ensureAuthIs(bool) {
         let deferred = this._$q.defer();
-
-        this.loginStatus().then((authValid) => {
-            if (authValid !== bool) {
-                deferred.resolve(false);
-            } else {
-                deferred.resolve(true);
-            }
-        });
-
+        this.loginStatus().then(authValid => deferred.resolve(authValid === bool));
         return deferred.promise;
     }
 
