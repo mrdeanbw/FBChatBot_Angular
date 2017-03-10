@@ -44,7 +44,7 @@
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-edit fa-fw"></i></span>
                 <ul class="sub-menu">
-                    <li ng-class="{'active open': $ctrl._$state.includes('app.dashboard.build.message-tree') } ">
+                    <li ng-class="{'active': $ctrl._$state.includes('app.dashboard.build.message-tree') } ">
                         <a ui-sref="app.dashboard.build.message-tree.index">Message Trees</a>
                         <span class="icon-thumbnail"><i class="fa fa-sitemap fa-fw"></i></span>
                     </li>
@@ -70,20 +70,20 @@
                     </li>
                 </ul>
             </li>
-            <li ng-class="{'active open': $ctrl._$state.includes('app.dashboard.broadcast') } ">
+            <li ng-class="{'active': $ctrl._$state.includes('app.dashboard.broadcast') } ">
                 <a ui-sref="app.dashboard.broadcast.index">
                     <span class="title">Broadcast</span>
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-bullhorn fa-fw"></i></span>
             </li>
-            <li ng-class="{'active open': $ctrl._$state.includes('app.dashboard.sequence') } ">
+            <li ng-class="{'active': $ctrl._$state.includes('app.dashboard.sequence') } ">
                 <a ui-sref="app.dashboard.sequence.index">
                     <span class="title">Sequences</span>
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-tasks fa-fw"></i></span>
             </li>
             <br/>
-            <li ng-class="{'active open': $ctrl._$state.includes('app.dashboard.subscriber') } ">
+            <li ng-class="{'active': $ctrl._$state.includes('app.dashboard.subscriber') } ">
                 <a ui-sref="app.dashboard.subscriber.index">
                     <span class="title">Audience</span>
                 </a>
