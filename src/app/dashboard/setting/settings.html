@@ -1,1 +1,31 @@
-<h1>Bot Settings</h1>
+<page-header></page-header>
+
+<div class="container-fluid container-fixed-lg">
+    <div class="row">
+        <div class="col-xs-4 m-b-10">
+            <div class="panel panel-default">
+                <div class="panel-heading separator">
+                    <div class="panel-title">Bot's Time Zone</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 m-b-10 m-t-20">
+                            <p>Broadcast and scheduled messages are sent based on the time zone you've set:</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 m-b-20">
+                            <select-timezone label="'Bot Timezone'" selected="$ctrl.bot.timezone" timezone-changed-callback="$ctrl.updateBotTimezone(timezone)"></select-timezone>
+                        </div>
+                        <div class="col-xs-12 m-b-10">
+                            <div class="alert alert-warning">If you have any active broadcasts, don't forget to update their date & time (If necessary).</div>
+                        </div>
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-cons btn-primary" ng-click="$ctrl.saveBot()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

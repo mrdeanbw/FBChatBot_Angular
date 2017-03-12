@@ -16,7 +16,7 @@ class ImageUploadController {
                 encoded: data
             };
 
-            this.imageUploadedCallback({file: file});
+            this.imageUploadedCallback({file});
         });
     }
 }

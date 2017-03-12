@@ -1,0 +1,11 @@
+<div pg-form-group class="form-group m-b-0 form-group-default form-group-default-select">
+    <label>
+        {{ $ctrl.label || 'Timezone' }}
+    </label>
+    <ui-select ng-model="$ctrl.timezone" ng-change="$ctrl.changed()"  theme="bootstrap" style="width:100%">
+        <ui-select-match placeholder="Select timezone" class="ui-select-match">{{ $select.selected.pretty_name }}</ui-select-match>
+        <ui-select-choices class="ui-select-choices" repeat="timezone in $ctrl.timezones | filter:$select.search">
+            <div ng-bind-html="timezone.pretty_name | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+</div>

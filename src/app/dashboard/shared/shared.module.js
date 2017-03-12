@@ -44,6 +44,9 @@ sharedModule.component('selectTags', SelectTagsComponent);
 import SelectSequencesComponent from './select-sequences/select-sequences.component';
 sharedModule.component('selectSequences', SelectSequencesComponent);
 
+import SelectTimezoneComponent from './select-timezone/select-timezone.component';
+sharedModule.component('selectTimezone', SelectTimezoneComponent);
+
 import FilterAudienceComponent from './filter-audience/filter-audience.component';
 sharedModule.component('filterAudience', FilterAudienceComponent);
 
