@@ -11,13 +11,19 @@ function MessageHistoryRoutes($stateProvider) {
         })
 
         .state('app.dashboard.message.history', {
-            url: '/:messageId/history',
+            url: '/:messageId/history?mainMenuButton',
             title: 'History',
             component: 'messageHistory',
             description: 'Your message change log history and stats.',
             resolve: {
-                revisions: (MessageRevisions, $stateParams, bot) => {
+                revisions: (MessageRevisions, MainMenuButtonRevisions, $stateParams, bot) => {
                     'ngInject';
+
+                    console.log($stateParams);
+                    if ($stateParams.mainMenuButton) {
+                        return MainMenuButtonRevisions(bot.id, $stateParams.messageId).getList();
+                    }
+                    
                     return MessageRevisions(bot.id, $stateParams.messageId).getList();
                 }
             }

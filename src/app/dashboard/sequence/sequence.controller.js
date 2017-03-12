@@ -173,7 +173,6 @@ class SequenceController {
         $scope.cancel  = () => close(false, 500);
     }
 
-
     paginate(page) {
         this._Sequences(this.bot.id).getList({name: this.filter, page}).then((sequences)=> this.sequences = sequences);
     }

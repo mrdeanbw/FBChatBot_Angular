@@ -17,4 +17,7 @@ messageDetailsModule.component('imageDetails', imageDetailsComponent);
 import cardContainerDetailsComponent from './card/card-container-details.component';
 messageDetailsModule.component('cardContainerDetails', cardContainerDetailsComponent);
 
+import buttonDetailsComponent from './button/button-details.component';
+messageDetailsModule.component('buttonDetails', buttonDetailsComponent);
+
 export default messageDetailsModule;

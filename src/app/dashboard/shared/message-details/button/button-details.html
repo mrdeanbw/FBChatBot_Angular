@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs-3">
+        <button ng-if="$ctrl.message.url" class="btn btn-sm text-primary semi-bold btn-rounded btn-block" data-html="true" data-title="Details" data-container="body" data-content="<p>Total Clicks: <strong>{{ $ctrl.message.stats.clicked.total }}</strong></p><p>(Unique) Subscriber Clicks: <strong>N/A</strong></p>" pg-popover>
+            {{ $ctrl.message.title }} <span class="pull-right">Clicks: {{ $ctrl.message.stats.clicked.total }}</span>
+        </button>
+        <button ng-if="!$ctrl.message.url" class="btn btn-sm text-primary semi-bold btn-rounded btn-block" data-html="true" data-title="Details" data-container="body" data-content="<p>Total Clicks: <strong>{{ $ctrl.message.stats.clicked.total }}</strong></p><p>(Unique) Subscriber Clicks: <strong>{{ $ctrl.message.stats.clicked.per_subscriber }}</strong></p>" pg-popover>
+            {{ $ctrl.message.title }} <span class="pull-right">Clicks: {{ $ctrl.message.stats.clicked.total }}</span>
+        </button>
+    </div>
+
+    <div class="col-xs-9">
+        <div class="alert alert-danger" ng-if="$ctrl.message.url">
+            Due to technical issues, we cant't record "(Unique) Subscriber Clicks" click stats for main menu buttons whose main action is "Go to URL."
+        </div>
+    </div>
+</div>
+

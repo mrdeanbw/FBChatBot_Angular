@@ -1,4 +1,6 @@
-<div class="view chat-view bg-white clearfix">
+<button-details ng-if="$ctrl.message.type == 'button'" message="$ctrl.message"></button-details>
+
+<div class="view chat-view bg-white clearfix" ng-if="$ctrl.message.type != 'button'">
     <div class="chat-inner">
         <div class="message clearfix">
             <div class="profile-img-wrapper m-t-5 inline">
@@ -11,73 +13,3 @@
     </div>
 </div>
 <hr />
-
-
-<!-- Messages Delivered Block -->
-<!--<div class="col-md-2 sm-m-b-15 text-center">-->
-<!--<div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">-->
-
-<!--<div class="panel-heading top-left top-right ">-->
-<!--<div class="panel-title text-black hint-text">-->
-<!--<span class="font-montserrat fs-11 all-caps">Delivered</span>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="panel-body p-t-40">-->
-<!--<div class="row">-->
-<!--<div class="col-sm-12 m-t-20">-->
-<!--<h4 class="no-margin p-b-5 text-primary semi-bold">-->
-<!--{{ $ctrl.broadcast.stats.delivered | number }}-->
-<!--</h4>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-
-<!-- Read Rate Block -->
-<!--<div class="col-md-2 sm-m-b-15 text-center">-->
-<!--<div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">-->
-
-<!--<div class="panel-heading top-left top-right ">-->
-<!--<div class="panel-title text-black hint-text">-->
-<!--<span class="font-montserrat fs-11 all-caps">Read</span>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="panel-body p-t-40">-->
-<!--<div class="row">-->
-<!--<div class="col-sm-12 m-t-20">-->
-<!--<h4 class="no-margin p-b-5 text-primary semi-bold">{{ ($ctrl.broadcast.stats.read / $ctrl.broadcast.stats.delivered) | percentage }}</h4>-->
-<!--<div class="clearfix"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-
-<!-- Unique Clicks Block -->
-<!--<div class="col-md-2 sm-m-b-15 text-center">-->
-<!--<div class="widget-broadcast-sent panel no-border bg-white no-margin widget-loader-bar ng-scope">-->
-
-<!--<div class="panel-heading top-left top-right ">-->
-<!--<div class="panel-title text-black hint-text">-->
-<!--<span class="font-montserrat fs-11 all-caps">Clicks</span>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="panel-body p-t-40">-->
-<!--<div class="row">-->
-<!--<div class="col-sm-12 m-t-20">-->
-<!--<h4 class="no-margin p-b-5 text-primary semi-bold">{{ $ctrl.broadcast.stats.clicks.unique | number }}</h4>-->
-<!--<div class="clearfix"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-</div>
-</div>

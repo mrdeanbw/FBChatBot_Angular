@@ -5,7 +5,6 @@ function LoadingInterceptor($rootScope, $q) {
 
     let _isLoading = () => xhrRequests > 0;
 
-
     let _updateLoadingStatus = () => $rootScope.loading = _isLoading();
 
     let request = config => {
