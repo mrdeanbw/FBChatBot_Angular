@@ -111,13 +111,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="p-l-20 p-t-10">
-                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.per_subscriber | number }}</h1> From different subscribers
+                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.total | number }}</h1> Total
                                     <p class="small hint-text">in {{ $ctrl.readableDate() }}</p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="p-l-20 p-t-10">
-                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.total | number }}</h1> Total
+                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.per_subscriber | number }}</h1> Unique Subscribers
                                     <p class="small hint-text">in {{ $ctrl.readableDate() }}</p>
                                 </div>
                             </div>
