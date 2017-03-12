@@ -13,6 +13,12 @@ function AppRoutes($stateProvider) {
             templateUrl: 'layout/errors/404.html'
         })
 
+        .state('app.button', {
+            url: '/button-not-found',
+            title: 'Button Not Found!',
+            templateUrl: 'layout/errors/button.html'
+        })
+
         .state('app.500', {
             title: 'Unexpected Error',
             templateUrl: 'layout/errors/500.html'
