@@ -143,7 +143,7 @@ body.rtl [class^=col-] {
     -webkit-animation: none;
     animation: none;
     top: 73px;
-    background: url(../../img/progress/progress-circle-success.svg) top left no-repeat;
+    background: url(../img/progress/progress-circle-success.svg) top left no-repeat;
     background-size: 100% auto;
     margin: 0 auto;
     border-width: 0;
@@ -1087,9 +1087,7 @@ body.rtl [class^=col-] {
 }
 
 .quickview-wrapper .nav-tabs~.tab-content .quickview-notes .note {
-    background-image: url(../../img/notes_lines.png);
-    background-repeat: repeat-y;
-    background-position: 27px top
+    /*background: url(../img/notes_lines.png) repeat-y 27px top;*/
 }
 
 .quickview-wrapper .nav-tabs~.tab-content .quickview-notes .note>div {
@@ -1448,7 +1446,7 @@ button:focus {
 }
 
 .icon-set {
-    background: url(../../img/icons/top_tray.png) no-repeat;
+    background: url(../img/icons/top_tray.png) no-repeat;
     display: block
 }
 
@@ -2418,11 +2416,11 @@ body {
 }
 
 .portlet-icon-refresh-lg-master {
-    background-image: url(../../img/progress/progress-circle-lg-master-static.svg)
+    background-image: url(../img/progress/progress-circle-lg-master-static.svg)
 }
 
 .portlet-icon-refresh-lg-white {
-    background-image: url(../../img/progress/progress-circle-lg-white-static.svg)
+    background-image: url(../img/progress/progress-circle-lg-white-static.svg)
 }
 
 .portlet-icon-refresh-lg-master-animated,
@@ -2447,11 +2445,11 @@ body {
 }
 
 .portlet-icon-refresh-lg-master-animated {
-    background-image: url(../../img/progress/progress-circle-lg-master.svg)
+    background-image: url(../img/progress/progress-circle-lg-master.svg)
 }
 
 .portlet-icon-refresh-lg-white-animated {
-    background-image: url(../../img/progress/progress-circle-lg-white.svg)
+    background-image: url(../img/progress/progress-circle-lg-white.svg)
 }
 
 .panel-scroll {
@@ -4172,7 +4170,7 @@ fieldset[disabled] .btn-danger:hover {
 }
 
 .alert .close {
-    background: url(../../img/icons/noti-cross.png) -9px -10px no-repeat;
+    background: url(../img/icons/noti-cross.png) -9px -10px no-repeat;
     width: 10px;
     height: 9px;
     position: relative;
@@ -4940,44 +4938,44 @@ body>.pgn-wrapper {
 }
 
 .progress-bar-indeterminate {
-    background: url(../../img/progress/progress-bar-master.svg) top left no-repeat;
+    background: url(../img/progress/progress-bar-master.svg) top left no-repeat;
     width: 100%;
     height: 100%;
     background-size: cover
 }
 
 .progress-bar-indeterminate.progress-bar-primary {
-    background-image: url(../../img/progress/progress-bar-primary.svg);
+    background-image: url(../img/progress/progress-bar-primary.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-complete {
-    background-image: url(../../img/progress/progress-bar-complete.svg);
+    background-image: url(../img/progress/progress-bar-complete.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-success {
-    background-image: url(../../img/progress/progress-bar-success.svg);
+    background-image: url(../img/progress/progress-bar-success.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-info {
-    background-image: url(../../img/progress/progress-bar-info.svg);
+    background-image: url(../img/progress/progress-bar-info.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-warning {
-    background-image: url(../../img/progress/progress-bar-warning.svg);
+    background-image: url(../img/progress/progress-bar-warning.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-danger {
-    background-image: url(../../img/progress/progress-bar-danger.svg);
+    background-image: url(../img/progress/progress-bar-danger.svg);
     background-color: transparent
 }
 
 .progress-bar-indeterminate.progress-bar-master {
-    background-image: url(../../img/progress/progress-bar-master.svg);
+    background-image: url(../img/progress/progress-bar-master.svg);
     background-color: transparent
 }
 
@@ -5068,7 +5066,7 @@ body>.pgn-wrapper {
 }
 
 .progress-circle-indeterminate {
-    background: url(../../img/progress/progress-circle-master.svg) top left no-repeat;
+    background: url(../img/progress/progress-circle-master.svg) top left no-repeat;
     width: 50px;
     height: 50px;
     background-size: 100% auto;
@@ -5076,27 +5074,27 @@ body>.pgn-wrapper {
 }
 
 .progress-circle-indeterminate.progress-circle-warning {
-    background-image: url(../../img/progress/progress-circle-warning.svg)
+    background-image: url(../img/progress/progress-circle-warning.svg)
 }
 
 .progress-circle-indeterminate.progress-circle-danger {
-    background-image: url(../../img/progress/progress-circle-danger.svg)
+    background-image: url(../img/progress/progress-circle-danger.svg)
 }
 
 .progress-circle-indeterminate.progress-circle-info {
-    background-image: url(../../img/progress/progress-circle-info.svg)
+    background-image: url(../img/progress/progress-circle-info.svg)
 }
 
 .progress-circle-indeterminate.progress-circle-primary {
-    background-image: url(../../img/progress/progress-circle-primary.svg)
+    background-image: url(../img/progress/progress-circle-primary.svg)
 }
 
 .progress-circle-indeterminate.progress-circle-success {
-    background-image: url(../../img/progress/progress-circle-success.svg)
+    background-image: url(../img/progress/progress-circle-success.svg)
 }
 
 .progress-circle-indeterminate.progress-circle-complete {
-    background-image: url(../../img/progress/progress-circle-complete.svg)
+    background-image: url(../img/progress/progress-circle-complete.svg)
 }
 
 .progress-circle {
@@ -6817,7 +6815,7 @@ body.rtl .checkbox label::after {
 }
 
 @media (min-width:768px) and (max-width:991px) {
-    form .row [class*=col-md-]:not(: first-child), form .row [class*=col-md-]:not(: last-child) {
+    form .row [class*=col-md-]:not(:first-child), form .row [class*=col-md-]:not(: last-child) {
         padding-right: 0;
         padding-left: 0
     }
@@ -7970,7 +7968,7 @@ body.rtl .checkbox label::after {
 }
 
 .editor-icon {
-    background-image: url(../../img/editor_tray.png);
+    /*background-image: url(../img/editor_tray.png);*/
     display: inline-block;
     height: 40px;
     margin-top: 5px;
@@ -8797,23 +8795,23 @@ div.cs-skin-slide .cs-options ul li.cs-selected span {
 }
 
 table.dataTable thead .sorting_asc:after {
-    background-image: url(../../img/icons/sort_asc.png)
+    background-image: url(../img/icons/sort_asc.png)
 }
 
 table.dataTable thead .sorting_desc:after {
-    background-image: url(../../img/icons/sort_desc.png)
+    background-image: url(../img/icons/sort_desc.png)
 }
 
 table.dataTable thead .sorting:after {
-    background-image: url(../../img/icons/sort_both.png)
+    background-image: url(../img/icons/sort_both.png)
 }
 
 table.dataTable thead .sorting_asc_disabled:after {
-    background-image: url(../../img/icons/sort_asc_disabled.png)
+    background-image: url(../img/icons/sort_asc_disabled.png)
 }
 
 table.dataTable thead .sorting_desc_disabled:after {
-    background-image: url(../../img/icons/sort_desc_disabled.png)
+    background-image: url(../img/icons/sort_desc_disabled.png)
 }
 
 table.dataTable thead .sorting:after,
@@ -9473,8 +9471,7 @@ input.list-view-search {
 }
 
 .social-wrapper .social .cover-photo:before {
-    background-image: url(../../img/linear_gradient.png);
-    background-repeat: repeat-x;
+    /*background: url(../img/linear_gradient.png) repeat-x;*/
     bottom: 0;
     content: " ";
     height: 270px;
@@ -11787,114 +11784,112 @@ body.overflow-hidden {
 }
 
 .mapplic-pin {
-    background-image: url(../../../assets/img/maps/marker-master.svg);
+    /*background-image: url(../../../assets/img/maps/marker-master.svg);*/
     background-size: contain
 }
 
 .mapplic-pin.pulse {
-    background-image: url(../../../assets/img/maps/pulse-master.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-master.svg)*/
 }
 
 .mapplic-pin.pulse.green {
-    background-image: url(../../../assets/img/maps/pulse-success.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-success.svg)*/
 }
 
 .mapplic-pin.pulse.blue {
-    background-image: url(../../../assets/img/maps/pulse-complete.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-complete.svg)*/
 }
 
 .mapplic-pin.pulse.purple {
-    background-image: url(../../../assets/img/maps/pulse-primary.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-primary.svg)*/
 }
 
 .mapplic-pin.pulse.yellow {
-    background-image: url(../../../assets/img/maps/pulse-warning.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-warning.svg)*/
 }
 
 .mapplic-pin.pulse.red {
-    background-image: url(../../../assets/img/maps/pulse-danger.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-danger.svg)*/
 }
 
 .mapplic-pin.pulse-alt {
-    background-image: url(../../../assets/img/maps/pulse-alt-master.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-master.svg)*/
 }
 
 .mapplic-pin.pulse-alt.green {
-    background-image: url(../../../assets/img/maps/pulse-alt-success.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-success.svg)*/
 }
 
 .mapplic-pin.pulse-alt.blue {
-    background-image: url(../../../assets/img/maps/pulse-alt-complete.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-complete.svg)*/
 }
 
 .mapplic-pin.pulse-alt.purple {
-    background-image: url(../../../assets/img/maps/pulse-alt-primary.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-primary.svg)*/
 }
 
 .mapplic-pin.pulse-alt.yellow {
-    background-image: url(../../../assets/img/maps/pulse-alt-warning.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-warning.svg)*/
 }
 
 .mapplic-pin.pulse-alt.red {
-    background-image: url(../../../assets/img/maps/pulse-alt-danger.svg)
+    /*background-image: url(../../../assets/img/maps/pulse-alt-danger.svg)*/
 }
 
 .mapplic-pin.marker {
-    background-image: url(../../../assets/img/maps/marker-master.svg)
+    /*background-image: url(../../../assets/img/maps/marker-master.svg)*/
 }
 
 .mapplic-pin.marker.green {
-    background-image: url(../../../assets/img/maps/marker-success.svg)
+    /*background-image: url(../../../assets/img/maps/marker-success.svg)*/
 }
 
 .mapplic-pin.marker.blue {
-    background-image: url(../../../assets/img/maps/marker-complete.svg)
+    /*background-image: url(../../../assets/img/maps/marker-complete.svg)*/
 }
 
 .mapplic-pin.marker.purple {
-    background-image: url(../../../assets/img/maps/marker-primary.svg)
+    /*background-image: url(../../../assets/img/maps/marker-primary.svg)*/
 }
 
 .mapplic-pin.marker.yellow {
-    background-image: url(../../../assets/img/maps/marker-warning.svg)
+    /*background-image: url(../../../assets/img/maps/marker-warning.svg)*/
 }
 
 .mapplic-pin.marker.red {
-    background-image: url(../../../assets/img/maps/marker-danger.svg)
+    /*background-image: url(../../../assets/img/maps/marker-danger.svg)*/
 }
 
 .mapplic-pin.marker-alt {
-    background-image: url(../../../assets/img/maps/marker-alt-master.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-master.svg)*/
 }
 
 .mapplic-pin.marker-alt.green {
-    background-image: url(../../../assets/img/maps/marker-alt-success.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-success.svg)*/
 }
 
 .mapplic-pin.marker-alt.blue {
-    background-image: url(../../../assets/img/maps/marker-alt-complete.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-complete.svg)*/
 }
 
 .mapplic-pin.marker-alt.purple {
-    background-image: url(../../../assets/img/maps/marker-alt-primary.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-primary.svg)*/
 }
 
 .mapplic-pin.marker-alt.yellow {
-    background-image: url(../../../assets/img/maps/marker-alt-warning.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-warning.svg)*/
 }
 
 .mapplic-pin.marker-alt.red {
-    background-image: url(../../../assets/img/maps/marker-alt-danger.svg)
+    /*background-image: url(../../../assets/img/maps/marker-alt-danger.svg)*/
 }
 
 .pricing-table td[class*=bg-],
 .pricing-table th[class*=bg-] {
     border-top-color: transparent;
-    border-bottom-color: rgba(0, 0, 0, .02);
     border-right-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, .02);
     border-left-color: transparent;
-    border-bottom-width: 1px;
-    border-bottom-style: solid
 }
 
 .pricing-table>thead>tr>th {
@@ -11977,12 +11972,11 @@ body.overflow-hidden {
 }
 
 .widget-1:after {
-    background-image: url(../../../assets/img/dashboard/pages_hero.jpg)
+    /*background-image: url(../../../assets/img/dashboard/pages_hero.jpg)*/
 }
 
 .widget-1:before {
-    background-image: url(../../img/linear_gradient.png);
-    background-repeat: repeat-x;
+    /*background: url(../img/linear_gradient.png) repeat-x;*/
     content: " ";
     left: 0;
     right: 0;
@@ -12021,7 +12015,7 @@ body.overflow-hidden {
 }
 
 .widget-2:after {
-    background-image: url(../../../assets/img/social/person-cropped.jpg)
+    /*background-image: url(../../../assets/img/social/person-cropped.jpg)*/
 }
 
 .widget-3 a {
@@ -12272,7 +12266,7 @@ body.overflow-hidden {
 
 .widget-18-post {
     height: 342px;
-    background: url(../../../assets/img/social/quote.jpg) center center;
+    /*background: url(../../../assets/img/social/quote.jpg) center center;*/
     background-size: cover
 }
 
@@ -13856,7 +13850,7 @@ body.overflow-hidden {
 }
 
 .builder a.active:before {
-    background-image: url(../../../assets/img//demo/tick.svg);
+    /*background-image: url(../../../assets/img//demo/tick.svg);*/
     width: 23px;
     height: 23px;
     content: '';
@@ -14593,7 +14587,7 @@ body.overflow-hidden {
     .page-sidebar .sidebar-menu .menu-items ul {
         -webkit-transform: translateZ(0);
         -webkit-backface-visibility: hidden;
-        -webkit-perspective: 1000
+        -webkit-perspective: 1000;
     }
     .page-container .page-content-wrapper .content {
         padding-top: 60px
@@ -15197,16 +15191,16 @@ only screen and (min--moz-device-pixel-ratio:2),
 only screen and (-o-min-device-pixel-ratio:200/100),
 only screen and (min-device-pixel-ratio:2) {
     .icon-set {
-        background: url(../../img/icons/top_tray_2x.png);
+        background: url(../img/icons/top_tray_2x.png);
         position: relative;
         background-size: 95px 19px
     }
     .editor-icon {
-        background-image: url(../../img/editor_tray_2x.png);
+        /*background-image: url(../img/editor_tray_2x.png);*/
         background-size: 480px 40px
     }
     .alert .close {
-        background: url(../../img/icons/noti-cross-2x.png) -9px -10px no-repeat;
+        background: url(../img/icons/noti-cross-2x.png) -9px -10px no-repeat;
         width: 10px;
         height: 9px;
         position: relative;
