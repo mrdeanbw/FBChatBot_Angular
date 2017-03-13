@@ -1,5 +1,7 @@
 class SelectTimezone {
-    constructor() {
+    constructor($scope) {
+        'ngInject';
+
         this.timezones = [
             {
                 "name": "Pacific/Midway",
@@ -1702,17 +1704,23 @@ class SelectTimezone {
                 "pretty_name": "Pacific/Kiritimati (UTC+14:00)"
             }
         ];
-        
+
         this.$onInit = () => {
-            for (let timezone of this.timezones) {
-                if (timezone.name == this.selected) {
-                    this.timezone = timezone;
-                    break;
+            $scope.$watch(() => this.selected, newValue => {
+                console.log(newValue);
+                for (let timezone of this.timezones) {
+                    if (timezone.name == newValue) {
+                        this.timezone = timezone;
+                        break;
+                    }
                 }
-            }
-        }
-    };
-    
+                this.timezone = this.timezone || {"name": "UTC", "pretty_name": "UTC (UTC+00:00)"};
+
+                console.log(this.timezone);
+            });
+        };
+    }
+
     changed() {
         this.timezoneChangedCallback({timezone: this.timezone.name});
     }
