@@ -14,5 +14,8 @@ filtersModule.filter('propsFilter', propsFilter);
 import normalizedHashkeyFilter from './normalized-hashkey.filter';
 filtersModule.filter('normalizedHashkey', normalizedHashkeyFilter);
 
+import timezoneOffsetFilter from './timezone-offset.filter';
+filtersModule.filter('timezoneOffset', timezoneOffsetFilter);
+
 
 export default filtersModule;
