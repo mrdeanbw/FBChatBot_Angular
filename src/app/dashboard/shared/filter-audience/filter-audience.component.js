@@ -49,12 +49,17 @@ class FilterAudienceController {
 
     _updateCount() {
         let params = {count: 1, filter: {filter: this.model}};
-        this._Subscribers(this._$rootScope.bot.id).getList(params).then(data => this.count = data.meta.pagination.total);
+        this._Subscribers(this._$rootScope.bot.id).getList(params).then(data => {
+            this.count = data.meta.pagination.total;
+            if (this.targetAudienceChanged){
+                this.targetAudienceChanged({count: this.count});
+            }
+        });
     }
 }
 
 export default{
     templateUrl: 'dashboard/shared/filter-audience/filter-audience.html',
-    bindings: {enableControl: '<', model: '=', allowedFilters: '<'},
+    bindings: {enableControl: '<', model: '=', allowedFilters: '<', targetAudienceChanged: '&'},
     controller: FilterAudienceController
 }

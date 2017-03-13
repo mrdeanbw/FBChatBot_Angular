@@ -47,7 +47,6 @@
 
                 <div class="panel-body p-t-30">
                     <div class="row">
-
                         <div ng-repeat="rule in group.rules"
                              class="filter_rule_item_wrapper filter_rule_{{ group.join_type}} col-sm-6 text-black">
                             <div class="filter_rule_item">
@@ -96,21 +95,26 @@
                     </div>
                 </div>
             </a>
-            <select class="full-width" ng-model="$ctrl.model.join_type">
-                <option value="and">Matching all groups (AND)</option>
-                <option value="or">Matching any group (OR)</option>
-            </select>
+            <div class="text-center">
+                <select class="cs-select cs-skin-slide" cs-select ng-model="$ctrl.model.join_type">
+                    <option value="and">Matching all groups (AND)</option>
+                    <option value="or">Matching any group (OR)</option>
+                </select>
+            </div>
         </div>
 
-        <h2 class="text-center m-t-20">
-            <span ng-style="{'visibility': $root.loading? 'visible' : 'hidden'}" class="text-danger"
-                  style="font-size: 20px;"><i class="fa fa-spin fa-spinner"></i></span>
-            <br/>
-            <span class="bold text-success">{{ $ctrl.count | number }}</span>
+        <h2 class="text-center m-t-10">
+            <span class="bold text-success">
+                <span style="visibility: hidden; font-size: 20px;"><i class="fa fa-spinner"></i></span>
+                {{ $ctrl.count | number }}
+                <span ng-style="{'visibility': $root.loading? 'visible' : 'hidden'}" class="text-danger" style="font-size: 20px;"><i class="fa fa-spin fa-spinner"></i></span>
+            </span>
             <br/>
             <span class="fs-16">
-                Current <abbr class="bold" pg-tooltip
-                              data-original-title="Unsubscribed users may not receive any messages!">ACTIVE</abbr> subscribers who match your filter criteria.</span>
+                Current
+                <abbr class="bold" pg-tooltip data-original-title="Unsubscribed users may not receive any messages!">ACTIVE</abbr>
+                subscribers who match your filter criteria.
+            </span>
         </h2>
     </div>
 </div>
