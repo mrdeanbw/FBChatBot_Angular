@@ -1,6 +1,6 @@
 class BroadcastCtrl {
 
-    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, WizardHandler, $filter, Modals, jstz) {
+    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, $filter, Modals, jstz) {
         'ngInject';
 
         this._$state = $state;
@@ -9,7 +9,6 @@ class BroadcastCtrl {
         this._FlashBag = FlashBag;
         this._Broadcasts = Broadcasts;
         this._AppHelpers = AppHelpers;
-        this._WizardHandler = WizardHandler;
 
         if ($state.current.name === 'app.dashboard.broadcast.create') {
             this.broadcast = {
@@ -94,16 +93,6 @@ class BroadcastCtrl {
             }
         );
     }
-
-
-    getCurrentStep() {
-        return this._WizardHandler.wizard().currentStepNumber();
-    };
-
-    goToStep(step) {
-        this._WizardHandler.wizard().goTo(step);
-    };
-
 
     destroy(broadcast, broadcasts) {
         'ngInject';
