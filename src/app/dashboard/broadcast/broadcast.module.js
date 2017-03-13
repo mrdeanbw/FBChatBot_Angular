@@ -1,9 +1,6 @@
 import angular from 'angular';
-import 'angular-wizard';
 
-let broadcastModule = angular.module('app.dashboard.broadcast', [
-    'mgo-angular-wizard'
-]);
+let broadcastModule = angular.module('app.dashboard.broadcast', []);
 
 import BroadcastListComponent from './broadcast-list.component';
 broadcastModule.component('broadcastList', BroadcastListComponent);

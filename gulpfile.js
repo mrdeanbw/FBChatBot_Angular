@@ -79,7 +79,6 @@ gulp.task('css', function () {
         'bower_components/font-awesome/css/font-awesome.min.css',
         'bower_components/PACE/themes/green/pace-theme-flash.css',
         'bower_components/jquery.scrollbar/jquery.scrollbar.css',
-        'node_modules/angular-wizard/dist/angular-wizard.min.css',
         'third-party/nvd3/nv.d3.css',
         'bower_components/switchery/dist/switchery.min.css',
         'third-party/bootstrap-select2.css',
@@ -121,12 +120,8 @@ gulp.task('js', function () {
         'bower_components/switchery/dist/switchery.min.js',
         'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
+        'bower_components/jstzdetect/jstz.min.js',
         'src/js/pages.js'
-
-        // moment
-        // 'plugins/moment/moment.min.js',
-        // 'plugins/moment/moment-with-locales.min.js',
-        // 'plugins/moment/moment-timezone-with-data.min.js',
     ];
 
     gulp.src(jsFiles)
@@ -246,5 +241,6 @@ gulp.task('default', ['html', 'browserify'], function () {
     gulp.watch(viewFiles, ['views']);
     gulp.watch(appFiles, ['browserify']);
     gulp.watch(['src/css/custom.css'], ['css']);
+    gulp.watch(['src/js/pages.js'], ['js']);
     gulp.watch('src/.htaccess', ['.htaccess']);
 });

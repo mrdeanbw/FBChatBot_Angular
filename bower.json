@@ -18,7 +18,8 @@
     "bootstrap-timepicker": "^0.5.2",
     "bootstrap-select2": "^2.0.0",
     "ng-lodash": "^0.5.0",
-    "ng-switchery": "^1.0.0-alpha7"
+    "ng-switchery": "^1.0.0-alpha7",
+    "jstzdetect": "^1.0.6"
   },
   "resolutions": {
     "jquery": "^3.1.1",

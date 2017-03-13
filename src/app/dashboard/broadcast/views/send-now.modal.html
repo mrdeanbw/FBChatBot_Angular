@@ -1,28 +1,23 @@
-<div class="modal fade stick-up disable-scroll" id="modalSendBroadcast" tabindex="-1" role="dialog"
-     aria-labelledby="modalSendBroadcast" aria-hidden="false">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade stick-up disable-scroll" id="modalDelBroadcast">
+    <div class="modal-dialog">
         <div class="modal-content-wrapper">
             <div class="modal-content">
                 <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         <i class="fa fa-close fs-14"></i>
                     </button>
-                    <h5>Send Broadcast</h5>
+                    <h3>Send Now</h3>
                 </div>
                 <div class="modal-body">
-                    <p class="no-margin">
-                        This message will be <span class="bold">sent now</span> to all selected subscribers?
-                    </p>
+                    <p class="no-margin">This broadcast will be sent to <span class="bold">{{ count | number }}</span> subscribers immediately.</p>
+                    <p class="no-margin">Are you sure you want to proceed?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-cons  pull-left inline" data-dismiss="modal">
-                        Send Now
-                    </button>
-                    <button type="button" class="btn btn-danger btn-cons no-margin pull-left inline" data-dismiss="modal">
-                        Cancel
-                    </button>
+                    <button type="button" class="btn btn-success btn-cons pull-left inline" ng-click="confirm()" data-dismiss="modal">Yes, Send Broadcast</button>
+                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
