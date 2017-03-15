@@ -52,6 +52,9 @@ class BroadcastCtrl {
             this.userTimezone = this.userTimezone || 'UTC';
             this.activeCount = 0;
             this.$onInit = () => {
+                if (!this.broadcast.timezone) {
+                    this.broadcast.timezone = undefined;
+                }
                 $scope.$watch(
                     () => this.broadcast.message_type,
                     () => this.updateLastInteractionAt(),
@@ -170,6 +173,10 @@ class BroadcastCtrl {
         }
 
         this.last_interaction_at = undefined;
+    }
+
+    getDateObject(broadcast) {
+        return new Date(broadcast.date + " " + broadcast.time);
     }
 }
 

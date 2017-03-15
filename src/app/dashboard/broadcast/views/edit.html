@@ -125,7 +125,7 @@
                         <div class="col-md-8 col-sm-height col-middle b-l b-dashed b-grey p-l-30 p-r-30 p-t-15 p-b-15">
                             <select class="cs-select cs-skin-slide" cs-select ng-model="$ctrl.broadcast.timezone_mode" ng-change="$ctrl.timezoneModeChanged()">
                                 <option value="bot">Bot's Timezone</option>
-                                <option value="subscriber">Subscriber's Timezone</option>
+                                <option value="subscriber">Each Subscriber's Timezone</option>
                                 <option value="custom">Custom Timezone (Please Select)</option>
                             </select>
 
@@ -139,7 +139,7 @@
                                 Ex: the message scheduled on 9AM will be delivered to your London located subscribers at 9am (UTC).
                                 5 hours later the message will be delivered to your New York subscribers at 9am (UTC-5:00),
                                 3 more hours later - to your Los Angeles users again at 9am (UTC-5:00).
-                                Please note that <strong>it can take up to 23 hours</strong> for the message to be delivered to all your users in this case.
+                                Please note that <strong>it will take up 1 day</strong> for the message to be delivered to all your users in this case.
                             </p>
                         </div>
                     </div>
