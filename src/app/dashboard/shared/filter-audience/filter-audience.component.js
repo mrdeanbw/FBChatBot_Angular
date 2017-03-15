@@ -22,6 +22,14 @@ class FilterAudienceController {
             }
 
             $scope.$watch(() => this.model, () => this._updateCount(), true);
+            $scope.$watch(
+                () => this.lastInteractionAt,
+                (newValue, oldValue) => {
+                    if (newValue != oldValue)
+                        this._updateCount();
+                },
+                true
+            );
         }
     }
 
@@ -49,9 +57,12 @@ class FilterAudienceController {
 
     _updateCount() {
         let params = {count: 1, filter: {filter: this.model}};
+        if (this.lastInteractionAt) {
+            params.filter.last_interaction_at = this.lastInteractionAt;
+        }
         this._Subscribers(this._$rootScope.bot.id).getList(params).then(data => {
             this.count = data.meta.pagination.total;
-            if (this.targetAudienceChanged){
+            if (this.targetAudienceChanged) {
                 this.targetAudienceChanged({count: this.count});
             }
         });
@@ -60,6 +71,6 @@ class FilterAudienceController {
 
 export default{
     templateUrl: 'dashboard/shared/filter-audience/filter-audience.html',
-    bindings: {enableControl: '<', model: '=', allowedFilters: '<', targetAudienceChanged: '&'},
+    bindings: {enableControl: '<', model: '=', allowedFilters: '<', lastInteractionAt: '<', targetAudienceChanged: '&'},
     controller: FilterAudienceController
 }
