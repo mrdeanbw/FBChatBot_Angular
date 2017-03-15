@@ -27,12 +27,7 @@ class BroadcastCtrl {
                 message_type: 'subscription',
                 send_mode: 'now',
                 timezone: 'UTC',
-                timezone_mode: 'bot',
-                limit_time: {
-                    enabled: false,
-                    from: 9,
-                    to: 21
-                }
+                timezone_mode: 'bot'
             };
             this.$onInit = () => this.broadcast.timezone = this.bot.timezone;
         }

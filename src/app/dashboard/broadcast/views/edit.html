@@ -153,37 +153,6 @@
                         </div>
                     </div>
 
-                    <div class="row-fluid row-sm-height" ng-if="$ctrl.broadcast.send_mode == 'later' && $ctrl.broadcast.timezone_mode != 'subscriber'">
-                        <div class="col-md-3 col-sm-height col-middle p-l-30 p-r-30 p-t-15 p-b-15">
-                            <h5><span class="semi-bold">Limit</span> Time</h5>
-                        </div>
-                        <div class="col-md-8 col-sm-height col-middle b-l b-dashed b-grey p-l-30 p-r-30 p-t-15 p-b-15">
-                            <input type="checkbox" class="js-switch" ng-model="$ctrl.broadcast.limit_time.enabled" ui-switch="{color: '#10cfbd'}"/>
-                            <div class="row m-t-10" ng-if="$ctrl.broadcast.limit_time.enabled">
-                                <div class="col-sm-3">
-                                    <div class="form-group form-group-default">
-                                        <label>From</label>
-                                        <input type="number" value="9" min="1" max="24" ng-model="$ctrl.broadcast.limit_time.from" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group form-group-default">
-                                        <label>To</label>
-                                        <input type="number" value="14" min="1" max="24" ng-model="$ctrl.broadcast.limit_time.to" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" ng-if="$ctrl.broadcast.limit_time.enabled">
-                                <div class="col-sm-12">
-                                    <p class="m-b-5 m-t-5 hint-text">
-                                        Message will be delivered as soon as possible once user's daytime in his current timezone matches desired delivery hours.
-                                        Please note that it this case it can take from 0 up to 24 hours to deliver all messages.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row-fluid row-sm-height">
                         <div class="col-md-3 col-sm-height col-middle p-l-30 p-r-30 p-t-15 p-b-15">
                             <h5><span class="semi-bold">Notification</span> Settings</h5>
