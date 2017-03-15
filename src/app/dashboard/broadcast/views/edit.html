@@ -7,6 +7,10 @@
             <li>
                 <a data-toggle="tab" pg-tab href="#settings"><span>Settings</span></a>
             </li>
+            <a href="" class="btn btn-danger pull-right" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
+                <i class="fa fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
         </ul>
 
 
@@ -181,6 +185,7 @@
 
                 <div class="row m-t-20">
                     <div class="col-xs-12">
+                        &nbsp;
                         <button class="btn btn-lg btn-success pull-right" ng-click="$ctrl.save()" ng-if="$ctrl.activeCount">
                             <span ng-if="$ctrl.broadcast.send_mode == 'now'">Send Now!</span>
                             <span ng-if="$ctrl.broadcast.send_mode == 'later'">Schedule Broadcast</span>
@@ -189,6 +194,12 @@
                             <span ng-if="$ctrl.broadcast.send_mode == 'now'">Send Now!</span>
                             <span ng-if="$ctrl.broadcast.send_mode == 'later'">Schedule Broadcast</span>
                         </button>
+                        <a href="" class="btn btn-danger btn-lg pull-right" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
+                            <i class="fa fa-arrow-left"></i>
+                            <span>Cancel</span>
+                            &nbsp;
+                            &nbsp;
+                        </a>
                     </div>
                 </div>
             </div>
