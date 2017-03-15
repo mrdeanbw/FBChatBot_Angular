@@ -190,15 +190,13 @@
                             <span ng-if="$ctrl.broadcast.send_mode == 'now'">Send Now!</span>
                             <span ng-if="$ctrl.broadcast.send_mode == 'later'">Schedule Broadcast</span>
                         </button>
-                        <button class="btn btn-lg btn-success pull-right" pg-tooltip data-original-title="Cannot be sent because there is no matching subscribers" disabled="" ng-if="!$ctrl.activeCount">
+                        <button class="btn btn-lg btn-success pull-right disabled" pg-tooltip data-original-title="Cannot be sent/scheduled because there is no matching subscribers" ng-if="!$ctrl.activeCount">
                             <span ng-if="$ctrl.broadcast.send_mode == 'now'">Send Now!</span>
                             <span ng-if="$ctrl.broadcast.send_mode == 'later'">Schedule Broadcast</span>
                         </button>
-                        <a href="" class="btn btn-danger btn-lg pull-right" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
+                        <a href="" class="btn btn-danger btn-lg pull-right m-r-10" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
                             <i class="fa fa-arrow-left"></i>
                             <span>Cancel</span>
-                            &nbsp;
-                            &nbsp;
                         </a>
                     </div>
                 </div>
