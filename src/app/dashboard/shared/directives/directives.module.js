@@ -8,5 +8,7 @@ directivesModule.directive('timepicker', TimepickerDirective);
 import DatepickerDirective from './datepicker.directive';
 directivesModule.directive('datepicker', DatepickerDirective);
 
+import BtnConfirmDirective from './btn-confirm.directive';
+directivesModule.directive('btnConfirm', BtnConfirmDirective);
 
 export default directivesModule;
