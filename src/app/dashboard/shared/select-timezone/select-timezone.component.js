@@ -1707,7 +1707,6 @@ class SelectTimezone {
 
         this.$onInit = () => {
             $scope.$watch(() => this.selected, newValue => {
-                console.log(newValue);
                 for (let timezone of this.timezones) {
                     if (timezone.name == newValue) {
                         this.timezone = timezone;
@@ -1715,8 +1714,6 @@ class SelectTimezone {
                     }
                 }
                 this.timezone = this.timezone || {"name": "UTC", "pretty_name": "UTC (UTC+00:00)"};
-
-                console.log(this.timezone);
             });
         };
     }
