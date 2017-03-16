@@ -17,5 +17,8 @@ filtersModule.filter('normalizedHashkey', normalizedHashkeyFilter);
 import timezoneOffsetFilter from './timezone-offset.filter';
 filtersModule.filter('timezoneOffset', timezoneOffsetFilter);
 
+import messageVariablesFilter from './message-variables.filter';
+filtersModule.filter('messageVariables', messageVariablesFilter);
+
 
 export default filtersModule;

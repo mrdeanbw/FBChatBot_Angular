@@ -121,7 +121,8 @@ gulp.task('js', function () {
         'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
         'bower_components/jstzdetect/jstz.min.js',
-        'src/js/pages.js'
+        'src/js/pages.js',
+        'src/js/custom.js'
     ];
 
     gulp.src(jsFiles)
@@ -241,6 +242,6 @@ gulp.task('default', ['html', 'browserify'], function () {
     gulp.watch(viewFiles, ['views']);
     gulp.watch(appFiles, ['browserify']);
     gulp.watch(['src/css/custom.css'], ['css']);
-    gulp.watch(['src/js/pages.js'], ['js']);
+    gulp.watch(['src/js/pages.js', 'src/js/custom.js'], ['js']);
     gulp.watch('src/.htaccess', ['.htaccess']);
 });

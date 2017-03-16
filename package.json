@@ -4,7 +4,8 @@
   "description": "Angular frontend for Mr. Reply",
   "author": "Mr. Reply",
   "dependencies": {
-    "angular": "^1.6.1",
+    "angular": "1.6.2",
+    "angular-animate": "1.6.2",
     "angular-jwt": "^0.1.9",
     "angular-modal-service": "^0.10.1",
     "angular-relative-date": "^2.1.0",

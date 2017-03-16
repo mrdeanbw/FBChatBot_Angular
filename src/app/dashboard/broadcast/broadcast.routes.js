@@ -47,6 +47,7 @@ function BroadcastRoutes($stateProvider) {
         .state('app.dashboard.broadcast.show', {
             url: "/:broadcastId",
             title: 'Broadcast Details',
+            bodyClass: 'menu-pin',
             description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
             component: 'showBroadcast',
             resolve: {
@@ -56,6 +57,19 @@ function BroadcastRoutes($stateProvider) {
                 }
             }
         })
+
+        .state('app.dashboard.broadcast.show2', {
+            url: "/:broadcastId/old",
+            title: 'Broadcast Details',
+            description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
+            component: 'showBroadcast',
+            resolve: {
+                broadcast: (Broadcasts, $stateParams, bot) => {
+                    'ngInject';
+                    return Broadcasts(bot.id).one($stateParams.broadcastId).get({include: 'template'});
+                }
+            }
+        });
 
 }
 

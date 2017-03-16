@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-animate';
 import '../../../bower_components/ng-lodash/build/ng-lodash.min';
 
 import './bot/bot.module';
@@ -16,6 +17,7 @@ import './error-handler/error-handler.module';
 
 let sharedModule = angular.module('app.shared', [
     'ngLodash',
+    'ngAnimate',
     'app.shared.bot',
     'app.shared.user',
     'app.shared.modals',

@@ -1,6 +1,7 @@
-.line-through{
+.line-through {
     text-decoration: line-through;
 }
+
 .filter_rule_item_wrapper {
     padding-right: 85px !important;
     margin-bottom: 1rem !important;
@@ -17,7 +18,7 @@
     line-height: 20px;
     color: #8492a6;
     font-size: 14px;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
@@ -61,7 +62,7 @@
     line-height: 20px;
     color: #8492a6;
     font-size: 14px;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
@@ -210,7 +211,6 @@
     margin-left: 100px;
 }
 
-
 #gt_preview_outer {
     height: 335px;
     width: 260px;
@@ -255,6 +255,7 @@
     padding: 12px 12px 48px;
     display: table-cell;
     vertical-align: middle;
+    /*noinspection CssInvalidPropertyValue*/
     word-break: break-word;
     word-wrap: break-word;
 }
@@ -327,7 +328,8 @@
     list-style: none outside none;
     padding: 10px 16px;
 }
-#mm_preview_list > li >a {
+
+#mm_preview_list > li > a {
     color: #0084ff;
 }
 
@@ -344,3 +346,337 @@
     margin-left: 12px;
     bottom: 2px;
 }
+
+#message-stats .left-menu {
+    position: absolute;
+    top: 60px; /* Header */
+    bottom: 0;
+    overflow-y: scroll;
+    background-color: #31303d;
+    height: 100%;
+    -webkit-box-shadow: inset 50px 0 70px 0 rgba(1, 1, 1, 0.2);
+    -moz-box-shadow: inset 50px 0 70px 0 rgba(1, 1, 1, 0.2);
+    box-shadow: inset 50px 0 70px 0 rgba(1, 1, 1, 0.2);
+}
+
+#message-stats .back_btn {
+    opacity: .84;
+    margin-top: 26px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    max-width: 25px;
+    cursor: pointer;
+}
+
+#message-stats .line {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-top: 1px solid #eeeeee;
+    opacity: .3;
+}
+
+#message-stats .broadcast_content {
+    margin-left: 30px;
+
+}
+
+#message-stats .broadcast_content h5 {
+    margin-top: 30px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#message-stats .broadcast_content h5 {
+    font-size: 13px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#message-stats .broadcast_name {
+    text-transform: uppercase;
+}
+
+#message-stats .broadcast_date {
+    opacity: .3;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+#message-stats .broadcast_date.in-progress {
+    opacity: 1;
+}
+
+#message-stats .message {
+    opacity: .8;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 85%;
+    background-color: transparent;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+}
+
+#message-stats .message_active {
+    opacity: 1;
+    background-color: #3b3a47;
+    -webkit-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+    -moz-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+    box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+}
+
+#message-stats .message:hover {
+    background-color: #3b3a47;
+    -webkit-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+    -moz-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+    box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
+}
+
+#message-stats .message_content {
+    padding: 20px;
+}
+
+#message-stats .message p {
+    font-weight: 100;
+    font-size: 10px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;
+    width: 93%;
+    margin-bottom: 0;
+}
+
+#message-stats .message p .blue {
+    color: #9a98eb;
+}
+
+#message-stats .down_btn {
+    max-width: 48px;
+    margin-top: 5px;
+}
+
+#message-stats .button {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+    margin-left: 5px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #5552eb;
+}
+
+#message-stats .message_line {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 25px;
+}
+
+#message-stats .box {
+    height: 500px;
+    margin-top: 5%;
+    background-color: #fff;
+    margin-left: 10px;
+    -webkit-box-shadow: 0 0 30px 10px rgba(13, 14, 14, 0.07);
+    -moz-box-shadow: 0 0 30px 10px rgba(13, 14, 14, 0.07);
+    box-shadow: 0 0 30px 10px rgba(13, 14, 14, 0.07);
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#message-stats .box_large {
+    height: 790px;
+}
+
+#message-stats .stats_content {
+    padding: 20px;
+}
+
+#message-stats .date {
+    color: #5552eb;
+    margin-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#message-stats .broadcast_state {
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    color: #605f74;
+    background-color: rgba(209, 0, 93, 0.15);
+}
+
+#message-stats .stats_no {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+#message-stats .stats_no h1, #message-stats .stats_no h3, #message-stats .stats_no h5 {
+    margin: 0;
+    padding: 0;
+    color: #5552eb;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#message-stats .stats_no h1 {
+    font-size: 60px;
+}
+
+#message-stats .stats_no h3 {
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+#message-stats .stats_no h5 {
+    font-size: 15px;
+    margin-top: -7px;
+}
+
+#message-stats .stats_no .col-md-6 {
+    margin-bottom: 20px;
+}
+
+#message-stats .green {
+    color: #66bd2b !important;
+}
+
+#message-stats .red {
+    color: #d1005d !important;
+}
+
+#message-stats .message_stats {
+    opacity: 0;
+    visibility: hidden;
+    /*    display: none;*/
+    font-size: 15px !important;
+    color: #909090;
+    font-family: 'Montserrat', sans-serif;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#message-stats .message_stats .blue {
+    color: #5552eb;
+}
+
+#message-stats .btn_stats_no {
+    opacity: 0;
+    visibility: hidden;
+    /*    display: none;*/
+    width: 90%;
+    margin-left: 5%;
+    padding-bottom: 10px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#message-stats .btn_stats {
+    border-left: 6px solid #fff;
+    margin-top: 20px;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#message-stats .btn_header {
+    padding: 10px 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #5552eb;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#message-stats .btn_no {
+    padding: 10px;
+}
+
+#message-stats .btn_no h4, #message-stats .btn_no h5 {
+    color: #5552eb;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#message-stats .ctr {
+    font-size: 20px;
+}
+
+#message-stats .btn_no h5 {
+    line-height: 11px !important;
+    font-size: 25px;
+}
+
+#message-stats .text {
+    font-size: 10px !Important;
+}
+
+#message-stats ::-webkit-scrollbar {
+    background-color: #34333f;
+    width: 6px;
+}
+
+#message-stats ::-webkit-scrollbar-thumb {
+    background: #605f74;
+}
+
+#message-stats ::-webkit-scrollbar-thumb:window-inactive {
+    background: #605f74;
+}
+
+#message-stats .show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: visibility 0s, opacity 0.5s linear;
+    -moz-transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+body.menu-pin .page-sidebar {
+    background-color: #3b3a48;
+}
+
+body.menu-pin .page-sidebar .sidebar-header {
+    background-color: #353441;
+    border: 0;
+}
+
+body.menu-pin .page-sidebar .icon-thumbnail {
+    background-color: transparent !important;
+}
+
+body.menu-pin .page-sidebar li > a, body.menu-pin .page-sidebar li > button {
+    font-family: 'Montserrat', sans-serif !important;
+    color: #fff;
+    opacity: .3;
+}
+
+body.menu-pin .page-sidebar li.active > a,
+body.menu-pin .page-sidebar li.active > button,
+body.menu-pin .page-sidebar li:hover > a,
+body.menu-pin .page-sidebar li:hover > button {
+    opacity: 1;
+}
+
+body.menu-pin.fixed-header .header:not(th) {
+    padding-left: 70px;
+}
+
+/*.page-container .page-content-wrapper .content {*/
+/*padding-bottom: 0;*/
+/*}*/
+
+/*.page-container .page-content-wrapper .footer {*/
+/*position: relative;*/
+/*}*/

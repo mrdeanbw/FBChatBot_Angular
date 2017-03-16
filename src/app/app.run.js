@@ -6,6 +6,8 @@ function AppRun(AppConstants, $rootScope, $transitions) {
             setPageTitle(state.title)
         }
 
+        $rootScope.bodyClass = state.bodyClass;
+
         //TODO: is this the right place for this?
         $('[pg-popover]').popover('destroy')
     });
