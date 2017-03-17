@@ -17,9 +17,13 @@ function BroadcastRoutes($stateProvider) {
             component: 'broadcastList',
             description: 'Send Messages in bulk to pre-defined subscribers segments. With Mr. Reply Broadcast feature you can target and send custom messages to your subscribers.',
             resolve: {
-                broadcasts: (Broadcasts, bot) => {
+                pending: (Broadcasts, bot) => {
                     'ngInject';
-                    return Broadcasts(bot.id).getList();
+                    return Broadcasts(bot.id).one('pending').getList();
+                },
+                processed: (Broadcasts, bot) => {
+                    'ngInject';
+                    return Broadcasts(bot.id).one('non-pending').getList();
                 }
             }
         })

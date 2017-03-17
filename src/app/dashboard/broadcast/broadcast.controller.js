@@ -32,19 +32,7 @@ class BroadcastCtrl {
             this.$onInit = () => this.broadcast.timezone = this.bot.timezone;
         }
 
-        if ($state.current.name === 'app.dashboard.broadcast.index') {
-            this.pending = [];
-            this.processed = [];
-            this.$onInit = () => {
-                for (let broadcast of this.broadcasts) {
-                    if (broadcast.status == 'pending') {
-                        this.pending.push(broadcast);
-                    } else {
-                        this.processed.push(broadcast);
-                    }
-                }
-            };
-        } else {
+        if ($state.current.name !== 'app.dashboard.broadcast.index') {
             const userTimezone = jstz.determine();
             if (userTimezone) {
                 this.userTimezone = userTimezone.name();
@@ -177,6 +165,14 @@ class BroadcastCtrl {
 
     getDateObject(broadcast) {
         return new Date(broadcast.date + " " + broadcast.time);
+    }
+
+    paginatePending(page) {
+        this._Broadcasts(this.bot.id).one('pending').getList('', {page}).then(pending => this.pending = pending);
+    }
+
+    paginateProcessed(page) {
+        this._Broadcasts(this.bot.id).one('non-pending').getList('', {page}).then(processed => this.processed = processed);
     }
 }
 

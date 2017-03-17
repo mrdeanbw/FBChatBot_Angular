@@ -188,7 +188,7 @@ class MessageTreeController {
             beforeDrop: (e) => {
                 let source = e.source.nodeScope.node;
                 let destination = e.dest.nodesScope.node ? e.dest.nodesScope.node : undefined;
-                
+
                 if (source.type == 'button') {
                     if (destination && (destination.type == 'text' || destination.type == 'card')) {
                         return true;
@@ -269,10 +269,10 @@ class MessageTreeController {
 
 
     paginate(page) {
-        this._MessageTrees(this.bot.id).getList({name: this.filter, page}).then((trees)=> this.trees = trees);
+        this._MessageTrees(this.bot.id).getList({name: this.filter, page}).then(trees => this.trees = trees);
     }
-    
-    sendPreview(){
+
+    sendPreview() {
         this._MessagePreviews.sendPreview(this.tree);
     }
 

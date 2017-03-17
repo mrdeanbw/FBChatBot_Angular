@@ -39,6 +39,9 @@
                 </tr>
                 </tbody>
             </table>
+            <div class="text-center">
+                <pagination context="$ctrl.pending.meta.pagination" page-changed-callback="$ctrl.paginatePending(page)"></pagination>
+            </div>
         </div>
 
 
@@ -90,6 +93,9 @@
 
                 </tbody>
             </table>
+            <div class="text-center">
+                <pagination context="$ctrl.processed.meta.pagination" page-changed-callback="$ctrl.paginateProcessed(page)"></pagination>
+            </div>
         </div>
 
     </div>

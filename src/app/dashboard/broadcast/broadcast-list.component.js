@@ -1,5 +1,5 @@
 export default{
     templateUrl: 'dashboard/broadcast/views/index.html',
-    bindings: {broadcasts: '<'},
+    bindings: {pending: '<', processed: '<', bot:'<'},
     controller: 'BroadcastController'
 }
