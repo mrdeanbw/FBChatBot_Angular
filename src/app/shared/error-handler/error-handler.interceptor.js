@@ -11,16 +11,17 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
                 return $q.reject(rejection);
             }
 
-            var defer = $q.defer();
+            let defer = $q.defer();
+            let $state = $injector.get('$state');
 
             // Not found
             if (rejection.status == 404) {
-                $injector.get('$state').go('app.404');
+                $state.go('app.404');
             }
 
             // Server Error
             if (rejection.status == 500) {
-                $injector.get('$state').go('app.500');
+                $state.go('app.500');
             }
 
             // Validation Error
@@ -41,9 +42,24 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
 
             // Unauthorized.
             if (rejection.status == 401) {
-                FlashBag.warning("Please login to proceed!");
+                if ($state.current.name == 'app.login') {
+                    toaster.pop('warning', "Please login to proceed!");
+                } else {
+                    FlashBag.warning("Please login to proceed!");
+                }
                 JwtService.destroy();
-                $injector.get('$state').go('app.login');
+                $state.go('app.login');
+            }
+
+            // Forbidding.
+            if (rejection.status == 403) {
+                console.log($state.current.name, rejection.data.message);
+                if ($state.current.name == 'app.permissions') {
+                    toaster.pop('error', "Facebook Permissions needed!", "Don't worry – you are in total control of what your bot does.");
+                } else {
+                    FlashBag.error("Facebook Permissions needed!", "Don't worry – you are in total control of what your bot does.");
+                }
+                $state.go('app.permissions');
             }
 
             defer.reject(rejection);

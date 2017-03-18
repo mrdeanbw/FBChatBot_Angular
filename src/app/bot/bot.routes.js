@@ -46,10 +46,7 @@ function BotRoutes($stateProvider) {
             resolve: {
                 pages: Pages => {
                     'ngInject';
-                    return Pages.getList({notManagedByUser: true}).then(
-                        pages=> pages,
-                        err =>err
-                    );
+                    return Pages.getList({notManagedByUser: true});
                 },
                 activeBots: Bots => {
                     'ngInject';

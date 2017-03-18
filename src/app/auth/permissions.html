@@ -1,0 +1,25 @@
+<div class="lock-container full-height">
+    <default-toaster></default-toaster>
+    <div class="login-container bg-white">
+        <div class="p-l-20 m-l-20 p-r-20 m-r-20 p-t-50 p-b-50 m-t-50 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+            <fieldset ng-disabled="$root.loading">
+                <img src="/img/logo.png" alt="logo" class="m-b-20" width="78" height="22"/>
+                <div>
+                    <p>It seems that you didn't provide us all the necessary permissions.</p>
+                    <p>We need them to do the bot building stuff.</p>
+                    <p>Don't worry – you are in total control of what your bot does.</p>
+                    <form id="form-lock" method="post" ng-submit="$ctrl.login()">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-block btn-info" type="submit">
+                                    <span class="pull-left"><i class="fa fa-facebook"></i></span>
+                                    <span class="bold">Grant Permissions</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

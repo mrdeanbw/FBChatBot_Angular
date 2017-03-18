@@ -27,10 +27,7 @@ class BotController {
     }
 
     refresh() {
-        return this._Pages.getList({notManagedByUser: true}).then(
-            pages=> this.pages = pages,
-            err => this.pages = err
-        );
+        return this._Pages.getList({notManagedByUser: true}).then(pages => this.pages = pages);
     }
 
     hasBot(page) {
@@ -40,7 +37,7 @@ class BotController {
     create() {
         let pageIds = this._lodash.map(this.selected, 'id');
         this._Bots.post({pageIds}).then(
-            (res) => this._$injector.get('$state').go('app.dashboard.overview', {botId: res[0].id})
+            res => this._$injector.get('$state').go('app.dashboard.overview', {botId: res[0].id})
         );
     };
 

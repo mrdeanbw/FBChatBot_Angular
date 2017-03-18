@@ -12,9 +12,7 @@ function ErrorHandlerRun(Pusher, toaster, $rootScope) {
 
         if (user && user.id != previousUserId) {
             previousUserId = user.id;
-            Pusher.subscribe(`${previousUserId}_notifications`, 'error',
-                (data) =>toaster.pop('error', data.title || "Error!", data.message)
-            );
+            Pusher.subscribe(`${previousUserId}_notifications`, 'error', data => toaster.pop('error', data.title || "Error!", data.message));
         }
     });
 }

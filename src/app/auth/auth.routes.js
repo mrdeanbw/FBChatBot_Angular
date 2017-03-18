@@ -31,6 +31,13 @@ function AuthRoutes($stateProvider) {
                 }
             }
         })
+
+        .state('app.permissions', {
+            controller: 'AuthController as $ctrl',
+            title: 'Facebook Permissions needed!',
+            templateUrl: 'auth/permissions.html'
+        })
+
 }
 
 export default AuthRoutes;

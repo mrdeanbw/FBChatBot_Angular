@@ -1,5 +1,4 @@
-<div ng-if="!$ctrl.pages.data">
-
+<div>
     <div class="input-group">
         <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
         <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -50,20 +49,4 @@
         </div>
     </div>
 
-</div>
-
-<div ng-if="$ctrl.pages.data && $ctrl.pages.data.message == 'missing_permissions'">
-    <p>It seems that you didn't provide us all the necessary permissions.</p>
-    <p>We need them to do the bot building stuff.</p>
-    <p>Don't worry – you are in total control of what your bot does.</p>
-    <form id="form-lock" method="post" ng-submit="$ctrl.login()">
-        <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn-block btn-info" type="submit">
-                    <span class="pull-left"><i class="fa fa-facebook"></i></span>
-                    <span class="bold">Grant Permissions</span>
-                </button>
-            </div>
-        </div>
-    </form>
 </div>
