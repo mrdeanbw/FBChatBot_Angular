@@ -42,9 +42,7 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
 
             // Unauthorized.
             if (rejection.status == 401) {
-                if ($state.current.name == 'app.login') {
-                    toaster.pop('warning', "Please login to proceed!");
-                } else {
+                if ($state.current.name != 'app.login') {
                     FlashBag.warning("Please login to proceed!");
                 }
                 JwtService.destroy();
@@ -52,8 +50,7 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
             }
 
             // Forbidding.
-            if (rejection.status == 403) {
-                console.log($state.current.name, rejection.data.message);
+            if (rejection.status == 403 && rejection.data && rejection.data.message == 'missing_permissions') {
                 if ($state.current.name == 'app.permissions') {
                     toaster.pop('error', "Facebook Permissions needed!", "Don't worry – you are in total control of what your bot does.");
                 } else {

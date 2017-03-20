@@ -21,9 +21,13 @@ class AuthController {
                     return this._handleFacebookResponse(res);
                 }
                 // Not logged in, or not authorize, prompt logging in.
-                this._$facebook.login().then(res => this._handleFacebookResponse(res));
+                this.facebookLogin();
             }
         );
+    }
+
+    facebookLogin() {
+        this._$facebook.login().then(res => this._handleFacebookResponse(res));
     }
 
     _logout() {
