@@ -1,18 +1,28 @@
 class BotController {
 
-    constructor(Pages, Bots, $injector, $facebook, UserService, Modals, AppHelpers, lodash) {
+    constructor(Pages, Bots, DisabledBots, $injector, $facebook, UserService, Modals, AppHelpers, lodash, $state, FlashBag) {
         'ngInject';
 
         this._Bots = Bots;
         this._Pages = Pages;
         this._lodash = lodash;
         this._Modals = Modals;
+        this._$state = $state;
+        this._FlashBag = FlashBag;
         this._$injector = $injector;
         this._$facebook = $facebook;
         this._AppHelpers = AppHelpers;
         this._UserService = UserService;
+        this._DisabledBots = DisabledBots;
 
         this.selected = [];
+        this.$onInit = () => {
+            if ($state.current.name == 'app.bot.index') {
+                this.activeBots.tablized = this._AppHelpers.tablize(this.activeBots, 4);
+            } else if ($state.current.name == 'app.bot.disabled') {
+                this.disabledBots.tablized = this._AppHelpers.tablize(this.disabledBots, 3);
+            }
+        }
     }
 
     isSelected(page) {
@@ -56,7 +66,7 @@ class BotController {
 
     openEnableBotModal(bot) {
         this._Modals.openModal({
-            templateUrl: "app/bot/views/enable.modal.html",
+            templateUrl: "bot/views/enable.modal.html",
             controller: this._enableBot,
             inputs: {bot: bot},
             cb: success => {
@@ -74,10 +84,10 @@ class BotController {
         $scope.bot = bot;
 
         $scope.enable = function () {
-            bot.patch({enabled: true}).then(
+            bot.customPOST({}, 'enable').then(
                 response => {
                     $element.modal('hide');
-                    close(response, 500);
+                    close(true, 500);
                 }
             );
         };
@@ -87,6 +97,19 @@ class BotController {
         };
     }
 
+    paginateEnabled(page) {
+        this._Bots.getList({page}).then(bots => {
+            this.activeBots = bots;
+            this.activeBots.tablized = this._AppHelpers.tablize(this.activeBots, 4);
+        });
+    }
+
+    paginateDisabled(page) {
+        this._DisabledBots.getList({page}).then(bots => {
+            this.disabledBots = bots;
+            this.disabledBots.tablized = this._AppHelpers.tablize(this.disabledBots, 3);
+        });
+    }
 
 }
 

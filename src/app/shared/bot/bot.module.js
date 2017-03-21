@@ -8,6 +8,9 @@ let BotModule = angular.module('app.shared.bot', [
 import Bots  from './bot.service';
 BotModule.service('Bots', Bots);
 
+import DisabledBots from './disabled-bot.service';
+BotModule.service('DisabledBots', DisabledBots);
+
 import Pages  from './page.service';
 BotModule.service('Pages', Pages);
 

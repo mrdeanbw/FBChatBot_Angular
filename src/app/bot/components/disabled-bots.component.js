@@ -1,5 +1,5 @@
 export default {
     templateUrl: 'bot/views/disabled.html',
-    bindings: { activeBots: '<', disabledBots: '<' },
+    bindings: { activeBotCount: '<', disabledBots: '<' },
     controller: 'BotController'
 };

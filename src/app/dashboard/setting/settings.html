@@ -1,8 +1,29 @@
 <page-header></page-header>
 
 <div class="container-fluid container-fixed-lg">
-    <div class="row">
-        <div class="col-xs-4 m-b-10">
+    <div class="row m-b-10">
+        <div class="col-xs-4">
+            <div class="panel panel-default">
+                <div class="panel-heading separator">
+                    <div class="panel-title text-danger">Deactivate bot</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row m-t-20">
+                        <div class="col-md-12" ng-click="$ctrl.openDisableBotModal()">
+                            <p>
+                                Deactivating the bot will remove the "Get Started" button, main menu and greeting text.
+                                It will stop Mr. Reply from responding to incoming messages and button clicks.
+                                Furthermore, any scheduled broadcasts and sequence messages won't be sent.
+                            </p>
+                            <div class="text-center m-t-10">
+                                <button class="btn btn-cons btn-danger">Deactivate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-heading separator">
                     <div class="panel-title">Bot's Time Zone</div>

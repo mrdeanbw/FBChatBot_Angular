@@ -8,7 +8,7 @@ function BotRoutes($stateProvider) {
             abstract: true,
             templateUrl: 'bot/views/layout.html',
             resolve: {
-                auth: (UserService) => {
+                auth: UserService => {
                     'ngInject';
                     return UserService.ensureAuthIs(true);
                 }
@@ -24,24 +24,25 @@ function BotRoutes($stateProvider) {
                     'ngInject';
                     return Bots.getList();
                 },
-                disabledBots: Bots => {
+                disabledBotCount: DisabledBots => {
                     'ngInject';
-                    return Bots.getList({disabled: true});
+                    return DisabledBots.one('count').get();
                 }
             }
         })
 
         .state('app.bot.disabled', {
-            url: '/disabled',
+            url: '/deactivated',
             component: 'disabledBots',
+            title: 'Deactivated Chat Bots',
             resolve: {
-                activeBots: Bots => {
+                activeBotCount: Bots => {
                     'ngInject';
-                    return Bots.getList()
+                    return Bots.one('count').get()
                 },
-                disabledBots: Bots => {
+                disabledBots: DisabledBots => {
                     'ngInject';
-                    return Bots.getList({disabled: true})
+                    return DisabledBots.getList()
                 }
             }
         })
@@ -55,13 +56,13 @@ function BotRoutes($stateProvider) {
                     'ngInject';
                     return Pages.getList({notManagedByUser: true});
                 },
-                activeBots: Bots => {
+                activeBotCount: Bots => {
                     'ngInject';
-                    return Bots.getList();
+                    return Bots.one('count').get();
                 },
-                disabledBots: Bots => {
+                disabledBotCount: DisabledBots => {
                     'ngInject';
-                    return Bots.getList({disabled: true});
+                    return DisabledBots.one('count').get();
                 }
             }
         });

@@ -1,7 +1,7 @@
 class Bots {
     constructor(Restangular) {
         'ngInject';
-        return Restangular.service('bots');
+        return Restangular.service('bots/enabled');
     }
 }
 
