@@ -1,5 +1,5 @@
 export default {
     templateUrl: 'bot/views/index.html',
-    bindings: { bots: '=' },
+    bindings: { activeBots: '=', disabledBots : '<' },
     controller: 'BotController'
 };

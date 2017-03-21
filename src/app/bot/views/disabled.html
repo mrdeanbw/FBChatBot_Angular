@@ -5,25 +5,25 @@
     </div>
 
     <div class="row m-t-20 m-b-20 text-center">
-        <div class="col-xs-4 m-t-10 padding-10" ng-repeat="bot in ::$ctrl.bots | filter:search">
+        <div class="col-xs-4 m-t-10 padding-10" ng-repeat="bot in ::$ctrl.disabledBots | filter:search">
             <div class="padding-10" style="border: 1px dashed;">
-                <img ng-src="{{ ::bot.avatar_url }}" alt="{{ ::bot.name }}" style="width: 65px">
-                <h5 class="font-montserrat">{{ ::bot.name }}</h5>
+                <img ng-src="{{ ::bot.page.avatar_url }}" alt="{{ ::bot.page.name }}" style="width: 65px">
+                <h5 class="font-montserrat">{{ ::bot.page.name }}</h5>
                 <button class="btn btn-cons btn-success" ng-click="$ctrl.openEnableBotModal(bot)">Enable</button>
             </div>
         </div>
     </div>
 
-    <div class="row m-b-20" ng-if="!$ctrl.bots.length">
+    <div class="row m-b-20" ng-if="!$ctrl.disabledBots.length">
         <div class="col-xs-12">
             <div class="alert alert-info">You don't have any disabled bot!</div>
         </div>
     </div>
 
-    <div class="row m-b-30">
+    <div class="row m-t-20">
         <div class="col-xs-12 text-center">
-            <a ui-sref="create-bot" class="btn btn-primary m-r-10">New Chat Bot</a>
-            <a ng-if="::$ctrl.activeBots.length" ui-sref="app.bots.index" class="btn btn-default m-r-10">
+            <a ui-sref="app.bot.create" class="btn btn-primary btn-lg m-r-10">New Chat Bot</a>
+            <a ng-if="::$ctrl.activeBots.length" ui-sref="app.bots.index" class="btn btn-lg btn-default m-r-10">
                 Manage Existing Bots
                 ({{::$ctrl.activeBots.length | number }})
             </a>

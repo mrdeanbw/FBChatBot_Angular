@@ -56,7 +56,7 @@ class BotController {
 
     openEnableBotModal(bot) {
         this._Modals.openModal({
-            templateUrl: "/bot/html/enable.modal.html",
+            templateUrl: "app/bot/views/enable.modal.html",
             controller: this._enableBot,
             inputs: {bot: bot},
             cb: success => {

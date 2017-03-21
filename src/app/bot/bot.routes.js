@@ -20,7 +20,14 @@ function BotRoutes($stateProvider) {
             component: 'botList',
             title: 'Chat Bots',
             resolve: {
-                bots: Bots => Bots.getList()
+                activeBots: Bots => {
+                    'ngInject';
+                    return Bots.getList();
+                },
+                disabledBots: Bots => {
+                    'ngInject';
+                    return Bots.getList({disabled: true});
+                }
             }
         })
 

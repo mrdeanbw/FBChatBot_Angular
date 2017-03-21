@@ -1,4 +1,4 @@
-<div ng-if="::$ctrl.bots.length">
+<div ng-if="::$ctrl.activeBots.length">
 
     <div class="input-group m-t-20">
         <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
@@ -7,7 +7,7 @@
 
     <div class="row m-t-20 text-center">
 
-        <div class="col-xs-3 m-t-10" ng-repeat="bot in ::$ctrl.bots | filter:search">
+        <div class="col-xs-3 m-t-10" ng-repeat="bot in ::$ctrl.activeBots | filter:search">
             <a ui-sref="app.dashboard.overview({botId: bot.id})">
                 <img ng-src="{{ ::bot.page.avatar_url }}" alt="{{ ::bot.page.name }}" style="width: 65px">
                 <h6 class="font-montserrat">{{ ::bot.page.name }}</h6>
@@ -25,9 +25,16 @@
 
 </div>
 
-<div ng-if="::(!$ctrl.bots.length)">
-    <div class="alert alert-info">You don't have any bots, yet.</div>
+<div ng-if="::(!$ctrl.activeBots.length)">
+    <div class="alert alert-info">You don't have any active bots.</div>
     <div class="text-center">
-        <a ui-sref="app.bot.create" class="btn btn-lg btn-primary m-t-20 m-b-20">Create your first chat-bot!</a>
+        <a ui-sref="app.bot.create" class="btn btn-lg btn-primary m-t-20">Create your first chat-bot!</a>
     </div>
 </div>
+
+<div ng-if="::$ctrl.disabledBots.length">
+    <div class="text-center">
+        <a ui-sref="app.bot.disabled" class="btn btn-danger m-t-10">Disabled Bots ({{ $ctrl.disabledBots.length | number }}) </a>
+    </div>
+</div>
+
