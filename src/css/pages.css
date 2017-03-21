@@ -6815,7 +6815,7 @@ body.rtl .checkbox label::after {
 }
 
 @media (min-width:768px) and (max-width:991px) {
-    form .row [class*=col-md-]:not(:first-child), form .row [class*=col-md-]:not(: last-child) {
+    form .row [class*=col-md-]:not(:first-child), form .row [class*=col-md-]:not(:last-child) {
         padding-right: 0;
         padding-left: 0
     }
