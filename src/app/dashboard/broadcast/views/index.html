@@ -64,7 +64,7 @@
                 <tr ng-repeat="broadcast in $ctrl.processed">
                     <td class="v-align-middle">{{ broadcast.name }}</td>
                     <td class="v-align-middle p-l-10">
-                        <strong ng-if="broadcast.status == 'running' || broadcast.remaining_target || broadcast.stats.sent < broadcast.stats.target">
+                        <strong ng-if="broadcast.status == 'running' || broadcast.remaining_target">
                             <i class="fa fa-spin fa-spinner text-success"></i>
                             Still Sending...
                             <span>{{ broadcast.stats.sent / (broadcast.stats.target + broadcast.remaining_target) | percentage }}</span>

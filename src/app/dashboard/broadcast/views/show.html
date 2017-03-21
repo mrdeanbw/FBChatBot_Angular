@@ -45,7 +45,7 @@
                             </em>
                         </h5>
                         <hr class="line" style="opacity:1;">
-                        <h5 class="broadcast_state" ng-if="$ctrl.broadcast.status == 'running' || $ctrl.broadcast.stats.sent < $ctrl.broadcast.stats.target">Broadcast is still being sent.</h5>
+                        <h5 class="broadcast_state" ng-if="$ctrl.broadcast.status == 'running' || $ctrl.broadcast.remaining_target">Broadcast is still being sent.</h5>
                         <div class="stats_no row">
                             <div class="sent col-md-6">
                                 <h1>{{ $ctrl.broadcast.stats.sent | number }}</h1>
