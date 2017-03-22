@@ -4,7 +4,7 @@
             <div ng-if="!$ctrl.message.file && $ctrl.message.image_url" class="thumbnail m-b-15">
                 <img ng-src="{{ $ctrl.message.image_url }}"/>
             </div>
-            <div ng-if="$ctrl.message.file" class="thumbnail m-b-15">
+            <div ng-if="$ctrl.message.file.encoded" class="thumbnail m-b-15">
                 <img ng-src="{{ $ctrl.message.file.encoded }}"/>
             </div>
             <image-uploader image-uploaded-callback="$ctrl.imageChanged(file)"></image-uploader>
