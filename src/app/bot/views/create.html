@@ -1,55 +1,53 @@
-<div>
-    <div class="input-group">
-        <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-    </div>
+<h4>Create Chatbot</h4>
+<div class="input-group">
+    <input type="text" class="form-control" ng-model="search.name" placeholder="Filter">
+    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+</div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div ng-repeat="page in $ctrl.pages | filter:search" class="checkbox check-primary checkbox-circle">
-                <input type="checkbox" value="{{ ::(page.id) }}" ng-click="$ctrl.toggleSelection(page)" ng-checked="$ctrl.isSelected(page)" id="{{ ::(page.id) }}">
-                <label for="{{ ::(page.id) }}" style="width: 100%">
-                    {{ ::(page.name) }}
-                    <span class="label label-inverse" ng-if="$ctrl.hasBot(page)">
+<div class="row">
+    <div class="col-md-12">
+        <div ng-repeat="page in $ctrl.pages | filter:search" class="checkbox check-primary checkbox-circle">
+            <input type="checkbox" value="{{ ::(page.id) }}" ng-click="$ctrl.toggleSelection(page)" ng-checked="$ctrl.isSelected(page)" id="{{ ::(page.id) }}">
+            <label for="{{ ::(page.id) }}" style="width: 100%">
+                {{ ::(page.name) }}
+                <span class="label label-inverse" ng-if="$ctrl.hasBot(page)">
                         (Chat-bot already created)
                     </span>
-                    <span class="label label-danger m-l-5" ng-if="$ctrl.hasBot(page) && page.bot_enabled === false">
+                <span class="label label-danger m-l-5" ng-if="$ctrl.hasBot(page) && page.bot_enabled === false">
                         (Chat-bot Disabled)
                     </span>
-                </label>
-                <div ng-if="$ctrl.hasBot(page) && page.bot_enabled === false && $ctrl.isSelected(page)" class="alert alert-warning m-t-5">
-                    Chat-bot will be reactivated for this page.
-                </div>
+            </label>
+            <div ng-if="$ctrl.hasBot(page) && page.bot_enabled === false && $ctrl.isSelected(page)" class="alert alert-warning m-t-5">
+                Chat-bot will be reactivated for this page.
             </div>
         </div>
     </div>
+</div>
 
-    <div ng-if="!$ctrl.pages.length" class="alert alert-warning m-t-20">
-        <p class="lead semi-bold">
-            You need at least one Facebook Page to create a bot.<br /><br />
-            Click <a href="https://www.facebook.com/pages/create/" target="_blank">here</a> to create it, then come back
-            and click on the refresh button.
-        </p>
+<div ng-if="!$ctrl.pages.length" class="alert alert-warning m-t-20">
+    <p class="lead semi-bold">
+        You need at least one Facebook Page to create a bot.<br/><br/>
+        Click <a href="https://www.facebook.com/pages/create/" target="_blank">here</a> to create it, then come back
+        and click on the refresh button.
+    </p>
+</div>
+
+<div class="row m-t-20">
+    <div class="col-xs-12">
+        <button pg-tooltip data-trigger="hover" data-original-title="Refresh" ng-click="$ctrl.refresh()"
+                class="btn btn-sm btn-success">
+            <i class="fa fa-refresh"></i>
+        </button>
+
+        <button ng-disabled="!$ctrl.selected.length" ng-click="$ctrl.create()" class="btn btn-sm btn-primary">
+            Manage Selected Page(s)
+        </button>
+
+        <a ng-if="::($ctrl.disabledBotCount.count)" ui-sref="app.bot.disabled" class="btn btn-sm btn-danger pull-right">
+            Disabled Bots ({{ ::($ctrl.disabledBotCount.count) | number }})
+        </a>
+        <a ng-if="::$ctrl.activeBotCount.count" ui-sref="app.bot.index" class="btn btn-sm m-r-5 btn-info pull-right">
+            Existing Bots ({{ ::($ctrl.activeBotCount.count) | number }})
+        </a>
     </div>
-
-    <div class="row m-t-20">
-        <div class="col-xs-12">
-            <button pg-tooltip data-trigger="hover" data-original-title="Refresh" ng-click="$ctrl.refresh()"
-                    class="btn btn-sm btn-success">
-                <i class="fa fa-refresh"></i>
-            </button>
-
-            <button ng-disabled="!$ctrl.selected.length" ng-click="$ctrl.create()" class="btn btn-sm btn-primary">
-                Manage Selected Page(s)
-            </button>
-
-            <a ng-if="::($ctrl.disabledBotCount.count)" ui-sref="app.bot.disabled" class="btn btn-sm btn-danger pull-right">
-                Disabled Bots ({{ ::($ctrl.disabledBotCount.count) | number }})
-            </a>
-            <a ng-if="::$ctrl.activeBotCount.count" ui-sref="app.bot.index" class="btn btn-sm m-r-5 btn-info pull-right">
-                Existing Bots ({{ ::($ctrl.activeBotCount.count) | number }})
-            </a>
-        </div>
-    </div>
-
 </div>

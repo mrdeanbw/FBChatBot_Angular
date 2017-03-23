@@ -20,7 +20,7 @@ function AppConfig($locationProvider, $urlRouterProvider, $compileProvider, $log
 
     $compileProvider.commentDirectivesEnabled(false);
     $compileProvider.cssClassDirectivesEnabled(false);
-    if (__ENV.environment != 'local') {
+    if (__ENV.environment !== 'local') {
         $compileProvider.debugInfoEnabled(false);
         $logProvider.debugEnabled(false);
     }
