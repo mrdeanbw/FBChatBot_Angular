@@ -23,9 +23,6 @@ appModule.config(appConfig);
 import appRun  from './app.run';
 appModule.run(appRun);
 
-// Mount on window for testing
-window.app = appModule;
-
 angular.bootstrap(document, ['app'], {
     strictDi: true
 });

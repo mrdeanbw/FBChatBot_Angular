@@ -14,7 +14,6 @@ function pgSidebar() {
             // Toggle sub menus
             $('body').on('click', '.sidebar-menu a', function () {
                 if ($(this).parent().children('.sub-menu') === false) {
-                    console.log('here');
                     return;
                 }
                 var el = $(this);

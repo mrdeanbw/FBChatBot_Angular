@@ -18,12 +18,10 @@ function MessageHistoryRoutes($stateProvider) {
             resolve: {
                 revisions: (MessageRevisions, MainMenuButtonRevisions, $stateParams, bot) => {
                     'ngInject';
-
-                    console.log($stateParams);
                     if ($stateParams.mainMenuButton) {
                         return MainMenuButtonRevisions(bot.id, $stateParams.messageId).getList();
                     }
-                    
+
                     return MessageRevisions(bot.id, $stateParams.messageId).getList();
                 }
             }
