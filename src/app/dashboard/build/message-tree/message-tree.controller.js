@@ -189,19 +189,19 @@ class MessageTreeController {
                 let source = e.source.nodeScope.node;
                 let destination = e.dest.nodesScope.node ? e.dest.nodesScope.node : undefined;
 
-                if (source.type == 'button') {
-                    if (destination && (destination.type == 'text' || destination.type == 'card')) {
+                if (source.type === 'button') {
+                    if (destination && (destination.type === 'text' || destination.type === 'card')) {
                         return true;
                     }
                     this._showError("Buttons can only dragged into Text and Card blocks!");
                     return false;
                 }
 
-                if (source.type == 'card') {
-                    if (destination && destination.type == 'card_container') {
+                if (source.type === 'card') {
+                    if (destination && destination.type === 'card_container') {
                         return true;
                     }
-                    this._showError("Cards can only be dragged into card containers!");
+                    this._showError("Cards can only be dragged into gallery!");
                     return false;
                 }
 
@@ -209,7 +209,7 @@ class MessageTreeController {
                     return true;
                 }
 
-                if (destination.type == 'button') {
+                if (destination.type === 'button') {
                     if (destination.template) {
                         this._showError("Buttons that have associated message trees cannot have other messages.");
                         return false;

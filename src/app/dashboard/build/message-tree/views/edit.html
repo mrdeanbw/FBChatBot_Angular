@@ -22,7 +22,7 @@
                 {{ node.title }}
             </span>
 
-            <em ng-if="node.type == 'card_container'">[Card Container]</em>
+            <em ng-if="node.type == 'card_container'">[Gallery]</em>
 
             <span ng-if="node.type == 'card'">
                 <em>[Card]</em>
@@ -152,7 +152,7 @@
                 </button>
                 <button class="btn btn-primary bg-primary-dark m-r-10 m-b-10"
                         ng-click="$ctrl.addCardContainer($ctrl.active)">
-                    + Add Card Container
+                    + Add Gallery
                 </button>
             </div>
         </div>
