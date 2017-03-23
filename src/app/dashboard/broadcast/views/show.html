@@ -19,7 +19,7 @@
 
             </div>
 
-            <div class="message" ng-class="{'message_active': message == $ctrl.active}" ng-repeat-start="message in $ctrl.broadcast.template.messages" ng-if="message.type == 'text'" ng-click="$ctrl.active = message">
+            <div class="message" ng-class="{'left_message_active': message == $ctrl.active}" ng-repeat-start="message in $ctrl.broadcast.template.messages" ng-if="message.type == 'text'" ng-click="$ctrl.active = message">
                 <div class="message_content row">
                     <p ng-bind-html="message.text | messageVariables"></p>
                     <img class="down_btn col-md-3" src="img/icons/downarrow.svg" ng-if="message.buttons.length"/>
@@ -77,14 +77,16 @@
                             </div>
                         </div>
                         <hr class="line" style="opacity:1;">
-                        <p class="message_stats show" ng-if="$ctrl.active.type == 'text'" ng-bind-html="$ctrl.active.text | messageVariables"></p>
-                        <div class="btn_stats_no show row column-separation" ng-if="$ctrl.active.buttons.length">
-                            <div class="btn_stats col-md-4" ng-repeat="button in $ctrl.active.buttons">
-                                <div class="btn_header col-md-12">{{ button.title }}</div>
-                                <div class="btn_no row">
-                                    <h4 class="ctr col-md-12">CTR {{ button.stats.clicked.per_subscriber / $ctrl.broadcast.stats.sent | percentage}}</h4>
-                                    <div class="col-md-6"><h5>{{ button.stats.clicked.total }}</h5><h5 class="text">Total clicks</h5></div>
-                                    <div class="col-md-6"><h5>{{ button.stats.clicked.per_subscriber }}</h5><h5 class="text">User clicks</h5></div>
+                        <div class="message_stats right_message_active" ng-if="$ctrl.active">
+                            <p ng-if="$ctrl.active.type == 'text'" ng-bind-html="$ctrl.active.text | messageVariables"></p>
+                            <div class="btn_stats_no row column-separation" ng-if="$ctrl.active.buttons.length">
+                                <div class="btn_stats col-md-4" ng-repeat="button in $ctrl.active.buttons">
+                                    <div class="btn_header col-md-12">{{ button.title }}</div>
+                                    <div class="btn_no row">
+                                        <h4 class="ctr col-md-12">CTR {{ button.stats.clicked.per_subscriber / $ctrl.broadcast.stats.sent | percentage}}</h4>
+                                        <div class="col-md-6"><h5>{{ button.stats.clicked.total }}</h5><h5 class="text">Total clicks</h5></div>
+                                        <div class="col-md-6"><h5>{{ button.stats.clicked.per_subscriber }}</h5><h5 class="text">User clicks</h5></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

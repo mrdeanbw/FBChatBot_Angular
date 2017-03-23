@@ -408,28 +408,26 @@
 }
 
 #message-stats .message {
-    opacity: .8;
+    opacity: 0.8;
     cursor: pointer;
     margin-top: 20px;
     margin-left: 30px;
     width: 85%;
     background-color: transparent;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
-
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
-#message-stats .message_active {
+#message-stats .left_message_active {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
     opacity: 1;
     background-color: #3b3a47;
     -webkit-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
     -moz-box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
     box-shadow: 0 15px 50px 0 rgba(1, 1, 1, 0.2);
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
-
 }
 
 #message-stats .message:hover {
@@ -554,8 +552,6 @@
 
 #message-stats .message_stats {
     opacity: 0;
-    visibility: hidden;
-    /*    display: none;*/
     font-size: 15px !important;
     color: #909090;
     font-family: 'Montserrat', sans-serif;
@@ -572,9 +568,6 @@
 }
 
 #message-stats .btn_stats_no {
-    opacity: 0;
-    visibility: hidden;
-    /*    display: none;*/
     width: 90%;
     margin-left: 5%;
     padding-bottom: 10px;
@@ -634,13 +627,31 @@
     background: #605f74;
 }
 
-#message-stats .show {
-    display: block;
-    visibility: visible;
+#message-stats .right_message_active {
     opacity: 1;
-    -webkit-transition: visibility 0s, opacity 0.5s linear;
-    -moz-transition: visibility 0s, opacity 0.5s linear;
-    transition: visibility 0s, opacity 0.5s linear;
+}
+
+#message-stats .right_message_active.ng-leave {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#message-stats .right_message_active.ng-enter {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#message-stats .right_message_active.ng-enter,
+#message-stats .right_message_active.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+#message-stats .right_message_active.ng-leave,
+#message-stats .right_message_active.ng-enter.ng-enter-active {
+    opacity: 1;
+    top: -250px
 }
 
 body.menu-pin .page-sidebar {
