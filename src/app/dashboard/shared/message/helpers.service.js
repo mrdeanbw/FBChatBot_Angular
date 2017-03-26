@@ -1,8 +1,10 @@
 class MessageHelpers {
-    constructor(AppHelpers, lodash, Modals) {
+    constructor(AppHelpers, lodash, Modals, $timeout, $filter) {
         'ngInject';
         this._lodash = lodash;
         this._Modals = Modals;
+        this._$timeout = $timeout;
+        this._$filter = $filter;
         this._AppHelpers = AppHelpers;
     }
 
@@ -48,6 +50,12 @@ class MessageHelpers {
             cb: confirmed => {
                 if (confirmed) {
                     this._remove(container, message);
+                    if (container.type === 'card_container') {
+                        this._$timeout(() => {
+                            let hashkey = this._$filter('normalizedHashkey')(container.$$hashKey);
+                            angular.element('#carousel_' + hashkey).carousel(0)
+                        });
+                    }
                 }
             }
         });

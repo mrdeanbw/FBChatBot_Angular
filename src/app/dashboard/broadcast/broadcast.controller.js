@@ -190,7 +190,6 @@ class BroadcastCtrl {
                     let addSequences = angular.copy(button.actions.add_sequences);
                     let removeSequences = angular.copy(button.actions.remove_sequences);
                     let ids = addSequences.concat(removeSequences).join(',');
-                    console.log(addSequences, removeSequences, ids);
                     button.actions.add_sequences = [];
                     button.actions.remove_sequences = [];
                     Sequences($rootScope.bot.id).getList({ids}).then(
@@ -203,7 +202,6 @@ class BroadcastCtrl {
                                 }
                             }
                             $scope.loading = false;
-                            console.log(button.actions);
                             button.sequencesFetched = true;
                         }
                     );

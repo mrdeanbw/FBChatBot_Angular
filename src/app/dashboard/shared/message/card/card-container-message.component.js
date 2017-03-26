@@ -61,7 +61,6 @@ class CardContainerController {
             let hashkey = this._$filter('normalizedHashkey')(this.message.$$hashKey);
             angular.element('#carousel_' + hashkey).carousel(index)
         });
-
     }
 }
 

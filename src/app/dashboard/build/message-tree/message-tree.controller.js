@@ -54,12 +54,19 @@ class MessageTreeController {
     }
 
     duplicate(message, scope) {
+        let container = this._getContainer(scope, message);
         let duplicate = angular.copy(message);
         this._clearIDs(duplicate);
-        this._getContainer(scope, message).push(duplicate);
-        if (duplicate.type == 'card') {
-            this.editCard(duplicate, scope);
-        } else if (duplicate.type == 'button') {
+        container.push(duplicate);
+        if (duplicate.type === 'card') {
+            let parent = this._getParentNode(scope, message);
+            this.edit(parent);
+            this._$timeout(() => {
+                let hashkey = this._$filter('normalizedHashkey')(parent.$$hashKey);
+                let index = container.indexOf(duplicate);
+                angular.element('#carousel_' + hashkey).carousel(index);
+            });
+        } else if (duplicate.type === 'button') {
             this.editButton(duplicate, scope);
         } else {
             this.edit(duplicate);
@@ -67,20 +74,20 @@ class MessageTreeController {
     }
 
     _getParentScope(scope, node) {
-        while (scope && scope.node == node) scope = scope.$parent;
+        while (scope && scope.node === node) scope = scope.$parent;
         return scope.node ? scope : this;
     }
 
     _getParentNode(scope, node) {
         let parentScope = this._getParentScope(scope, node);
-        return parentScope == this ? this.tree : parentScope.node;
+        return parentScope === this ? this.tree : parentScope.node;
     }
 
     _getContainer(scope, node) {
         let container = this._getParentNode(scope, node);
-        if (node.type == 'button') {
+        if (node.type === 'button') {
             container = container.buttons;
-        } else if (node.type == 'card') {
+        } else if (node.type === 'card') {
             container = container.cards;
         } else {
             container = container.messages;
@@ -116,16 +123,16 @@ class MessageTreeController {
         let parentScope = this._getParentScope(scope, button);
         let parent = parentScope.node;
         let delay;
-        if (parent.type == 'card') {
+        if (parent.type === 'card') {
             let cardContainer = this._getParentNode(parent, parentScope);
             delay = cardContainer == this.active ? 0 : 400;
             this.editCard(parent, parentScope);
         } else {
-            delay = parent == this.active ? 0 : 150;
+            delay = parent === this.active ? 0 : 150;
             this.edit(parent);
         }
 
-        this._$timeout(()=> {
+        this._$timeout(() => {
             this._MessageHelpers.openButtonModal(parent.buttons, button);
         }, delay);
     }
@@ -138,7 +145,7 @@ class MessageTreeController {
             cb: confirmed => {
                 if (confirmed) {
                     let node = scope.node;
-                    if (this.active == node) {
+                    if (this.active === node) {
                         this.active = this.tree;
                     }
                     if (node.explicit) {
@@ -161,11 +168,11 @@ class MessageTreeController {
     }
 
     addCardContainer(node) {
-        this._addMessage(container, {type: 'card_container', cards: []});
+        this._addMessage(node, {type: 'card_container', cards: []});
     }
 
     _addMessage(node, message) {
-        if (node.type == 'button') {
+        if (node.type === 'button') {
             node.template = undefined;
         }
         this._MessageHelpers.addMessage(node.messages, message);

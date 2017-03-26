@@ -10,16 +10,13 @@
                     <div class="row">
                         <div class="col-xs-12 m-b-10">
                             <div class="text-center">
-                                <a ng-if="$ctrl.canMoveNext(card)" href="" class="btn btn-info btn-xs"
-                                   ng-click="$ctrl.moveNext(card)">
+                                <a ng-if="$ctrl.canMoveNext(card)" href="" class="btn btn-info btn-xs" ng-click="$ctrl.moveNext(card)">
                                     Move Right <i class="fa fa-arrow-right"></i>
                                 </a>
-                                <a ng-if="$ctrl.canMovePrevious(card)" href="" class="btn btn-info btn-xs"
-                                   ng-click="$ctrl.movePrevious(card)">
+                                <a ng-if="$ctrl.canMovePrevious(card)" href="" class="btn btn-info btn-xs" ng-click="$ctrl.movePrevious(card)">
                                     Move Left <i class="fa fa-arrow-left"></i>
                                 </a>
-                                <a ng-if="$ctrl.removable(card)" href="" class="btn btn-danger btn-xs"
-                                   ng-click="$ctrl.remove(card)">
+                                <a ng-if="$ctrl.removable(card)" href="" class="btn btn-danger btn-xs" ng-click="$ctrl.openDeleteModal(card)">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
