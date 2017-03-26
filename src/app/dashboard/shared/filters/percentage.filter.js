@@ -1,11 +1,10 @@
 let percentageFilter = ($filter) => {
     'ngInject';
 
-    return (input, decimals) => {
+    return (input, decimals = 2) => {
         if (isNaN(input)) {
             return 'N/A';
         }
-        decimals = decimals || 2;
         return $filter('number')(input * 100, decimals) + '%';
     };
 };

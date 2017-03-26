@@ -1,7 +1,9 @@
 class BroadcastCtrl {
 
-    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, $filter, Modals, jstz, $scope) {
+    constructor($state, toaster, Broadcasts, AppHelpers, FlashBag, $filter, Modals, jstz, $scope, MessageHelpers) {
         'ngInject';
+
+        this._MessageHelpers = MessageHelpers;
 
         this._$state = $state;
         this._Modals = Modals;
@@ -53,7 +55,7 @@ class BroadcastCtrl {
     }
 
     save() {
-        if (this.broadcast.send_mode == 'now') {
+        if (this.broadcast.send_mode === 'now') {
             return this._Modals.openModal({
                 templateUrl: 'dashboard/broadcast/views/send-now.modal.html',
                 inputs: {count: this.activeCount},
@@ -116,7 +118,7 @@ class BroadcastCtrl {
         $scope.broadcast = broadcast;
 
         $scope.delete = () => {
-            broadcast.remove().then(()=> {
+            broadcast.remove().then(() => {
                 close(true, 500);
             });
         };
@@ -134,15 +136,15 @@ class BroadcastCtrl {
     }
 
     timezoneModeChanged() {
-        if (this.broadcast.timezone_mode == 'bot') {
+        if (this.broadcast.timezone_mode === 'bot') {
             return this.broadcast.timezone = this.bot.timezone;
         }
 
-        if (this.broadcast.timezone_mode == 'subscriber') {
+        if (this.broadcast.timezone_mode === 'subscriber') {
             return this.broadcast.timezone = undefined;
         }
 
-        if (this.broadcast.timezone_mode == 'custom' && !this.broadcast.timezone) {
+        if (this.broadcast.timezone_mode === 'custom' && !this.broadcast.timezone) {
             this.broadcast.timezone = this.userTimezone;
         }
     }
@@ -152,11 +154,11 @@ class BroadcastCtrl {
     }
 
     updateLastInteractionAt() {
-        if (this.broadcast.message_type == 'promotional') {
+        if (this.broadcast.message_type === 'promotional') {
             return this.last_interaction_at = 'last_24_hours';
         }
 
-        if (this.broadcast.message_type == 'follow_up') {
+        if (this.broadcast.message_type === 'follow_up') {
             return this.last_interaction_at = 'not:last_24_hours';
         }
 
@@ -173,6 +175,42 @@ class BroadcastCtrl {
 
     paginateProcessed(page) {
         this._Broadcasts(this.bot.id).one('non-pending').getList('', {page}).then(processed => this.processed = processed);
+    }
+
+    showButtonDetails(button) {
+        return this._Modals.openModal({
+            templateUrl: 'dashboard/broadcast/views/button-details.modal.html',
+            inputs: {button},
+            controller: function ($scope, close, button, Sequences, $rootScope) {
+                'ngInject';
+                $scope.button = button;
+                if (button.sequencesFetched) {
+                    $scope.loading = false;
+                } else {
+                    let addSequences = angular.copy(button.actions.add_sequences);
+                    let removeSequences = angular.copy(button.actions.remove_sequences);
+                    let ids = addSequences.concat(removeSequences).join(',');
+                    console.log(addSequences, removeSequences, ids);
+                    button.actions.add_sequences = [];
+                    button.actions.remove_sequences = [];
+                    Sequences($rootScope.bot.id).getList({ids}).then(
+                        sequences => {
+                            for (let sequence of sequences) {
+                                if (addSequences.includes(sequence.id)) {
+                                    button.actions.add_sequences.push(sequence);
+                                } else {
+                                    button.actions.remove_sequences.push(sequence);
+                                }
+                            }
+                            $scope.loading = false;
+                            console.log(button.actions);
+                            button.sequencesFetched = true;
+                        }
+                    );
+                }
+
+            }
+        });
     }
 }
 

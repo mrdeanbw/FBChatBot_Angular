@@ -1,0 +1,76 @@
+<div class="modal fade" id="button-details-modal">
+    <div class="modal-dialog">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close fs-14"></i></button>
+                    <h5 class="modal-title">{{ button.title }}</h5>
+                </div>
+                <hr class="line"/>
+                <div class="modal-body">
+                    <p>
+                        <small>URL</small>
+                    </p>
+                    <p>{{ button.url }}</p>
+                    <span class="space"></span>
+
+                    <p>
+                        <small>Message Tree</small>
+                    </p>
+                    <p>{{ button.template.name || '-' }}</p>
+                    <span class="space"></span>
+
+                    <p>
+                        <small>Add Tags</small>
+                    </p>
+                    <p style="margin-top: 12px;" ng-if="button.actions.add_tags.length">
+                        <span ng-repeat="tag in button.actions.add_tags">
+                            <span class="add-tag">{{ tag }}</span>
+                        </span>
+                    </p>
+                    <p ng-if="!button.actions.add_tags.length">-</p>
+                    <span class="space"></span>
+
+                    <p>
+                        <small>Remove Tags</small>
+                    </p>
+                    <p style="margin-top: 12px;" ng-if="button.actions.remove_tags.length">
+                        <span ng-repeat="tag in button.actions.remove_tags">
+                            <span class="remove-tag">{{ tag }}</span>
+                        </span>
+                    </p>
+                    <p ng-if="!button.actions.remove_tags.length">-</p>
+                    <span class="space"></span>
+
+                    <p>
+                        <small>Add Sequences</small>
+                    </p>
+
+                    <p ng-if="!loading && button.actions.add_sequences.length">
+                        <span class="add-sequence" ng-repeat="sequence in button.actions.add_sequences">
+                            {{ sequence.name }}<span ng-if="!$last">, </span>
+                        </span>
+                    </p>
+                    <p ng-if="!loading && !button.actions.add_sequences.length">-</p>
+                    <p ng-if="loading" style="opacity: 0.6"><em>Loading...</em></p>
+                    <span class="space"></span>
+
+                    <p>
+                        <small>Remove Sequences</small>
+                    </p>
+                    <p ng-if="!loading && button.actions.remove_sequences.length">
+                        <span class="remove-sequence" ng-repeat="sequence in button.actions.remove_sequences">
+                            {{ sequence.name }}<span ng-if="!$last">, </span>
+                        </span>
+                    </p>
+                    <p ng-if="!loading && !button.actions.remove_sequences.length">-</p>
+                    <p ng-if="loading" style="opacity: 0.6"><em>Loading...</em></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close_modal btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

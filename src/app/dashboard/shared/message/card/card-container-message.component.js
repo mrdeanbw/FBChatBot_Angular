@@ -3,7 +3,7 @@ class CardContainerController {
         'ngInject';
         this._MessageHelpers = MessageHelpers;
 
-        this.MAX_CARDS = 5;
+        this.MAX_CARDS = 10;
 
         /**
          * @todo Move out of controller (directive?)
