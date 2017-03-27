@@ -45,11 +45,6 @@ class BroadcastCtrl {
                 if (!this.broadcast.timezone) {
                     this.broadcast.timezone = undefined;
                 }
-                $scope.$watch(
-                    () => this.broadcast.message_type,
-                    () => this.updateLastInteractionAt(),
-                    true
-                );
             };
         }
     }
@@ -151,18 +146,6 @@ class BroadcastCtrl {
 
     targetAudienceCountChanged(count) {
         this.activeCount = count;
-    }
-
-    updateLastInteractionAt() {
-        if (this.broadcast.message_type === 'promotional') {
-            return this.last_interaction_at = 'last_24_hours';
-        }
-
-        if (this.broadcast.message_type === 'follow_up') {
-            return this.last_interaction_at = 'not:last_24_hours';
-        }
-
-        this.last_interaction_at = undefined;
     }
 
     getDateObject(broadcast) {

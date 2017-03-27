@@ -23,9 +23,9 @@ class FilterAudienceController {
 
             $scope.$watch(() => this.model, () => this._updateCount(), true);
             $scope.$watch(
-                () => this.lastInteractionAt,
+                () => this.messageType,
                 (newValue, oldValue) => {
-                    if (newValue != oldValue)
+                    if (newValue !== oldValue)
                         this._updateCount();
                 },
                 true
@@ -57,11 +57,14 @@ class FilterAudienceController {
 
     _updateCount() {
         let params = {count: 1, filter: {filter: this.model}};
-        if (this.lastInteractionAt) {
-            params.filter.last_interaction_at = this.lastInteractionAt;
+        if (this.messageType === 'promotional') {
+            params.filter.last_interaction_at = 'last_24_hours';
+        } else if (this.messageType === 'follow_up') {
+            params.filter.last_interaction_at = 'not:last_24_hours';
+            params.filter.follow_up = true;
         }
-        this._Subscribers(this._$rootScope.bot.id).getList(params).then(data => {
-            this.count = data.meta.pagination.total;
+        this._Subscribers(this._$rootScope.bot.id).one('count').get(params).then(data => {
+            this.count = data.count;
             if (this.targetAudienceChanged) {
                 this.targetAudienceChanged({count: this.count});
             }
@@ -71,6 +74,6 @@ class FilterAudienceController {
 
 export default{
     templateUrl: 'dashboard/shared/filter-audience/filter-audience.html',
-    bindings: {enableControl: '<', model: '=', allowedFilters: '<', lastInteractionAt: '<', targetAudienceChanged: '&'},
+    bindings: {enableControl: '<', model: '=', allowedFilters: '<', messageType: '<', targetAudienceChanged: '&'},
     controller: FilterAudienceController
 }
