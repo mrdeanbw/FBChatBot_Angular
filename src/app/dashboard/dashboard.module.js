@@ -3,7 +3,7 @@ import angular from 'angular';
 import './build/build.module';
 import './shared/shared.module';
 import './setting/setting.module';
-import './sequence/sequence.module';
+// import './sequence/sequence.module';
 import './overview/overview.module';
 import './broadcast/broadcast.module';
 import './subscriber/subscriber.module';
@@ -14,7 +14,7 @@ let dashboardModule = angular.module('app.dashboard', [
     'app.dashboard.shared',
     'app.dashboard.setting',
     'app.dashboard.overview',
-    'app.dashboard.sequence',
+    // 'app.dashboard.sequence',
     'app.dashboard.broadcast',
     'app.dashboard.subscriber',
     'app.dashboard.message.history'

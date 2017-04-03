@@ -4,7 +4,6 @@ import 'angular-sanitize';
 import 'angular-ui-select/select.min';
 import '../../../../bower_components/ng-switchery/src/ng-switchery';
 
-import './jstz/jstz.module';
 import './message/message.module';
 import './filters/filters.module';
 import './services/services.module';
@@ -18,7 +17,6 @@ let sharedModule = angular.module('app.dashboard.shared', [
     'ngSanitize',
     'NgSwitchery',
     'ngFileUpload',
-    'app.dashboard.shared.jstz',
     'app.dashboard.shared.message',
     'app.dashboard.shared.filters',
     'app.dashboard.shared.services',

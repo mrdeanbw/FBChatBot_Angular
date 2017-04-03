@@ -11,9 +11,9 @@
         <div class="row" ng-if="!$ctrl.isValid">
             <div class="col-xs-9">
                 <div class="alert alert-danger">
-                    Since you are on a free plan, your greeting text has to end with the following: <strong>"- Powered By: MrReply.com"</strong>.<br />
-                    If you want to remove this part, you should upgarde to a pro plan.<br />
-                    For now, you can either add that text manually, click that "Fix Automatically" button.<br />
+                    Since you are on a free plan, your greeting text has to end with the following: <strong>"- Powered By: MrReply.com"</strong>.<br/>
+                    If you want to remove this part, you should upgarde to a pro plan.<br/>
+                    For now, you can either add that text manually, click that "Fix Automatically" button.<br/>
                     <a href="" ng-click="$ctrl.fix()" class="btn btn-success">Fix Automatically</a>
                     <a ui-sref="app.dashboard.settings({upgrade:true})" class="btn btn-primary">Upgrade To Pro</a>
                 </div>
@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>
                                         <div id="gt_preview_avatar_container">
-                                            <img ng-src="{{ $ctrl.bot.page.avatar_url }}" width="50" height="50" alt="" id="gt_preview_avatar" />
+                                            <img ng-src="{{ $ctrl.bot.page.avatar_url }}" width="50" height="50" alt="" id="gt_preview_avatar"/>
                                         </div>
                                         <div id="gt_preview_page_summary">
                                             <div id="gt_preview_likes">
@@ -72,9 +72,10 @@
             </div>
             <div class="col-xs-4 fs-14 p-t-10">
                 <p class="semi-bold">You may use the following dynamic short-codes in your message:</p>
-                <p>To display the user's first name: <span class="label label-info" ng-non-bindable>{{first_name}}</span></p>
-                <p>To display the user's last name: <span class="label label-info" ng-non-bindable>{{last_name}}</span></p>
-                <p> To display the user's full name: <span class="label label-info" ng-non-bindable>{{full_name}}</span></p>
+                <p>To display the user's first name: <span class="label label-info" ng-non-bindable>{{user_first_name}}</span></p>
+                <p>To display the user's last name: <span class="label label-info" ng-non-bindable>{{user_last_name}}</span></p>
+                <p>To display the user's full name: <span class="label label-info" ng-non-bindable>{{user_full_name}}</span></p>
+                <p>To display the page's name: <span class="label label-info" ng-non-bindable>{{page_name}}</span></p>
             </div>
         </div>
     </div>

@@ -51,22 +51,22 @@
                                 </div>
                             </div>
                             <hr ng-if="!isMainMenuButton || button.main_action == 'template'"/>
+                            <!--<div class="row column-seperation" ng-if="!isMainMenuButton || button.main_action == 'template'">-->
+                                <!--<div class="col-sm-6">-->
+                                    <!--<select-sequences model="button.add_sequences" label="'When button clicked, Subscribe user to sequence(s)'"></select-sequences>-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-6">-->
+                                    <!--<select-sequences model="button.remove_sequences" label="'When button clicked, Unsubscribe user from sequence'"></select-sequences>-->
+                                <!--</div>-->
+                                <!--<hr/>-->
+                            <!--</div>-->
+                            <!--<hr ng-if="!isMainMenuButton || button.main_action == 'template'"/>-->
                             <div class="row column-seperation" ng-if="!isMainMenuButton || button.main_action == 'template'">
                                 <div class="col-sm-6">
-                                    <select-sequences model="button.actions.add_sequences" label="'When button clicked, Subscribe user to sequence(s)'"></select-sequences>
+                                    <select-tags model="button.add_tags" label="'Add tag to user when this button is clicked'"></select-tags>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select-sequences model="button.actions.remove_sequences" label="'When button clicked, Unsubscribe user from sequence'"></select-sequences>
-                                </div>
-                                <hr/>
-                            </div>
-                            <hr ng-if="!isMainMenuButton || button.main_action == 'template'"/>
-                            <div class="row column-seperation" ng-if="!isMainMenuButton || button.main_action == 'template'">
-                                <div class="col-sm-6">
-                                    <select-tags model="button.actions.add_tags" label="'Add tag to user when this button is clicked'"></select-tags>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select-tags model="button.actions.remove_tags" label="'Remove tag from the user when this button is clicked'"></select-tags>
+                                    <select-tags model="button.remove_tags" label="'Remove tag from the user when this button is clicked'"></select-tags>
                                 </div>
                             </div>
                         </div>

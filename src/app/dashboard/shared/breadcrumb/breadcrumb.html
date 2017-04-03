@@ -1,6 +1,7 @@
 <ul class="breadcrumb">
     <li ng-repeat="breadcrumb in $ctrl.breadcrumb">
-        <a ng-if="::breadcrumb.url" ui-sref="{{ ::breadcrumb.url }}" ui-sref-active="active">{{ ::breadcrumb.title }}</a>
-        <a ng-if="::(!breadcrumb.url)">{{ ::breadcrumb.title }}</a>
+        <a ng-if="breadcrumb.stateName && breadcrumb.stateParams" ui-sref="{{breadcrumb.stateName}}({{breadcrumb.stateParams}})" ui-sref-active="active">{{ breadcrumb.title }}</a>
+        <a ng-if="breadcrumb.stateName && !breadcrumb.stateParams" ui-sref="{{ breadcrumb.stateName }}" ui-sref-active="active">{{ breadcrumb.title }}</a>
+        <a ng-if="!breadcrumb.stateName" class="no-hover">{{ breadcrumb.title }}</a>
     </li>
 </ul>

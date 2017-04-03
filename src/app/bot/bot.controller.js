@@ -1,9 +1,10 @@
 class BotController {
 
-    constructor(Pages, Bots, DisabledBots, $injector, $facebook, UserService, Modals, AppHelpers, lodash, $state, FlashBag) {
+    constructor(Pages, Bots, DisabledBots, $injector, $facebook, UserService, Modals, AppHelpers, lodash, $state, FlashBag, jstz) {
         'ngInject';
 
         this._Bots = Bots;
+        this._jstz = jstz;
         this._Pages = Pages;
         this._lodash = lodash;
         this._Modals = Modals;
@@ -17,9 +18,9 @@ class BotController {
 
         this.selected = [];
         this.$onInit = () => {
-            if ($state.current.name == 'app.bot.index') {
+            if ($state.current.name === 'app.bot.index') {
                 this.activeBots.tablized = this._AppHelpers.tablize(this.activeBots, 4);
-            } else if ($state.current.name == 'app.bot.disabled') {
+            } else if ($state.current.name === 'app.bot.disabled') {
                 this.disabledBots.tablized = this._AppHelpers.tablize(this.disabledBots, 3);
             }
         }
@@ -45,8 +46,14 @@ class BotController {
     }
 
     create() {
-        let pageIds = this._lodash.map(this.selected, 'id');
-        this._Bots.post({pageIds}).then(
+        let timezone;
+        let pages = this._lodash.map(this.selected, 'id');
+        try {
+            timezone = this._jstz.determine().name();
+        } catch (e) {
+            timezone = 'UTC';
+        }
+        this._Bots.post({pages, timezone}).then(
             res => this._$injector.get('$state').go('app.dashboard.overview', {botId: res[0].id})
         );
     };

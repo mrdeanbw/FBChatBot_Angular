@@ -1,0 +1,21 @@
+<page-header></page-header>
+
+<div class="container-fluid container-fixed-lg">
+    <div class="panel panel-transparent">
+
+        <div class="panel-heading">
+            <div class="panel-title">Message History</div>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-info">Click on any button for more details.</div>
+                    <div class="alert alert-info">The stats of test messages (Message Preview) are not included.</div>
+                    <message-details message="message" ng-repeat="message in $ctrl.revisions"></message-details>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -10,3 +10,8 @@
         </div>
     </div>
 </div>
+
+<a class="btn btn-block stats-btn" ui-sref="app.dashboard.message-history({messageId: $ctrl.message.id})" target="_blank" ng-if="$ctrl.message.id">
+    <img src="img/icons/stats.svg" />
+    <span>Message Stats</span>
+</a>

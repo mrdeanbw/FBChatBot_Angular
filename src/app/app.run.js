@@ -7,6 +7,7 @@ function AppRun(AppConstants, $rootScope, $transitions) {
         }
 
         $rootScope.bodyClass = state.bodyClass;
+        $rootScope.previousState = transition.from();
 
         //TODO: is this the right place for this?
         $('[pg-popover]').popover('destroy')

@@ -46,6 +46,7 @@ class MessageHelpers {
     openDeleteModal(container, message) {
         this._Modals.openModal({
             templateUrl: 'dashboard/shared/message/delete.modal.html',
+            inputs: {message},
             controller: this._confirmDeleteModal,
             cb: confirmed => {
                 if (confirmed) {
@@ -68,13 +69,12 @@ class MessageHelpers {
         }
     }
 
-    _confirmDeleteModal($scope, close) {
+    _confirmDeleteModal($scope, close, message) {
         'ngInject';
-
+        $scope.message = message;
         $scope.delete = () => close(true, 500);
         $scope.cancel = () => close(false, 500);
     }
-
 
     openButtonModal(container, button, isMainMenuButton = false) {
         this._Modals.openModal({

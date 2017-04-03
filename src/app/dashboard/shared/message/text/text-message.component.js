@@ -13,12 +13,10 @@ class TextController {
             url: '',
             type: 'button',
             messages: [],
-            actions: {
-                add_tags: [],
-                remove_tags: [],
-                subscribe_sequences: [],
-                unsubscribe_sequences: []
-            }
+            add_tags: [],
+            remove_tags: [],
+            subscribe_sequences: [],
+            unsubscribe_sequences: []
         };
 
         this._MessageHelpers.addMessage(this.message.buttons, button);

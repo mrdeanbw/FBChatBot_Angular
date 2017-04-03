@@ -15,17 +15,17 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
             let $state = $injector.get('$state');
 
             // Not found
-            if (rejection.status == 404) {
+            if (rejection.status === 404) {
                 $state.go('app.404');
             }
 
             // Server Error
-            if (rejection.status == 500) {
-                $state.go('app.500');
+            if (rejection.status === 500) {
+                // $state.go('app.500');
             }
 
             // Validation Error
-            if (rejection.status == 422) {
+            if (rejection.status === 422) {
                 for (let errorKey in rejection.data.errors) {
                     for (let error of rejection.data.errors[errorKey]) {
                         toaster.pop('error', "Validation Error", error);
@@ -36,13 +36,13 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
             }
 
             // Bad request error
-            if (rejection.status == 400) {
+            if (rejection.status === 400) {
                 toaster.pop('error', "Error!", rejection.data.message);
             }
 
             // Unauthorized.
-            if (rejection.status == 401) {
-                if ($state.current.name != 'app.login') {
+            if (rejection.status === 401) {
+                if ($state.current.name !== 'app.login') {
                     FlashBag.warning("Please login to proceed!");
                 }
                 JwtService.destroy();
@@ -50,7 +50,7 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
             }
 
             // Forbidding.
-            if (rejection.status == 403 && rejection.data && rejection.data.message == 'missing_permissions') {
+            if (rejection.status === 403 && rejection.data && rejection.data.message == 'missing_permissions') {
                 if ($state.current.name == 'app.permissions') {
                     toaster.pop('error', "Facebook Permissions needed!", "Don't worry – you are in total control of what your bot does.");
                 } else {

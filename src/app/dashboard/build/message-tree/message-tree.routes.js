@@ -4,6 +4,9 @@ function MessageTreeRoutes($stateProvider) {
     $stateProvider.state('app.dashboard.build.message-tree', {
         url: '/message-trees',
         abstract: true,
+        breadcrumb: {
+            stateName: 'app.dashboard.build.message-tree.index'
+        },
         title: 'Message Tress',
         templateUrl: 'dashboard/build/message-tree/views/layout.html'
     });
@@ -11,7 +14,7 @@ function MessageTreeRoutes($stateProvider) {
     $stateProvider.state('app.dashboard.build.message-tree.index', {
         url: '/',
         component: 'messageTreeList',
-        title: 'Message Tree List',
+        title: 'Message Trees',
         description: 'Pre-defined message trees to be used across the app. A very powerful tool to chain your messages, use certain messages for more than one purpose, and to provide instant and smart button feedback!',
         resolve: {
             trees: (MessageTrees, bot) => {

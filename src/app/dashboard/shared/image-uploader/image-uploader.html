@@ -4,8 +4,8 @@
             type="ngf-select"
             ngf-select="$ctrl.changed()"
             ng-model="$ctrl.file"
-            ngf-pattern="'image/*'"
-            ngf-accept="'image/*'"
+            ngf-pattern="'image/gif,image/jpg,image/jpeg,image/png'"
+            ngf-accept="'image/gif,image/jpg,image/jpeg,image/png'"
             ngf-max-size="5MB"
             ngf-drop-disabled="true"
             ngf-model-invalid="$ctrl.fileError">

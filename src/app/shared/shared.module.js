@@ -3,6 +3,7 @@ import 'angular-animate';
 import '../../../bower_components/ng-lodash/build/ng-lodash.min';
 
 import './bot/bot.module';
+import './jstz/jstz.module';
 import './user/user.module';
 import './pusher/pusher.module';
 import './modals/modals.module';
@@ -19,6 +20,7 @@ let sharedModule = angular.module('app.shared', [
     'ngLodash',
     'ngAnimate',
     'app.shared.bot',
+    'app.shared.jstz',
     'app.shared.user',
     'app.shared.modals',
     'app.shared.pusher',

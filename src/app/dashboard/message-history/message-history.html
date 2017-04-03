@@ -1,21 +1,318 @@
-<page-header></page-header>
-
-<div class="container-fluid container-fixed-lg">
-    <div class="panel panel-transparent">
-
-        <div class="panel-heading">
-            <div class="panel-title">Message History</div>
+<div class="container-fluid container-fixed-lg master-details">
+    <div class="master">
+        <div class="row">
+            <div class="col-md-12 p-l-45">
+                <a href="" ng-click="$ctrl.closeWindow()">
+                    <img class="back-arrow" src="img/icons/cancel.svg"/>
+                </a>
+            </div>
         </div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="alert alert-info">Click on any button for more details.</div>
-                    <div class="alert alert-info">The stats of test messages (Message Preview) are not included.</div>
-                    <message-details message="message" ng-repeat="message in $ctrl.revisions"></message-details>
+        <hr class="line opacity-3"/>
+
+        <div class="row">
+            <div class="col-md-12 p-t-20 p-b-20 p-l-45">
+                <h4>Message History</h4>
+                <h6 class="light-grey">Your message change log history and stats.</h6>
+            </div>
+        </div>
+
+        <hr class="line opacity-3" style="margin-bottom: 20px"/>
+
+        <div class="row">
+            <div class="col-md-12 p-b-20 text-center">
+                <button class="btn btn-primary btn-lg" ng-click="$ctrl.active = $ctrl.summary">Summary</button>
+            </div>
+        </div>
+
+        <div class="row" ng-repeat="message in $ctrl.revisions" ng-click="$ctrl.activeCard = (message == $ctrl.active || message.type != 'card_container')? $ctrl.activeCard : message.cards[0]; $ctrl.active = message;">
+            <div class="col-md-12 p-l-45 p-r-45">
+                <div class="message" ng-class="{'active': message == $ctrl.active}">
+                    <div>
+                        <p class="message_type pull-left">
+                            <span ng-if="message.type == 'text'">Text</span>
+                            <span ng-if="message.type == 'image'">Image</span>
+                            <span ng-if="message.type == 'card_container'">Gallery</span>
+                            <span ng-if="message.type == 'button'">Button</span>
+                        </p>
+                        <p class="message_date pull-right">
+                            {{ message.created_at | relativeDate }}
+                        </p>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <p ng-if="message.type == 'text'" ng-bind-html="message.text | messageVariables"></p>
+
+                    <div ng-if="message.type == 'button'" class="m-t-10">
+                        <div class="menu-button">{{ message.title }}</div>
+                    </div>
+
+                    <div ng-if="message.type == 'image'" class="image-message">
+                        <img ng-src="{{ message.image_url }}">
+                    </div>
+
+                    <div ng-if="message.buttons.length" class="p-t-10">
+                        <img class="down-arrow" src="img/icons/down_arrow.svg"/>
+                        <div ng-repeat="button in message.buttons" class="message-button">{{ button.title }}</div>
+                    </div>
+
+                    <ul class="card-container-message" ng-if="message.type =='card_container'">
+                        <li ng-repeat="card in message.cards" ng-class="{'active': $ctrl.active == message && $ctrl.activeCard? $ctrl.activeCard == card : $first}">
+                            <div class="image-message m-b-10" ng-if="card.image_url">
+                                <img ng-src="{{ card.image_url }}">
+                            </div>
+                            <p class="card-title m-b-0" ng-bind-html="card.title | messageVariables"></p>
+                            <p ng-if="card.subtitle" class="card-subtitle m-b-5" ng-bind-html="card.subtitle | messageVariables"></p>
+                            <p ng-if="card.url" class="card-url">{{ card.url }}</p>
+                            <div class="p-t-10" ng-if="card.buttons.length">
+                                <img class="down-arrow" src="img/icons/down_arrow.svg"/>
+                                <div ng-repeat="button in card.buttons" class="message-button">{{ button.title }}</div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="slider" ng-if="message.type == 'card_container'">
+                        <span class="left"
+                              ng-class="{'disabled': message != $ctrl.active || !message.cards.indexOf($ctrl.activeCard)}"
+                              ng-click="message == $ctrl.active && message.cards.indexOf($ctrl.activeCard)? $ctrl.activeCard = message.cards[message.cards.indexOf($ctrl.activeCard) - 1] : angular.noop()">
+                            <img src="img/icons/left_arrow.svg">
+                        </span>
+                        <span class="right"
+                              ng-class="{'disabled': message.cards.length == 1 || (message == $ctrl.active && message.cards.indexOf($ctrl.activeCard) == message.cards.length - 1)}"
+                              ng-click="message == $ctrl.active && message.cards.indexOf($ctrl.activeCard) < message.cards.length - 1? $ctrl.activeCard = message.cards[message.cards.indexOf($ctrl.activeCard) + 1] : angular.noop()">
+                            <img src="img/icons/right_arrow.svg">
+                        </span>
+                    </div>
+
+                </div>
+                <hr ng-if="!$last" class="line message-line"/>
+            </div>
+        </div>
+        <br/>
+    </div>
+
+    <div class="details" ng-if="$ctrl.active">
+        <div class="row" ng-if="!$ctrl.mainMenuButton">
+            <div class="col-md-12">
+                <h5 class="message-date" ng-if="$ctrl.active.created_at">
+                    {{ $ctrl.active.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}
+                </h5>
+                <hr class="line" style="" ng-if="$ctrl.active.created_at"/>
+                <div class="row p-b-30 p-t-30 p-l-45 p-r-45" ng-if="$ctrl.active.type == 'text'">
+                    <div class="col-md-12" style="background: #edecec;">
+                        <div class="message active">
+                            <p ng-bind-html="$ctrl.active.text | messageVariables" class="m-t-10"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-l-30  p-t-30">
+                    <div class="col-md-6 stats">
+                        <h1 class="count">{{ $ctrl.active.stats.sent.total | number }}</h1>
+                        <h3>Sent Times</h3>
+                        <h5>
+                            <em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.total) }}">
+                                ({{ $ctrl.active.change.sent.total > 0? '+' : '' }}{{ $ctrl.active.change.sent.total | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                    <div class="col-md-6 stats">
+                        <h1>{{ $ctrl.active.stats.sent.per_subscriber | number }}</h1>
+                        <h3>Different People</h3>
+                        <h5>
+                            <em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.per_subscriber) }}">
+                                ({{ $ctrl.active.change.sent.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.sent.per_subscriber | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                </div>
+                <hr class="line" style="margin-bottom: 20px"/>
+                <div class="row p-l-30">
+                    <div class="col-md-6 stats">
+                        <h1 class="count">{{ $ctrl.active.stats.delivered.total | number }}</h1>
+                        <h3>Delivered Times</h3>
+                        <h5>
+                            {{ $ctrl.active.stats.delivered.total/$ctrl.active.stats.sent.total | percentage:0 }}&nbsp;
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.total) }}">
+                                ({{ $ctrl.active.change.delivered.total > 0? '+' : '' }}{{ $ctrl.active.change.delivered.total | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                    <div class="col-md-6 stats">
+                        <h1>{{ $ctrl.active.stats.delivered.per_subscriber | number }}</h1>
+                        <h3>Different People</h3>
+                        <h5>
+                            {{ $ctrl.active.stats.delivered.per_subscriber/$ctrl.active.stats.sent.per_subscriber | percentage:0 }}&nbsp;
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.per_subscriber) }}">
+                                ({{ $ctrl.active.change.delivered.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.delivered.per_subscriber | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                </div>
+                <hr class="line" style="margin-bottom: 20px"/>
+                <div class="row p-l-30">
+                    <div class="col-md-6 stats">
+                        <h1 class="count">{{ $ctrl.active.stats.read.total | number }}</h1>
+                        <h3>Seen Times</h3>
+                        <h5>
+                            {{ $ctrl.active.stats.read.total/$ctrl.active.stats.delivered.total | percentage:0 }}&nbsp;
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.total) }}">
+                                ({{ $ctrl.active.change.read.total > 0? '+' : '' }}{{ $ctrl.active.change.read.total | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                    <div class="col-md-6 stats">
+                        <h1 class="count">{{ $ctrl.active.stats.read.per_subscriber | number }}</h1>
+                        <h3>Different People</h3>
+                        <h5>
+                            {{ $ctrl.active.stats.read.per_subscriber/$ctrl.active.stats.delivered.per_subscriber | percentage:0 }}&nbsp;
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.per_subscriber) }}">
+                                ({{ $ctrl.active.change.read.pre_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.read.pre_subscriber | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="$ctrl.mainMenuButton">
+            <div class="col-md-12">
+                <h5 class="message-date" ng-if="$ctrl.active.created_at">
+                    {{ $ctrl.active.created_at | date:'EEE, MMM d, y — h:mm a (UTCZ)' }}
+                </h5>
+                <hr class="line" style="" ng-if="$ctrl.active.created_at"/>
+                <div class="row p-l-30 p-t-30">
+                    <div class="col-md-6 stats">
+                        <h1 class="count">{{ $ctrl.active.stats.clicked.total | number }}</h1>
+                        <h3>Clicked Times</h3>
+                        <h5>
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.clicked.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.clicked.total) }}">
+                                ({{ $ctrl.active.change.clicked.total > 0? '+' : '' }}{{ $ctrl.active.change.clicked.total | percentage }})
+                            </em>
+                        </h5>
+                    </div>
+                    <div class="col-md-6 stats">
+                        <h1>{{ $ctrl.active.stats.clicked.per_subscriber | number }}</h1>
+                        <h3>Different People</h3>
+                        <h5>
+                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.clicked.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.clicked.per_subscriber) }}">
+                                ({{ $ctrl.active.change.clicked.pre_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.clicked.pre_subscriber | percentage }})
+                            </em>
+                        </h5>
+                    </div>
                 </div>
             </div>
         </div>
 
+
+        <hr class="line" style="margin-bottom: 10px"/>
+
+        <div class="row p-b-30" ng-repeat="message in $ctrl.revisions" ng-if="$ctrl.active == message">
+            <div class="col-md-12 p-l-45 p-t-30 p-r-45">
+                <div class="message active" ng-if="message.type == 'text'">
+                    <div class="row p-l-10 p-r-10">
+                        <div class="col-md-4 p-l-0 p-r-0" ng-repeat="button in message.buttons">
+                            <div class="btn-stats">
+                                <div ng-click="$ctrl.showButtonDetails(button)" class="btn-header">
+                                    {{ button.title }}
+                                    <img src="img/icons/full_size.svg">
+                                </div>
+                                <div class="row btn-body">
+                                    <div class="col-md-12">
+                                        <h4 class="p-l-10">CTR {{ button.stats.clicked.per_subscriber / $ctrl.active.stats.sent.per_subscriber | percentage:0 }}</h4>
+                                        <div class="row m-b-10">
+                                            <div class="col-md-6">
+                                                <h5 class="p-l-10 count">{{ button.stats.clicked.total }}</h5>
+                                                <h5 class="p-l-10 desc">Total clicks</h5>
+                                            </div>
+                                            <div class="col-md-6 p-r-10">
+                                                <h5 class="p-r-10 count">{{ button.stats.clicked.per_subscriber }}</h5>
+                                                <h5 class="p-r-10 desc">User clicks</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message active" ng-if="message.type == 'image'">
+                    <div class="image-message m-b-20">
+                        <img ng-src="{{ message.image_url }}">
+                    </div>
+                </div>
+                <div class="message active" ng-if="message.type == 'button'">
+                    <div class="alert alert-info" ng-if="message.url">
+                        Due to technical limitations, we cant't record "(Unique) Subscriber Clicks" click stats for <strong>main menu buttons</strong> whose main action is <strong>"Go to
+                        URL."</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="btn-stats">
+                                <div ng-click="$ctrl.showButtonDetails(message)" class="btn-header">
+                                    {{ message.title }}
+                                    <img src="img/icons/full_size.svg">
+                                </div>
+                                <div class="row btn-body">
+                                    <div class="col-md-12">
+                                        <div class="row m-b-10 p-t-10">
+                                            <div class="col-md-6">
+                                                <h5 class="p-l-10 count">{{ message.stats.clicked.total }}</h5>
+                                                <h5 class="p-l-10 desc">Total clicks</h5>
+                                            </div>
+                                            <div class="col-md-6 p-r-10">
+                                                <h5 class="p-r-10 count">{{ message.stats.clicked.per_subscriber }}</h5>
+                                                <h5 class="p-r-10 desc">User clicks</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message active" ng-if="message.type == 'card_container'">
+                    <div ng-repeat="card in message.cards" ng-if="card == $ctrl.activeCard">
+                        <div class="image-message m-b-20" ng-if="card.image_url">
+                            <img ng-src="{{ card.image_url }}">
+                        </div>
+                        <p class="card-title" ng-bind-html="card.title | messageVariables"></p>
+                        <p ng-if="card.subtitle" class="card-subtitle" ng-bind-html="card.subtitle | messageVariables"></p>
+                        <p ng-if="card.url" class="card-url">{{ card.url }}</p>
+                        <div class="card-url-stats" ng-if="card.url">
+                            <div class="row">
+                                <div class="col-md-4"><h4 class="p-l-15">CTR {{ card.stats.clicked.per_subscriber/ $ctrl.active.stats.sent.per_subscriber | percentage:0 }}</h4></div>
+                                <div class="col-md-4"><h5>{{ card.stats.clicked.total | number }} Total clicks</h5></div>
+                                <div class="col-md-4"><h5>{{ card.stats.clicked.per_subscriber | number }} User Clicks</h5></div>
+                            </div>
+                        </div>
+                        <div class="row p-l-10 p-r-10">
+                            <div class="col-md-4 p-l-0 p-r-0" ng-repeat="button in card.buttons">
+                                <div class="btn-stats">
+                                    <div ng-click="$ctrl.showButtonDetails(button)" class="btn-header">
+                                        {{ button.title }}
+                                        <img src="img/icons/full_size.svg">
+                                    </div>
+                                    <div class="row btn-body">
+                                        <div class="col-md-12">
+                                            <h4 class="p-l-10">CTR {{ button.stats.clicked.per_subscriber / $ctrl.active.stats.sent.per_subscriber | percentage:0 }}</h4>
+                                            <div class="row m-b-10">
+                                                <div class="col-md-6">
+                                                    <h5 class="p-l-10 count">{{ button.stats.clicked.total }}</h5>
+                                                    <h5 class="p-l-10 desc">Total clicks</h5>
+                                                </div>
+                                                <div class="col-md-6 p-r-10">
+                                                    <h5 class="p-r-10 count">{{ button.stats.clicked.per_subscriber }}</h5>
+                                                    <h5 class="p-r-10 desc">User clicks</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

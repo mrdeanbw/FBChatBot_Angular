@@ -35,11 +35,12 @@ class BroadcastCtrl {
         }
 
         if ($state.current.name !== 'app.dashboard.broadcast.index') {
-            const userTimezone = jstz.determine();
-            if (userTimezone) {
-                this.userTimezone = userTimezone.name();
+            try {
+                this.userTimezone = jstz.determine().name();
+            } catch (e) {
+                this.userTimezone = 'UTC';
             }
-            this.userTimezone = this.userTimezone || 'UTC';
+
             this.activeCount = 0;
             this.$onInit = () => {
                 if (!this.broadcast.timezone) {
@@ -193,6 +194,21 @@ class BroadcastCtrl {
             }
         });
     }
+
+    getFractionClass(num, den) {
+        let res = num / den;
+        if (isNaN(res)) {
+            return 'na';
+        }
+        if (!res) {
+            return 'zero';
+        }
+        if (res < 0) {
+            return 'negative';
+        }
+        return 'positive';
+    }
+
 }
 
 export default BroadcastCtrl;

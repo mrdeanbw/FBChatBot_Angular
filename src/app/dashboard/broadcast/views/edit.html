@@ -10,13 +10,13 @@
                     <a data-toggle="tab" pg-tab href="#settings"><span>Settings</span></a>
                 </li>
                 <a href="" class="btn btn-danger pull-right" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
-                    <i class="fa fa-arrow-left"></i>
-                    <span>Back</span>
+                    <i class="fa fa-ban"></i>
+                    <span>Cancel</span>
                 </a>
             </ul>
 
 
-            <div class="tab-content">
+            <div class="tab-content m-b-30">
                 <div class="tab-pane slide-left active" id="broadcast">
                     <div class="row p-t-30">
                         <div class="col-md-9 p-l-20">
@@ -26,13 +26,19 @@
                             <div class="padding-30 m-t-20">
                                 <i class="fa fa-comments-o fa-3x hint-text"></i>
                                 <h2>Create your message</h2>
-                                <p>Here you can send a message to your subscribers. Use the + Add buttons to add text, images or cards to the message.
-                                    You can also attach buttons to individual messages to create interactivity.</p>
+                                <p>Here you can send a message to your subscribers. Use the + Add buttons to add text, images or cards to the message. You can also attach buttons to individual messages to create interactivity.</p>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12">&nbsp;
+                            <a data-toggle="tab" pg-tab href="#settings" class="btn btn-primary pull-right">
+                                <span>Next</span>
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="tab-pane slide-left" id="settings">
                     <div class="container-fluid" style="display: table; border-collapse: collapse">
 
@@ -197,14 +203,12 @@
                                 <span ng-if="$ctrl.broadcast.send_mode == 'later'">Schedule Broadcast</span>
                             </button>
                             <a href="" class="btn btn-danger btn-lg pull-right m-r-10" btn-confirm confirmed-state="app.dashboard.broadcast.index" confirm-message="You would lose any changes you made.">
-                                <i class="fa fa-arrow-left"></i>
+                                <i class="fa fa-ban"></i>
                                 <span>Cancel</span>
                             </a>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
         </div>

@@ -8,6 +8,9 @@ function SequenceRoutes($stateProvider) {
             url: '/sequences',
             abstract: true,
             title: 'Sequences',
+            breadcrumb: {
+                stateName: 'app.dashboard.sequence.index'
+            },
             templateUrl: 'dashboard/sequence/views/layout.html'
         })
 
@@ -26,7 +29,7 @@ function SequenceRoutes($stateProvider) {
 
         .state('app.dashboard.sequence.edit', {
             url: "/:sequenceId/edit",
-            title: 'Edit your sequence',
+            title: 'Edit Sequence',
             description: 'Edit your sequence messages, time-line, segmentation & automation settings!',
             component: 'editSequence',
             resolve: {

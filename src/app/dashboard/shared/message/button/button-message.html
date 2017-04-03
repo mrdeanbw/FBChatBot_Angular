@@ -1,21 +1,15 @@
 <div class="row m-t-10">
     <div class="col-xs-12">
         <div class="btn-group" style="width: 100%">
-            <button ng-if="!$ctrl.message.readonly" ng-class="{'mainMenuButton': $ctrl.mainMenuButton, 'btn-block': !$ctrl.mainMenuButton}" class="btn btn-primary" ng-click="$ctrl.openButtonModal()" pg-tooltip hide-on-click="true" data-trigger="hover" data-original-title="Edit this button">
+            <button ng-if="!$ctrl.message.readonly" ng-class="{'main-menu-button': $ctrl.mainMenuButton, 'btn-block': !$ctrl.mainMenuButton}" class="btn btn-primary" ng-click="$ctrl.openButtonModal()" pg-tooltip hide-on-click="true" data-trigger="hover" data-original-title="Edit this button">
                 {{ $ctrl.message.title }}
             </button>
-            <button ng-if="$ctrl.message.readonly" ng-class="{'mainMenuButton': $ctrl.mainMenuButton, 'btn-block': !$ctrl.mainMenuButton}" class="btn btn-primary" data-trigger="click" data-html="true" data-placement="bottom" data-title="Upgrade to PRO" data-content="<p>You can remove this copyright by upgrading your account to PRO Plan.</p>" pg-popover>
+            <button ng-if="$ctrl.message.readonly" ng-class="{'main-menu-button': $ctrl.mainMenuButton, 'btn-block': !$ctrl.mainMenuButton}" class="btn btn-primary" data-trigger="click" data-html="true" data-placement="bottom" data-title="Upgrade to PRO" data-content="<p>You can remove this copyright by upgrading your account to PRO Plan.</p>" pg-popover>
                 {{ $ctrl.message.title }}
             </button>
-            <a target="_blank" ng-if="$ctrl.mainMenuButton && $ctrl.message.id" class="btn btn-default" ui-sref="app.dashboard.message.history({messageId: $ctrl.message.id, mainMenuButton: true})" pg-tooltip data-trigger="hover" data-original-title="Message History & Stats">
+            <a target="_blank" ng-if="$ctrl.mainMenuButton && $ctrl.message.id" class="btn btn-default" ui-sref="app.dashboard.message-history({messageId: $ctrl.message.id, mainMenuButton: true})" pg-tooltip data-trigger="hover" data-original-title="Message History & Stats">
                 <i class="fa fa-history"></i>
             </a>
         </div>
     </div>
 </div>
-
-<style>
-    .mainMenuButton {
-        width: 70%;
-    }
-</style>

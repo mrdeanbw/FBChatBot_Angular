@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-let jstzModule = angular.module('app.dashboard.shared.jstz', []);
+let jstzModule = angular.module('app.shared.jstz', []);
 
 jstzModule.factory('jstz', $window => {
     'ngInject';
