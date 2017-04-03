@@ -39,6 +39,10 @@
 
         <div class="tree-actions" data-nodrag>
 
+            <a class="btn btn-default btn-xs" ng-if="node.id && ['text', 'card_container', 'image'].indexOf(node.type) != -1" pg-tooltip data-original-title="Message Stats & History" ui-sref="app.dashboard.message-history({messageId: node.id})" target="_blank">
+                <i class="fa fa-bar-chart"></i>
+            </a>
+
             <a class="btn btn-primary btn-xs" ng-click="$ctrl.edit(node)" ng-if="node.type == 'button'">
                 <i class="fa fa-plus"></i>
             </a>

@@ -13,9 +13,8 @@ class AutoReplyRuleController {
     createRule() {
         let rule = {
             mode: 'is',
-            keyword: '',
+            keywords: [],
             readonly: false,
-            action: 'send',
             template: {}
         };
         this.rules.push(rule);
@@ -71,7 +70,7 @@ class AutoReplyRuleController {
     }
 
     paginate(page) {
-        this._AutoReplyRules(this.bot.id).getList({keyword: this.filter, page}).then((rules)=> this.rules = rules);
+        this._AutoReplyRules(this.bot.id).getList({keyword: this.filter, page}).then((rules) => this.rules = rules);
     }
 
 }

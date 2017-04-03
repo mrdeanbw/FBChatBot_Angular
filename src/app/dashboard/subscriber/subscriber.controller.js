@@ -39,7 +39,7 @@ class SubscriberController {
             controller: this._bulkEdit,
             inputs: {subscribers: this.selected},
             cb: success => {
-                if (success){
+                if (success) {
                     self.selected = [];
                     this._toaster.pop("success", "Saved Successfully!");
                     this.tableParams.reload();
@@ -63,19 +63,21 @@ class SubscriberController {
         $scope.tags = $rootScope.bot.tags;
 
         $scope.subscribers = subscribers;
-        
-        $scope.actions = {
-            add_tags: [],
-            remove_tags: [],
-            add_sequences: [],
-            remove_sequences: []
-        };
+
+        $scope.add_tags = [];
+        $scope.remove_tags = [];
 
         $scope.save = () => {
             let data = {
-                actions: $scope.actions,
+                add_tags: $scope.add_tags,
+                remove_tags: $scope.remove_tags,
                 subscribers: $scope.subscribers
             };
+
+            if (!data.add_tags && !data.remove_tags) {
+                close(true, 500);
+                return;
+            }
 
             $rootScope.bot.all('subscribers').customPATCH(data).then(() => {
                 $element.modal('hide');

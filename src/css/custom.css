@@ -842,24 +842,24 @@ body.menu-pin.fixed-header .header:not(th) {
     opacity: .5;
 }
 
-.stats-btn{
+.stats-btn {
     background-color: #c7cbd6;
     color: blue;
-    border:none;
+    border: none;
 }
 
-.stats-btn > img{
+.stats-btn > img {
     width: 24px;
     padding-bottom: 6px;
 }
 
-.stats-btn:hover{
+.stats-btn:hover {
     color: blue;
     background-color: #c7cbd6;
     border: none;
 }
 
-.stats-btn:focus{
+.stats-btn:focus {
     color: blue;
     background-color: #c7cbd6;
     border: none;
@@ -867,4 +867,12 @@ body.menu-pin.fixed-header .header:not(th) {
 
 .main-menu-button {
     width: 70%;
+}
+
+.bootstrap-tagsinput .tag [data-role=remove]:after {
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
 }

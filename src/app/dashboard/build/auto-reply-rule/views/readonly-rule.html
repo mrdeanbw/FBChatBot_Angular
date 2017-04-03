@@ -1,4 +1,4 @@
-<div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
+<div class="col-md-2 p-b-10 p-t-10 col-sm-height col-middle">
     <div class="form-group  m-b-0 form-group-default" pg-form-group>
         <p class="form-control-static">
             <strong>If</strong> Message {{ rule.mode.replace('_', ' ') }}
@@ -6,10 +6,10 @@
     </div>
 </div>
 
-<div class="col-md-3 p-b-10 p-t-10 col-sm-height col-middle">
-    <div class="form-group  m-b-0 form-group-default" pg-form-group>
+<div class="col-md-4 p-b-10 p-t-10 col-sm-height col-middle">
+    <div class="form-group m-b-0 form-group-default" pg-form-group>
         <p class="form-control-static">
-            {{ rule.keyword }}
+            {{ rule.keywords.join(', ') }}
         </p>
     </div>
 </div>
@@ -18,11 +18,15 @@
     <div class="form-group  m-b-0 form-group-default" pg-form-group>
         <p class="form-control-static">
             <strong>Then: </strong>
-            <span ng-if="rule.action == 'send'">
+            <span ng-if="rule.template.id">
                 send &rightarrow; <strong>{{ rule.template.name }}</strong>
             </span>
-            <span>
-                take action &rightarrow; {{ rule.action | capitalize }}
+            <span ng-if="rule.template_id && (rule.subscribe || rule.unsubscribe)">and</span>
+            <span ng-if="rule.subscribe">
+                take action &rightarrow; <strong>Subscribe</strong>
+            </span>
+            <span ng-if="rule.unsubscribe">
+                take action &rightarrow; <strong>Unsubscribe</strong>
             </span>
         </p>
     </div>

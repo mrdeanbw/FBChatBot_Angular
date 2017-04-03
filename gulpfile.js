@@ -88,6 +88,7 @@ gulp.task('css', function () {
         'node_modules/ng-table/bundles/ng-table.min.css',
         'node_modules/angular-ui-tree/dist/angular-ui-tree.min.css',
         'node_modules/angularjs-toaster/toaster.min.css',
+        'bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
 
         // Custom styles.
         'src/css/pages.css',
@@ -121,6 +122,7 @@ gulp.task('js', function () {
         'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
         'bower_components/jstzdetect/jstz.min.js',
+        'bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
         'src/js/pages.js',
         'src/js/custom.js'
     ];

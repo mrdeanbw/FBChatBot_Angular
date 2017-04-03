@@ -19,7 +19,8 @@
     "bootstrap-select2": "^2.0.0",
     "ng-lodash": "^0.5.0",
     "ng-switchery": "^1.0.0-alpha7",
-    "jstzdetect": "^1.0.6"
+    "jstzdetect": "^1.0.6",
+    "bootstrap-tagsinput": "^0.8.0"
   },
   "resolutions": {
     "jquery": "^3.1.1",

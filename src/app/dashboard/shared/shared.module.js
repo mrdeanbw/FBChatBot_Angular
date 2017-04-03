@@ -13,7 +13,7 @@ import './message-preview/message-preview.module';
 import './message-details/message-details.module';
 
 let sharedModule = angular.module('app.dashboard.shared', [
-    'ui.select', 
+    'ui.select',
     'ngSanitize',
     'NgSwitchery',
     'ngFileUpload',

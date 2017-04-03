@@ -13,13 +13,11 @@
     </div>
 
     <div class="panel-body">
-        <div class="container-sm-height">
+        <div class="container-sm-height m-t-20">
             <div class="row-fluid row-sm-height" ng-repeat="rule in $ctrl.rules" ng-form="ruleForm"
                  id="{{ rule.$$hashKey | normalizedHashkey }}">
-                <div ng-include="'dashboard/build/auto-reply-rule/views/readonly-rule.html'" ng-if="rule.readonly"
-                     include-replace></div>
-                <div ng-include="'dashboard/build/auto-reply-rule/views/editable-rule.html'" ng-if="!rule.readonly"
-                     include-replace></div>
+                <div ng-include="'dashboard/build/auto-reply-rule/views/readonly-rule.html'" ng-if="rule.readonly" include-replace></div>
+                <div ng-include="'dashboard/build/auto-reply-rule/views/editable-rule.html'" ng-if="!rule.readonly" include-replace></div>
             </div>
         </div>
         <div class="row text-center m-t-10">

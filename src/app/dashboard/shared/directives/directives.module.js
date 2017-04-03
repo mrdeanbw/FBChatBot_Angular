@@ -11,4 +11,7 @@ directivesModule.directive('datepicker', DatepickerDirective);
 import BtnConfirmDirective from './btn-confirm.directive';
 directivesModule.directive('btnConfirm', BtnConfirmDirective);
 
+import TagsInputDirective from './tagsinput.directive';
+directivesModule.directive('tagsInput', TagsInputDirective);
+
 export default directivesModule;
