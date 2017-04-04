@@ -1,3 +1,5 @@
+import __ENV from '../../.env';
+
 import angular from 'angular';
 
 import './app.templates';
@@ -13,6 +15,11 @@ let appModule = angular.module('app', [
     'app.shared',
     'app.dashboard'
 ]);
+
+appModule.config(function ($windowProvider) {
+    'ngInject';
+    $windowProvider.$get().__ENV = __ENV;
+});
 
 import appRoutes  from './app.routes';
 appModule.config(appRoutes);

@@ -1,4 +1,4 @@
-function AppRun(AppConstants, $rootScope, $transitions) {
+function AppRun(AppConstants, $rootScope, $transitions, $window, $location) {
     'ngInject';
 
     $transitions.onEnter({}, (transition, state) => {
@@ -12,6 +12,13 @@ function AppRun(AppConstants, $rootScope, $transitions) {
         //TODO: is this the right place for this?
         $('[pg-popover]').popover('destroy')
     });
+
+    if ($window.__ENV.environment === 'production') {
+        $transitions.onSuccess({}, () => {
+            $window.ga('send', 'pageview', $location.path());
+            $window.fbq('track', 'PageView');
+        });
+    }
 
     // Helper method for setting the page's title
     let setPageTitle = (title) => {
