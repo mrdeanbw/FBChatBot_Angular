@@ -4,10 +4,6 @@ class CardContainerController {
         this._MessageHelpers = MessageHelpers;
 
         this.MAX_CARDS = 10;
-
-        /**
-         * @todo Move out of controller (directive?)
-         */
         this._$filter = $filter;
         this._$timeout = $timeout;
     }
@@ -50,7 +46,7 @@ class CardContainerController {
     }
 
     openDeleteModal(card) {
-        return this._MessageHelpers.openDeleteModal(this.message.cards, card);
+        return this._MessageHelpers.openDeleteModal(this.message.cards, card, this.message.$$hashKey);
     };
 
     /**

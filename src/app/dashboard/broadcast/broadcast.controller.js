@@ -109,17 +109,12 @@ class BroadcastCtrl {
         });
     }
 
-    _confirmDeleteModal($scope, close, broadcast) {
+    _confirmDeleteModal($scope, close, broadcast, Broadcasts, $rootScope) {
         'ngInject';
 
         $scope.broadcast = broadcast;
 
-        $scope.delete = () => {
-            broadcast.remove().then(() => {
-                close(true, 500);
-            });
-        };
-
+        $scope.delete = () => Broadcasts($rootScope.bot.id).one(broadcast.id).remove().then(() => close(true, 500));
         $scope.cancel = () => close(false, 500);
     }
 

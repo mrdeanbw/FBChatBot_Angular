@@ -3,7 +3,7 @@ class OverviewController {
         'ngInject';
 
         this.graphDate = 'last_seven_days';
-        this.sections = ["#subscriptions", "#subscriber-count", "#message-count", "#click-count"];
+        this.sections = ["#subscriptions", "#subscriber-count", "#engaged-count", "#message-count", "#click-count"];
         this.refreshedSectionCount = 0;
         this.$onInit = () => this._updateGraph();
     }
@@ -74,14 +74,14 @@ class OverviewController {
 
     refreshAllSectionsExceptForOne(exception) {
         angular.forEach(this.sections, section => {
-            if (section != exception) {
+            if (section !== exception) {
                 $(section).portlet({refresh: true});
             }
         });
     }
 
     refreshSection() {
-        if (++this.refreshedSectionCount != this.sections.length) {
+        if (++this.refreshedSectionCount !== this.sections.length) {
             return;
         }
         this.refreshedSectionCount = 0;

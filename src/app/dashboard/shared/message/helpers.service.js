@@ -16,7 +16,7 @@ class MessageHelpers {
 
     canMoveNext(container, message) {
         let index = container.indexOf(message);
-        return index !== -1 && index < container.length - 1 && !container[index + 1].readonly;
+        return index !== -1 && index < container.length - 1 && !message.readonly && !container[index + 1].readonly;
     }
 
     moveNext(container, message) {
@@ -28,7 +28,7 @@ class MessageHelpers {
 
     canMovePrevious(container, message) {
         let index = container.indexOf(message);
-        return index > 0 && !container[index - 1].readonly;
+        return index > 0 && !container[index - 1].readonly && !message.readonly;
     }
 
     movePrevious(container, message) {
@@ -43,7 +43,7 @@ class MessageHelpers {
         return (index !== -1 && !message.readonly);
     }
 
-    openDeleteModal(container, message) {
+    openDeleteModal(container, message, cardContainerHashkey) {
         this._Modals.openModal({
             templateUrl: 'dashboard/shared/message/delete.modal.html',
             inputs: {message},
@@ -51,9 +51,10 @@ class MessageHelpers {
             cb: confirmed => {
                 if (confirmed) {
                     this._remove(container, message);
-                    if (container.type === 'card_container') {
+                    if (cardContainerHashkey) {
                         this._$timeout(() => {
-                            let hashkey = this._$filter('normalizedHashkey')(container.$$hashKey);
+                            let hashkey = this._$filter('normalizedHashkey')(cardContainerHashkey.$$hashKey);
+                            console.log('#carousel_' + hashkey);
                             angular.element('#carousel_' + hashkey).carousel(0)
                         });
                     }

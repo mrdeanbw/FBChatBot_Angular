@@ -21,7 +21,7 @@ function ErrorHandlingInterceptor(AppConstants, $injector, toaster, FlashBag, Jw
 
             // Server Error
             if (rejection.status === 500) {
-                // $state.go('app.500');
+                $state.go('app.500');
             }
 
             // Validation Error

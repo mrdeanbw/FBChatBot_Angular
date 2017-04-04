@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 col-md-4 m-b-10">
+    <div class="col-xs-12 col-md-3 m-b-10">
         <div id="subscriber-count" class="widget-8 panel no-border bg-success no-margin widget-loader-bar" pg-portlet progress="bar" on-refresh="$ctrl.refreshSection('#subscriber-count')">
             <div class="container-xs-height full-height">
                 <div class="row-xs-height">
@@ -24,13 +24,11 @@
 
                     <div class="col-xs-height col-top relative">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="p-l-20 p-t-10">
                                     <h1 class="no-margin text-white">{{ $ctrl.data.subscriber_count | number }}</h1>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6"></div>
                         </div>
                     </div>
                 </div>
@@ -39,7 +37,46 @@
         <!-- END WIDGET -->
     </div>
 
-    <div class="col-xs-12 col-md-4 m-b-10">
+    <div class="col-xs-12 col-md-3 m-b-10">
+        <div id="engaged-count" class="widget-8 panel no-border bg-danger no-margin widget-loader-bar" pg-portlet progress="bar" on-refresh="$ctrl.refreshSection('#engaged-count')">
+            <div class="container-xs-height full-height">
+                <div class="row-xs-height">
+                    <div class="col-xs-height col-top">
+                        <div class="panel-heading top-left top-right">
+                            <div class="panel-title text-black hint-text">
+                                <span class="font-montserrat fs-11 all-caps text-white">Engaged Subscribers (Clicks)<i class="fa fa-chevron-right"></i></span>
+                            </div>
+                            <div class="panel-controls">
+                                <ul>
+                                    <li>
+                                        <a data-toggle="refresh" class="portlet-refresh text-black" ng-click="$ctrl.refreshAllSectionsExceptForOne('#engaged-count')"><i class="fa fa-refresh"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row-xs-height ">
+
+                    <div class="col-xs-height col-top relative">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="p-l-20 p-t-10">
+                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.per_subscriber | number }}</h1>
+                                    <p class="small hint-text" style="color: white">in {{ $ctrl.readableDate() }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-3 m-b-10">
         <!-- START WIDGET -->
         <div id="message-count" class="widget-10 panel no-border bg-info no-margin widget-loader-bar" pg-portlet progress="bar" on-refresh="$ctrl.refreshSection('#message-count')">
             <div class="container-xs-height full-height">
@@ -66,32 +103,27 @@
 
                     <div class="col-xs-height col-top relative">
                         <div class="row">
-                            <div class="col-sm-6 p-t-20">
+                            <div class="col-sm-12 p-t-20">
                                 <div class="p-l-20 p-t-30">
                                     <h1 class="no-margin text-warning">{{ $ctrl.data.message_count | number }}</h1>
                                     <p class="small hint-text text-white ">in {{ $ctrl.readableDate() }}.</p>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END WIDGET -->
     </div>
 
-    <div class="col-xs-12 col-md-4 m-b-10">
-        <!-- START WIDGET -->
+    <div class="col-xs-12 col-md-3 m-b-10">
         <div id="click-count" class="widget-8 panel bg-primary no-border no-margin widget-loader-bar" pg-portlet progress="bar" on-refresh="$ctrl.refreshSection('#click-count')">
             <div class="container-xs-height full-height">
-
                 <div class="row-xs-height">
                     <div class="col-xs-height col-top">
                         <div class="panel-heading top-left top-right">
                             <div class="panel-title text-black hint-text">
-                                <span class="font-montserrat fs-11 all-caps text-white ">Clicks <i class="fa fa-chevron-right"></i></span>
+                                <span class="font-montserrat fs-11 all-caps text-white ">Total Clicks <i class="fa fa-chevron-right"></i></span>
                             </div>
                             <div class="panel-controls">
                                 <ul>
@@ -103,21 +135,12 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row-xs-height ">
-
                     <div class="col-xs-height col-top relative">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="p-l-20 p-t-10">
-                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.total | number }}</h1> Total
-                                    <p class="small hint-text">in {{ $ctrl.readableDate() }}</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="p-l-20 p-t-10">
-                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.per_subscriber | number }}</h1> Unique Subscribers
+                                    <h1 class="no-margin text-white">{{ $ctrl.data.click_count.total | number }}</h1>
                                     <p class="small hint-text">in {{ $ctrl.readableDate() }}</p>
                                 </div>
                             </div>
@@ -126,7 +149,6 @@
                 </div>
             </div>
         </div>
-        <!-- END WIDGET -->
     </div>
 </div>
 
