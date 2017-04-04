@@ -1,6 +1,6 @@
 class FilterAudienceController {
 
-    constructor($rootScope, AppHelpers, Sequences, $scope, Subscribers) {
+    constructor($rootScope, AppHelpers, $scope, Subscribers) {
         'ngInject';
         this._AppHelpers = AppHelpers;
         this._$rootScope = $rootScope;
@@ -13,9 +13,9 @@ class FilterAudienceController {
                 this.tags = $rootScope.bot.tags;
             }
 
-            if (this.allowedFilters.includes('sequence')) {
-                Sequences($rootScope.bot.id).getList().then(sequences => this.sequences = sequences);
-            }
+            // if (this.allowedFilters.includes('sequence')) {
+            //     Sequences($rootScope.bot.id).getList().then(sequences => this.sequences = sequences);
+            // }
 
             if (this.enableControl === undefined) {
                 this.enableControl = true;

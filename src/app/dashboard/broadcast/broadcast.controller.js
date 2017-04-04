@@ -28,10 +28,8 @@ class BroadcastCtrl {
                 },
                 message_type: 'subscription',
                 send_mode: 'now',
-                timezone: 'UTC',
                 timezone_mode: 'bot'
             };
-            this.$onInit = () => this.broadcast.timezone = this.bot.timezone;
         }
 
         if ($state.current.name !== 'app.dashboard.broadcast.index') {
@@ -45,6 +43,9 @@ class BroadcastCtrl {
             this.$onInit = () => {
                 if (!this.broadcast.timezone) {
                     this.broadcast.timezone = undefined;
+                }
+                if (!this.broadcast.timezone && this.broadcast.timezone_mode === 'bot') {
+                    this.broadcast.timezone = this.bot.timezone;
                 }
             };
         }
