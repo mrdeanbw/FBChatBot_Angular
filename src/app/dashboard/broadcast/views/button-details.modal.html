@@ -23,47 +23,47 @@
                     <p>
                         <small>Add Tags</small>
                     </p>
-                    <p style="margin-top: 12px;" ng-if="button.actions.add_tags.length">
-                        <span ng-repeat="tag in button.actions.add_tags">
+                    <p style="margin-top: 12px;" ng-if="button.add_tags.length">
+                        <span ng-repeat="tag in button.add_tags">
                             <span class="add-tag">{{ tag }}</span>
                         </span>
                     </p>
-                    <p ng-if="!button.actions.add_tags.length">-</p>
+                    <p ng-if="!button.add_tags.length">-</p>
                     <span class="space"></span>
 
                     <p>
                         <small>Remove Tags</small>
                     </p>
-                    <p style="margin-top: 12px;" ng-if="button.actions.remove_tags.length">
-                        <span ng-repeat="tag in button.actions.remove_tags">
+                    <p style="margin-top: 12px;" ng-if="button.remove_tags.length">
+                        <span ng-repeat="tag in button.remove_tags">
                             <span class="remove-tag">{{ tag }}</span>
                         </span>
                     </p>
-                    <p ng-if="!button.actions.remove_tags.length">-</p>
+                    <p ng-if="!button.remove_tags.length">-</p>
                     <span class="space"></span>
 
                     <p>
                         <small>Add Sequences</small>
                     </p>
 
-                    <p ng-if="!loading && button.actions.add_sequences.length">
-                        <span class="add-sequence" ng-repeat="sequence in button.actions.add_sequences">
+                    <p ng-if="!loading && button.add_sequences.length">
+                        <span class="add-sequence" ng-repeat="sequence in button.add_sequences">
                             {{ sequence.name }}<span ng-if="!$last">, </span>
                         </span>
                     </p>
-                    <p ng-if="!loading && !button.actions.add_sequences.length">-</p>
+                    <p ng-if="!loading && !button.add_sequences.length">-</p>
                     <p ng-if="loading" style="opacity: 0.6"><em>Loading...</em></p>
                     <span class="space"></span>
 
                     <p>
                         <small>Remove Sequences</small>
                     </p>
-                    <p ng-if="!loading && button.actions.remove_sequences.length">
-                        <span class="remove-sequence" ng-repeat="sequence in button.actions.remove_sequences">
+                    <p ng-if="!loading && button.remove_sequences.length">
+                        <span class="remove-sequence" ng-repeat="sequence in button.remove_sequences">
                             {{ sequence.name }}<span ng-if="!$last">, </span>
                         </span>
                     </p>
-                    <p ng-if="!loading && !button.actions.remove_sequences.length">-</p>
+                    <p ng-if="!loading && !button.remove_sequences.length">-</p>
                     <p ng-if="loading" style="opacity: 0.6"><em>Loading...</em></p>
                 </div>
                 <div class="modal-footer">
