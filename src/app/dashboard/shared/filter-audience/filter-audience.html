@@ -61,14 +61,13 @@
                                         <option value="female">Female</option>
                                     </select>
                                     <select ng-if="rule.key == 'tag'" ng-model="rule.value">
-                                        <option ng-repeat="tag in $ctrl.tags" value="{{ tag }}" ng-if="tag">{{ tag }}
-                                        </option>
+                                        <option ng-repeat="tag in $ctrl.tags" value="{{ tag }}" ng-if="tag">{{ tag }}</option>
                                     </select>
-                                    <select ng-if="rule.key == 'sequence'" ng-model="rule.value">
-                                        <option ng-repeat="sequence in $ctrl.sequences" value="{{ sequence.id }}">
-                                            {{sequence.name }}
-                                        </option>
-                                    </select>
+                                    <!--<select ng-if="rule.key == 'sequence'" ng-model="rule.value">-->
+                                        <!--<option ng-repeat="sequence in $ctrl.sequences" value="{{ sequence.id }}">-->
+                                            <!--{{sequence.name }}-->
+                                        <!--</option>-->
+                                    <!--</select>-->
                                     <a ng-click="$ctrl.remove(rule, group.rules)" class="text-danger">
                                         <i class="fa fa-remove"></i></a>
                                 </div>

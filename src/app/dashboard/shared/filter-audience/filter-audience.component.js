@@ -8,6 +8,7 @@ class FilterAudienceController {
 
         this.$onInit = () => {
             this.allowedFilters = this.allowedFilters || ['gender', 'tag', 'sequence'];
+            this.allowedFilters = ['gender', 'tag'];
 
             if (this.allowedFilters.includes('tag')) {
                 this.tags = $rootScope.bot.tags;
