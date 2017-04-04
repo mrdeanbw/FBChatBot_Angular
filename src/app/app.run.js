@@ -15,8 +15,12 @@ function AppRun(AppConstants, $rootScope, $transitions, $window, $location) {
 
     if ($window.__ENV.environment === 'production') {
         $transitions.onSuccess({}, () => {
-            $window.ga('send', 'pageview', $location.path());
-            $window.fbq('track', 'PageView');
+            if ($window.ga) {
+                $window.ga('send', 'pageview', $location.path());
+            }
+            if ($window.fbq) {
+                $window.fbq('track', 'PageView');
+            }
         });
     }
 
