@@ -169,28 +169,28 @@ class BroadcastCtrl {
             controller: function ($scope, close, button, Sequences, $rootScope) {
                 'ngInject';
                 $scope.button = button;
-                if (button.sequencesFetched) {
-                    $scope.loading = false;
-                } else {
-                    let addSequences = angular.copy(button.actions.add_sequences);
-                    let removeSequences = angular.copy(button.actions.remove_sequences);
-                    let ids = addSequences.concat(removeSequences).join(',');
-                    button.actions.add_sequences = [];
-                    button.actions.remove_sequences = [];
-                    Sequences($rootScope.bot.id).getList({ids}).then(
-                        sequences => {
-                            for (let sequence of sequences) {
-                                if (addSequences.includes(sequence.id)) {
-                                    button.actions.add_sequences.push(sequence);
-                                } else {
-                                    button.actions.remove_sequences.push(sequence);
-                                }
-                            }
-                            $scope.loading = false;
-                            button.sequencesFetched = true;
-                        }
-                    );
-                }
+                // if (button.sequencesFetched) {
+                //     $scope.loading = false;
+                // } else {
+                //     let addSequences = angular.copy(button.actions.add_sequences);
+                //     let removeSequences = angular.copy(button.actions.remove_sequences);
+                //     let ids = addSequences.concat(removeSequences).join(',');
+                //     button.actions.add_sequences = [];
+                //     button.actions.remove_sequences = [];
+                //     Sequences($rootScope.bot.id).getList({ids}).then(
+                //         sequences => {
+                //             for (let sequence of sequences) {
+                //                 if (addSequences.includes(sequence.id)) {
+                //                     button.actions.add_sequences.push(sequence);
+                //                 } else {
+                //                     button.actions.remove_sequences.push(sequence);
+                //                 }
+                //             }
+                //             $scope.loading = false;
+                //             button.sequencesFetched = true;
+                //         }
+                //     );
+                // }
 
             }
         });

@@ -19,11 +19,11 @@
 
         <hr class="line opacity-3" style="margin-bottom: 20px"/>
 
-        <div class="row">
-            <div class="col-md-12 p-b-20 text-center">
-                <button class="btn btn-primary btn-lg" ng-click="$ctrl.active = $ctrl.summary">Summary</button>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 p-b-20 text-center">-->
+                <!--<button class="btn btn-primary btn-lg" ng-click="$ctrl.active = $ctrl.summary">Summary</button>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="row" ng-repeat="message in $ctrl.revisions" ng-click="$ctrl.activeCard = (message == $ctrl.active || message.type != 'card_container')? $ctrl.activeCard : message.cards[0]; $ctrl.active = message;">
             <div class="col-md-12 p-l-45 p-r-45">
@@ -110,20 +110,20 @@
                     <div class="col-md-6 stats">
                         <h1 class="count">{{ $ctrl.active.stats.sent.total | number }}</h1>
                         <h3>Sent Times</h3>
-                        <h5>
-                            <em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.total) }}">
-                                ({{ $ctrl.active.change.sent.total > 0? '+' : '' }}{{ $ctrl.active.change.sent.total | percentage }})
-                            </em>
-                        </h5>
+                        <!--<h5>-->
+                            <!--<em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.total) }}">-->
+                                <!--({{ $ctrl.active.change.sent.total > 0? '+' : '' }}{{ $ctrl.active.change.sent.total | percentage }})-->
+                            <!--</em>-->
+                        <!--</h5>-->
                     </div>
                     <div class="col-md-6 stats">
                         <h1>{{ $ctrl.active.stats.sent.per_subscriber | number }}</h1>
                         <h3>Different People</h3>
-                        <h5>
-                            <em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.per_subscriber) }}">
-                                ({{ $ctrl.active.change.sent.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.sent.per_subscriber | percentage }})
-                            </em>
-                        </h5>
+                        <!--<h5>-->
+                            <!--<em ng-if="$ctrl.active.change" class="{{ $ctrl.getFractionClass($ctrl.active.change.sent.per_subscriber) }}">-->
+                                <!--({{ $ctrl.active.change.sent.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.sent.per_subscriber | percentage }})-->
+                            <!--</em>-->
+                        <!--</h5>-->
                     </div>
                 </div>
                 <hr class="line" style="margin-bottom: 20px"/>
@@ -133,9 +133,9 @@
                         <h3>Delivered Times</h3>
                         <h5>
                             {{ $ctrl.active.stats.delivered.total/$ctrl.active.stats.sent.total | percentage:0 }}&nbsp;
-                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.total) }}">
-                                ({{ $ctrl.active.change.delivered.total > 0? '+' : '' }}{{ $ctrl.active.change.delivered.total | percentage }})
-                            </em>
+                            <!--<em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.total) }}">-->
+                                <!--({{ $ctrl.active.change.delivered.total > 0? '+' : '' }}{{ $ctrl.active.change.delivered.total | percentage }})-->
+                            <!--</em>-->
                         </h5>
                     </div>
                     <div class="col-md-6 stats">
@@ -143,9 +143,9 @@
                         <h3>Different People</h3>
                         <h5>
                             {{ $ctrl.active.stats.delivered.per_subscriber/$ctrl.active.stats.sent.per_subscriber | percentage:0 }}&nbsp;
-                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.per_subscriber) }}">
-                                ({{ $ctrl.active.change.delivered.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.delivered.per_subscriber | percentage }})
-                            </em>
+                            <!--<em ng-if="$ctrl.active.change && $ctrl.active.stats.sent.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.delivered.per_subscriber) }}">-->
+                                <!--({{ $ctrl.active.change.delivered.per_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.delivered.per_subscriber | percentage }})-->
+                            <!--</em>-->
                         </h5>
                     </div>
                 </div>
@@ -156,9 +156,9 @@
                         <h3>Seen Times</h3>
                         <h5>
                             {{ $ctrl.active.stats.read.total/$ctrl.active.stats.delivered.total | percentage:0 }}&nbsp;
-                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.total) }}">
-                                ({{ $ctrl.active.change.read.total > 0? '+' : '' }}{{ $ctrl.active.change.read.total | percentage }})
-                            </em>
+                            <!--<em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.total" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.total) }}">-->
+                                <!--({{ $ctrl.active.change.read.total > 0? '+' : '' }}{{ $ctrl.active.change.read.total | percentage }})-->
+                            <!--</em>-->
                         </h5>
                     </div>
                     <div class="col-md-6 stats">
@@ -166,9 +166,9 @@
                         <h3>Different People</h3>
                         <h5>
                             {{ $ctrl.active.stats.read.per_subscriber/$ctrl.active.stats.delivered.per_subscriber | percentage:0 }}&nbsp;
-                            <em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.per_subscriber) }}">
-                                ({{ $ctrl.active.change.read.pre_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.read.pre_subscriber | percentage }})
-                            </em>
+                            <!--<em ng-if="$ctrl.active.change && $ctrl.active.stats.delivered.per_subscriber" class="{{ $ctrl.getFractionClass($ctrl.active.change.read.per_subscriber) }}">-->
+                                <!--({{ $ctrl.active.change.read.pre_subscriber > 0? '+' : '' }}{{ $ctrl.active.change.read.pre_subscriber | percentage }})-->
+                            <!--</em>-->
                         </h5>
                     </div>
                 </div>

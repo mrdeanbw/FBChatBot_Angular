@@ -63,7 +63,8 @@ class MessageHistoryController {
                     }
                 }
             }
-            this.active = this.summary;
+            // this.active = this.summary;
+            this.active = this.revisions[0];
         };
     }
 
