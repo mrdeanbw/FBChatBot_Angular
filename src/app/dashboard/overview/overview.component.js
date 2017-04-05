@@ -26,8 +26,8 @@ class OverviewController {
             }
         );
 
-        maxPlus = Math.ceil((maxPlus || 20) / 10) * 10;
-        maxTotal = Math.ceil((maxTotal || 100) / 25) * 25;
+        maxPlus = maxPlus + 10;
+        maxTotal = maxTotal + 10;
 
         this.graphOptions = {
             chart: {
