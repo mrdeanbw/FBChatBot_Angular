@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel" id="subscriber-list">
     <div class="panel-body">
         <div class="row m-b-10">
             <div class="col-xs-6">
@@ -21,7 +21,8 @@
 
                 <tr ng-repeat="subscriber in $data" ng-class="{'danger': !subscriber[$ctrl.cols.active.field]}">
 
-                    <td>
+                    <!--Don't remove the ng-if="true" or bad things would happen-->
+                    <td ng-if="true">
                         <input type="checkbox" ng-checked="$ctrl.isSelected(subscriber)" ng-click="$ctrl.toggleSelection(subscriber)"/>
                     </td>
 
@@ -73,10 +74,3 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    td[ng-click] {
-        cursor: pointer;
-    }
-</style>

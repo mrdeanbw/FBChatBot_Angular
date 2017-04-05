@@ -102,7 +102,7 @@ class SubscriberController {
         ];
 
         this.colList = [
-            {field: "batch_select", title: "", show: true,},
+            {field: "batch_select", title: "", show: true},
             {field: "avatar_url", title: "Avatar", show: true},
             {
                 field: "first_name",

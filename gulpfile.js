@@ -85,7 +85,7 @@ gulp.task('css', function () {
         'node_modules/angular-ui-select/select.min.css',
         'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
         'third-party/bootstrap-timepicker.css',
-        'node_modules/ng-table/bundles/ng-table.min.css',
+        'node_modules/ng-table/dist/ng-table.min.css',
         'node_modules/angular-ui-tree/dist/angular-ui-tree.min.css',
         'node_modules/angularjs-toaster/toaster.min.css',
         'bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',

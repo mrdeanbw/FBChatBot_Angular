@@ -877,6 +877,14 @@ body.menu-pin.fixed-header .header:not(th) {
     text-decoration: inherit;
 }
 
-#subscriber-table td:not(:first-child) {
+#subscriber-list td:not(:first-child) {
     cursor: pointer;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+#subscriber-list .ng-cloak{
+    display: block !important;
 }
