@@ -876,3 +876,7 @@ body.menu-pin.fixed-header .header:not(th) {
     font-weight: normal;
     text-decoration: inherit;
 }
+
+#subscriber-table td:not(:first-child) {
+    cursor: pointer;
+}
