@@ -16,7 +16,7 @@ class GreetingTextController {
     }
 
     validateCopyrights() {  
-        this.isValid = this.bot.payment_plan || this.bot.greeting_text.text.trim().endsWith("- Powered By: MrReply.com");
+        this.isValid = true || this.bot.payment_plan || this.bot.greeting_text.text.trim().endsWith("- Powered By: MrReply.com");
     };
 
     fix() {
@@ -25,7 +25,7 @@ class GreetingTextController {
         }
         this.bot.greeting_text.text = this.bot.greeting_text.text.replace(/- Powered By: MrReply.com/g, '');
         this.bot.greeting_text.text += "- Powered By: MrReply.com";
-        var start = Math.max(0, this.bot.greeting_text.text.length - 160);
+        let start = Math.max(0, this.bot.greeting_text.text.length - 160);
         this.bot.greeting_text.text = this.bot.greeting_text.text.substr(start);
         this.validateCopyrights();
     };
