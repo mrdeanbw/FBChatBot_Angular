@@ -82,18 +82,15 @@
         </div>
     </div>
 
-    <ol ui-tree-nodes="" ng-if="node.type == 'button' && !node.template" ng-model="node.messages"
-        ng-class="{hidden: collapsed}">
-        <li ng-repeat="node in node.messages" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-    </ol>
-
-    <ol ui-tree-nodes="" ng-if="node.type == 'button' && node.template" ng-model="node.template"
-        ng-class="{hidden: collapsed}">
+    <ol ui-tree-nodes="" ng-if="node.type == 'button' && node.template" ng-model="node.template" ng-class="{hidden: collapsed}">
         <li ng-repeat="node in [node.template]" ui-tree-node ng-include="'nodes_renderer.html'"></li>
     </ol>
 
-    <ol ui-tree-nodes="" ng-if="node.type == 'text' || node.type == 'card'" ng-model="node.buttons"
-        ng-class="{hidden: collapsed}">
+    <ol ui-tree-nodes="" ng-if="node.type == 'button'" ng-model="node.messages" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.messages" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+    </ol>
+
+    <ol ui-tree-nodes="" ng-if="node.type == 'text' || node.type == 'card'" ng-model="node.buttons" ng-class="{hidden: collapsed}">
         <li ng-repeat="node in node.buttons" ui-tree-node ng-include="'nodes_renderer.html'"></li>
     </ol>
 
@@ -161,21 +158,24 @@
 
 
         <div ng-if="$ctrl.active.type == 'button'">
-            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.template">
-                <strong>Attention!</strong> Adding any of the above messages, will remove your current associated
-                message tree.
-            </div>
+            <!--<div class="alert alert-warning m-t-10" ng-if="$ctrl.active.template">-->
+                <!--<strong>Attention!</strong> Adding any of the above messages, will remove your current associated message tree.-->
+            <!--</div>-->
             <h4 class="text-center">[Or] Send a predefined message tree</h4>
             <select-tree model="treeToAdd"></select-tree>
+            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.template">
+                <strong>Attention!</strong> <br />
+                This button <strong>{{ $ctrl.active.title}}</strong> already has an associated message tree: <strong>{{ $ctrl.active.template.name }}</strong>.<br />
+                If you choose to associate a different tree, the current tree will be removed.
+            </div>
             <div class="text-center m-t-10">
                 <button class="btn btn-primary" ng-disabled="!treeToAdd" ng-click="$ctrl.addTree(treeToAdd)">
                     Add Predefined Message Tree
                 </button>
             </div>
 
-            <div class="alert alert-warning m-t-10" ng-if="$ctrl.active.messages.length">
-                <strong>Attention!</strong> Adding a new predefined message tree, will remove your current subtree.
-            </div>
         </div>
     </div>
 </div>
+
+<pre>{{ $ctrl.tree | json }}</pre>

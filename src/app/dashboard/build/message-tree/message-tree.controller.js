@@ -172,9 +172,6 @@ class MessageTreeController {
     }
 
     _addMessage(node, message) {
-        if (node.type === 'button') {
-            node.template = undefined;
-        }
         this._MessageHelpers.addMessage(node.messages, message);
         this.edit(message);
     }
@@ -186,7 +183,6 @@ class MessageTreeController {
     }
 
     addTree(tree) {
-        this.active.messages = [];
         this.active.template = tree;
     }
 
@@ -218,8 +214,8 @@ class MessageTreeController {
 
                 if (destination.type === 'button') {
                     if (destination.template) {
-                        this._showError("Buttons that have associated message trees cannot have other messages.");
-                        return false;
+                        // this._showError("Buttons that have associated message trees cannot have other messages.");
+                        // return false;
                     }
                     return true;
                 }
