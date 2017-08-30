@@ -109,7 +109,7 @@ class BotController {
             this.activeBots = bots;
             this.activeBots.tablized = this._AppHelpers.tablize(this.activeBots, 4);
         });
-    }
+    }   
 
     paginateDisabled(page) {
         this._DisabledBots.getList({page}).then(bots => {

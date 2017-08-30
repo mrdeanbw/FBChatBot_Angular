@@ -172,7 +172,7 @@ gulp.task('views', function () {
         }))
         .on('error', interceptErrors)
         .pipe(rename("app.templates.js"))
-        .pipe(gulp.dest('./src/app/'));
+        //.pipe(gulp.dest('./src/app/'));
 });
 
 gulp.task('clean:assets', function () {

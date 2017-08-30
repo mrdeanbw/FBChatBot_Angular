@@ -14,8 +14,12 @@ class AuthController {
     }
 
     login() {
+        
+        //console.log(this._$facebook);
         this._$facebook.getLoginStatus().then(
+            
             res => {
+                
                 // already logged in using Facebook.
                 if (res.status === 'connected') {
                     return this._handleFacebookResponse(res);
